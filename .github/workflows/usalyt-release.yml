@@ -30,7 +30,7 @@ concurrency:
 
 defaults:
   run:
-    working-directory: ui-library
+    working-directory: usalyt
 
 jobs:
   release:
@@ -54,7 +54,7 @@ jobs:
           node-version: 24
           registry-url: https://registry.npmjs.org
           cache: pnpm
-          cache-dependency-path: ui-library/pnpm-lock.yaml
+          cache-dependency-path: usalyt/pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

@@ -1,0 +1,57 @@
+{
+  "name": "@usalyt/eslint-config",
+  "version": "0.0.1",
+  "main": "index.js",
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.65.0",
+    "@typescript-eslint/parser": "^8.65.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react-hooks": "^7.1.1"
+  },
+  "license": "GPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/save/ux-check.git",
+    "directory": "usalyt/packages/eslint-config"
+  },
+  "homepage": "https://github.com/save/ux-check",
+  "bugs": {
+    "url": "https://github.com/save/ux-check/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "eslint": ">=9",
+    "typescript": ">=4.8.4 <6.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.5",
+    "typescript": "^6.0.0"
+  },
+  "description": "Shared flat ESLint configuration for Usalyt TypeScript and React projects.",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.js",
+      "default": "./index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.mjs",
+    "index.js",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "NOTICE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "scripts": {
+    "test": "node --test test/",
+    "verify": "node scripts/smoke.mjs"
+  }
+}

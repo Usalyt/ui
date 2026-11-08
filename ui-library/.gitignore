@@ -1,7 +1,0 @@
-# Local workspace scratch and package outputs
-.tmp/
-*.tgz
-coverage/
-playwright-report/
-test-results/
-.turbo/

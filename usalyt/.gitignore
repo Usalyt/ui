@@ -1,0 +1,16 @@
+# Local workspace scratch and package outputs
+.tmp/
+*.tgz
+coverage/
+playwright-report/
+test-results/
+.turbo/
+node_modules/
+dist/
+build/
+.next/
+.astro/
+storybook-static/
+scratch/
+report/
+packages/registry/registry.json

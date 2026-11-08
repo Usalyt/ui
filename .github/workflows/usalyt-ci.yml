@@ -3,11 +3,11 @@ name: Usalyt package CI
 on:
   push:
     paths:
-      - "ui-library/**"
+      - "usalyt/**"
       - ".github/workflows/usalyt-*.yml"
   pull_request:
     paths:
-      - "ui-library/**"
+      - "usalyt/**"
       - ".github/workflows/usalyt-*.yml"
   workflow_dispatch:
 
@@ -20,7 +20,7 @@ concurrency:
 
 defaults:
   run:
-    working-directory: ui-library
+    working-directory: usalyt
 
 jobs:
   verify:
@@ -41,7 +41,7 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
-          cache-dependency-path: ui-library/pnpm-lock.yaml
+          cache-dependency-path: usalyt/pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

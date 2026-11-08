@@ -1,0 +1,64 @@
+{
+  "name": "@usalyt/mcp-server",
+  "version": "0.0.1",
+  "description": "Model Context Protocol (MCP) server for Antigravity, Cursor, and Claude Code AI agents",
+  "type": "module",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test:unit": "vitest run",
+    "test": "pnpm build && vitest run",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "@usalyt/registry": "workspace:^"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "tsdown": "^0.22.14",
+    "typescript": "^6.0.0",
+    "vitest": "^4.1.10",
+    "@usalyt/tsconfig": "workspace:*"
+  },
+  "license": "GPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/save/ux-check.git",
+    "directory": "usalyt/packages/mcp-server"
+  },
+  "homepage": "https://github.com/save/ux-check",
+  "bugs": {
+    "url": "https://github.com/save/ux-check/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "usalyt-mcp": "./dist/index.mjs"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "tsdown.config.ts",
+    "tsconfig.json",
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "THIRD_PARTY_NOTICES.md",
+    "CHANGELOG.md"
+  ]
+}
