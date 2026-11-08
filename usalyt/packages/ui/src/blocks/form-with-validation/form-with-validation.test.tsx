@@ -11,6 +11,7 @@ describe("FormWithValidation Block Component", () => {
     expect(screen.getByText("User Profile Settings")).toBeInTheDocument();
     expect(screen.getByLabelText(/full name/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/work email/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("nielsen@example.com")).toBeInTheDocument();
     expect(screen.getByLabelText(/organization/i)).toBeInTheDocument();
   });
 
@@ -33,7 +34,7 @@ describe("FormWithValidation Block Component", () => {
     render(<FormWithValidation onSubmit={onSubmit} />);
 
     await user.type(screen.getByLabelText(/full name/i), "Jacob Nielsen");
-    await user.type(screen.getByLabelText(/work email/i), "nielsen@uxcheck.io");
+    await user.type(screen.getByLabelText(/work email/i), "nielsen@example.com");
     await user.type(screen.getByLabelText(/organization/i), "NN/g Institute");
 
     await user.click(screen.getByRole("button", { name: /save profile/i }));
@@ -41,7 +42,7 @@ describe("FormWithValidation Block Component", () => {
     await waitFor(() => {
       expect(onSubmit).toHaveBeenCalledWith({
         fullName: "Jacob Nielsen",
-        email: "nielsen@uxcheck.io",
+        email: "nielsen@example.com",
         organization: "NN/g Institute",
       });
     });
@@ -59,7 +60,7 @@ describe("FormWithValidation Block Component", () => {
 
     render(<FormWithValidation onSubmit={onSubmit} />);
     await user.type(screen.getByLabelText(/full name/i), "Jacob Nielsen");
-    await user.type(screen.getByLabelText(/work email/i), "nielsen@uxcheck.io");
+    await user.type(screen.getByLabelText(/work email/i), "nielsen@example.com");
     await user.type(screen.getByLabelText(/organization/i), "NN/g Institute");
     await user.click(screen.getByRole("button", { name: /save profile/i }));
 
@@ -80,7 +81,7 @@ describe("FormWithValidation Block Component", () => {
 
     render(<FormWithValidation onSubmit={onSubmit} />);
     await user.type(screen.getByLabelText(/full name/i), "Jacob Nielsen");
-    await user.type(screen.getByLabelText(/work email/i), "nielsen@uxcheck.io");
+    await user.type(screen.getByLabelText(/work email/i), "nielsen@example.com");
     await user.type(screen.getByLabelText(/organization/i), "NN/g Institute");
     await user.click(screen.getByRole("button", { name: /save profile/i }));
 

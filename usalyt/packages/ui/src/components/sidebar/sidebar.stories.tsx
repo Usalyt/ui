@@ -39,10 +39,10 @@ export const Default: Story = {
         <SidebarHeader>
           <div className="flex items-center gap-2.5 px-1 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-0">
             <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-accent text-label font-w510 text-foreground">
-              UX
+              U
             </span>
             <span className="truncate text-body-sm font-w510 text-sidebar-foreground group-data-[collapsible=icon]:hidden">
-              UX Check
+              Usalyt Check
             </span>
           </div>
         </SidebarHeader>

@@ -1,0 +1,36 @@
+# Dependencies and generated output
+node_modules/
+dist/
+build/
+.turbo/
+.next/
+.astro/
+storybook-static/
+coverage/
+scratch/
+*.tsbuildinfo
+*.tgz
+*.zip
+
+# Local tests may create this evidence; never publish it in Git
+odd/
+
+# Assistant/process files are intentionally excluded from public history
+openspec/
+AGENTS.md
+.agent/
+.agents/
+.impeccable/
+PRODUCT.md
+DESIGN.md
+
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+.npmrc
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/

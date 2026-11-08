@@ -8,11 +8,11 @@ import {
 } from "./team-members-table";
 
 const sampleMembers: TeamMember[] = [
-  { id: "u-1", name: "Alice Owner", email: "alice@uxcheck.io", role: "owner" },
+  { id: "u-1", name: "Alice Owner", email: "alice@example.com", role: "owner" },
   {
     id: "u-2",
     name: "Bob Evaluator",
-    email: "bob@uxcheck.io",
+    email: "bob@example.com",
     role: "evaluator",
   },
 ];
@@ -22,11 +22,11 @@ describe("TeamMembersTable Block", () => {
     render(<TeamMembersTable members={sampleMembers} />);
 
     expect(screen.getByText("Alice Owner")).toBeInTheDocument();
-    expect(screen.getByText("alice@uxcheck.io")).toBeInTheDocument();
+    expect(screen.getByText("alice@example.com")).toBeInTheDocument();
     expect(screen.getByText("Owner")).toBeInTheDocument();
 
     expect(screen.getByText("Bob Evaluator")).toBeInTheDocument();
-    expect(screen.getByText("bob@uxcheck.io")).toBeInTheDocument();
+    expect(screen.getByText("bob@example.com")).toBeInTheDocument();
     expect(
       screen.getByLabelText(/change role for bob evaluator/i)
     ).toBeInTheDocument();

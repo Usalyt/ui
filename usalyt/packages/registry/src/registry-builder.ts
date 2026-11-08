@@ -7,7 +7,7 @@ export const REGISTRY_LICENSE = "GPL-3.0-only";
 export const REGISTRY_SCHEMA_REFERENCE = "./schema/registry.schema.json";
 export const REGISTRY_REPOSITORY = {
   type: "git",
-  url: "git+https://github.com/save/ux-check.git",
+  url: "git+https://github.com/Usalyt/ui.git",
   directory: "usalyt/packages/registry",
 } as const;
 

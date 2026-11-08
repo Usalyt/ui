@@ -7,7 +7,7 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          "The DESIGN.md type contract: every `text-*` token carries its own size, line-height and optical tracking (Tailwind v4 text sub-keys), the weight vocabulary is 300/400/510/590, Inter Variable ships via @fontsource-variable/inter, and Berkeley Mono resolves local() first with JetBrains Mono → ui-monospace as the documented substitutes.",
+          "Usalyt's type scale: every `text-*` token carries its own size, line-height and optical tracking (Tailwind v4 text sub-keys), the weight vocabulary is 300/400/510/590, Inter Variable ships via @fontsource-variable/inter, and Berkeley Mono resolves local() first with JetBrains Mono → ui-monospace as the documented substitutes.",
       },
     },
   },

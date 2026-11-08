@@ -10,18 +10,26 @@ const navItems: NavItem[] = [
 ];
 
 describe("AppShellLayout Block", () => {
-  it("renders sidebar with brand name, nav items and user profile", () => {
+  it("uses Usalyt branding and a neutral account by default", () => {
+    render(<AppShellLayout />);
+
+    expect(screen.getByText("Usalyt")).toBeInTheDocument();
+    expect(screen.getByText("alex@example.com")).toBeInTheDocument();
+  });
+
+  it("preserves a consumer-supplied brand and user profile", () => {
     render(
       <AppShellLayout
-        brandName="UX Check Pro"
+        brandName="Custom Studio"
         navItems={navItems}
-        user={{ name: "Elena R.", email: "elena@uxcheck.io" }}
+        user={{ name: "Elena R.", email: "elena@example.com" }}
       >
         <div>Main Dashboard Content</div>
       </AppShellLayout>
     );
 
-    expect(screen.getByText("UX Check Pro")).toBeInTheDocument();
+    expect(screen.getByText("Custom Studio")).toBeInTheDocument();
+    expect(screen.getByText("elena@example.com")).toBeInTheDocument();
     expect(screen.getByText("Evaluations")).toBeInTheDocument();
     expect(screen.getByText("Calendar")).toBeInTheDocument();
     expect(screen.getByText("Elena R.")).toBeInTheDocument();

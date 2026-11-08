@@ -46,11 +46,11 @@ export interface AppShellLayoutProps
 }
 
 export function AppShellLayout({
-  brandName = "UX Check",
+  brandName = "Usalyt",
   brandLogo,
   navItems = [],
   breadcrumbs = [{ label: "Dashboard", href: "/" }, { label: "Overview" }],
-  user = { name: "Alex Evaluator", email: "alex@uxcheck.io" },
+  user = { name: "Alex Evaluator", email: "alex@example.com" },
   onSearchClick,
   onNotificationsClick,
   children,

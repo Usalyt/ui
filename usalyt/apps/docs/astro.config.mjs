@@ -18,7 +18,7 @@ export default defineConfig({
       // a warning-free build.
       disable404Route: true,
       social: {
-        github: "https://github.com/save/ux-check"
+        github: "https://github.com/Usalyt/ui"
       },
       // The theme control lives in the header's right group AND in the mobile
       // menu footer — both render `<ThemeSelect />` in Starlight 0.32.6, so the

@@ -17,11 +17,11 @@ The `usalyt` workspace and five of its public packages are distributed under the
 
 ## Source availability
 
-Each public package tarball includes its source entry points and build inputs so recipients can rebuild the corresponding object code. The project repository referenced by the package metadata is `https://github.com/save/ux-check` (`usalyt` directory). This checkout has no configured Git remote, so that URL could not be independently verified here. If the repository is not publicly accessible, the source included in the tarballs remains available to recipients.
+Each public package tarball includes its source entry points and build inputs so recipients can rebuild the corresponding object code. The project repository referenced by the package metadata is `https://github.com/Usalyt/ui` (`usalyt/` directory). The source included in each public package tarball also remains available to its recipients.
 
 ## Scope
 
-This notice covers the `usalyt` workspace and its npm release workflow. It does not relicense the wider UX Check repository outside `usalyt`. The root repository README still declares the wider project proprietary; that inconsistency must be resolved by the repository owner before publication.
+This notice covers the `usalyt` workspace and its npm release workflow.
 
 ## Provenance
 

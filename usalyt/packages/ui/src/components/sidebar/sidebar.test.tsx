@@ -23,7 +23,7 @@ describe("Sidebar Primitive Component", () => {
       <SidebarProvider defaultOpen>
         <Sidebar collapsible="icon">
           <SidebarHeader>
-            <span>UX Check</span>
+            <span>Usalyt Check</span>
           </SidebarHeader>
           <SidebarContent>
             <SidebarGroup>
@@ -49,7 +49,7 @@ describe("Sidebar Primitive Component", () => {
       </SidebarProvider>
     );
 
-    expect(screen.getByText("UX Check")).toBeInTheDocument();
+    expect(screen.getByText("Usalyt Check")).toBeInTheDocument();
     expect(screen.getByText("Navigation")).toBeInTheDocument();
     expect(screen.getByText("Dashboard")).toBeInTheDocument();
     expect(screen.getByText("Main Content")).toBeInTheDocument();

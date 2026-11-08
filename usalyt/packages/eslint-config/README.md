@@ -90,7 +90,7 @@ This package is licensed under `GPL-3.0-only`. The complete license text is in `
 
 ### Source availability
 
-The published tarball includes the config entries and the metadata needed to rebuild and modify the package. The repository metadata points to `https://github.com/save/ux-check` under `usalyt/packages/eslint-config`. This checkout has no configured Git remote, so that URL could not be independently verified. If the repository is not publicly accessible, the source included in the tarball remains the corresponding-source channel for GPL recipients.
+The published tarball includes the config entries and the metadata needed to rebuild and modify the package. The repository metadata points to `https://github.com/Usalyt/ui` under `usalyt/packages/eslint-config`. If the repository is not publicly accessible, the source included in the tarball remains the corresponding-source channel for GPL recipients.
 
 ### Third-party notices
 

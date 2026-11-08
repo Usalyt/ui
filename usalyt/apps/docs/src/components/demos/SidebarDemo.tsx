@@ -35,7 +35,7 @@ export function SidebarDemo() {
                   <ShieldCheck className="h-3.5 w-3.5 text-foreground" />
                 </span>
                 <span className="text-sm font-medium text-sidebar-foreground group-data-[collapsible=icon]:hidden">
-                  UX Check
+                  Usalyt Check
                 </span>
               </div>
             </SidebarHeader>

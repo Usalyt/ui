@@ -112,7 +112,7 @@ test("registry declares local schema, version, license, and repository metadata"
   assert.equal(registry.license, "GPL-3.0-only");
   assert.deepEqual(registry.repository, {
     type: "git",
-    url: "git+https://github.com/save/ux-check.git",
+    url: "git+https://github.com/Usalyt/ui.git",
     directory: "usalyt/packages/registry",
   });
 });

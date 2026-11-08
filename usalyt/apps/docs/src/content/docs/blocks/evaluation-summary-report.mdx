@@ -8,7 +8,7 @@ import ComponentPreview from '../../../components/ComponentPreview.astro';
 import { PropsTable } from '../../../components/PropsTable';
 import { EvaluationSummaryReportDemo } from "../../../components/demos/EvaluationSummaryReportDemo";
 
-Executive report card with overall score, severity counters, and per-heuristic progress.
+Executive report card with overall score, severity counters, per-heuristic progress, and a Usalyt Check footer.
 
 ## Installation
 
@@ -64,7 +64,7 @@ export function AuditSummary() {
 
 <PropsTable props={[
   { name: "title", type: "string", defaultValue: "'Heuristic Evaluation Executive Report'", description: "Report title." },
-  { name: "projectName", type: "string", defaultValue: "'UX Check Project'", description: "Subtitle rendered under the title." },
+  { name: "projectName", type: "string", defaultValue: "'Usalyt Check Project'", description: "Subtitle rendered under the title." },
   { name: "overallScore", type: "number", defaultValue: "82", description: "Overall usability score out of 100, shown with a progress bar." },
   { name: "criticalCount", type: "number", defaultValue: "3", description: "Critical findings count." },
   { name: "mediumCount", type: "number", defaultValue: "7", description: "Medium findings count." },

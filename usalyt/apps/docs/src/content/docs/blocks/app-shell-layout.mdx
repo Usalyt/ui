@@ -45,10 +45,10 @@ import { AppShellLayout } from "@usalyt/ui";
 export function MyAppShell() {
   return (
     <AppShellLayout
-      brandName="UX Check Platform"
+      brandName="Usalyt Check"
       navItems={[{ title: "Overview", href: "#", isActive: true }]}
       breadcrumbs={[{ label: "Projects", href: "#" }, { label: "Checkout Flow Audit" }]}
-      user={{ name: "Alex Doe", email: "alex@uxcheck.io" }}
+      user={{ name: "Alex Doe", email: "alex@example.com" }}
     >
       <h2 className="text-xl font-bold">Project Dashboard</h2>
     </AppShellLayout>
@@ -59,11 +59,11 @@ export function MyAppShell() {
 ## Props
 
 <PropsTable props={[
-  { name: "brandName", type: "string", defaultValue: "'UX Check'", description: "Brand title rendered in the sidebar header." },
+  { name: "brandName", type: "string", defaultValue: "'Usalyt'", description: "Brand title rendered in the sidebar header." },
   { name: "brandLogo", type: "React.ReactNode", defaultValue: "—", description: "Optional logo node displayed next to the brand name." },
   { name: "navItems", type: "NavItem[]", defaultValue: "[]", description: "Sidebar navigation entries ({ title, href, icon?, isActive? })." },
   { name: "breadcrumbs", type: "Array<{ label: string; href?: string }>", defaultValue: "[{ label: 'Dashboard', href: '/' }, { label: 'Overview' }]", description: "Header breadcrumb trail; the last entry renders as the current page." },
-  { name: "user", type: "{ name: string; email: string; avatarUrl?: string }", defaultValue: "{ name: 'Alex Evaluator', email: 'alex@uxcheck.io' }", description: "Account info rendered in the sidebar footer." },
+  { name: "user", type: "{ name: string; email: string; avatarUrl?: string }", defaultValue: "{ name: 'Alex Evaluator', email: 'alex@example.com' }", description: "Account info rendered in the sidebar footer." },
   { name: "onSearchClick", type: "() => void", defaultValue: "—", description: "Renders the header search button and handles clicks." },
   { name: "onNotificationsClick", type: "() => void", defaultValue: "—", description: "Renders the header notifications button and handles clicks." },
   { name: "children", type: "React.ReactNode", defaultValue: "—", description: "Content of the main region below the header." },

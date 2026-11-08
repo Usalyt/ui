@@ -82,7 +82,7 @@ The owner selected retaining the package's original MIT declaration. No upstream
 
 ### Source availability
 
-The published tarball includes the preset sources needed to rebuild and modify the package. The repository metadata points to `https://github.com/save/ux-check` under `usalyt/packages/tsconfig`. This checkout has no configured Git remote, so that URL could not be independently verified.
+The published tarball includes the preset sources needed to rebuild and modify the package. The repository metadata points to `https://github.com/Usalyt/ui` under `usalyt/packages/tsconfig`.
 
 ## Changelog
 

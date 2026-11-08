@@ -36,6 +36,9 @@ test("six public package repository directories use usalyt", () => {
     const manifest = JSON.parse(read(`${dir}/package.json`));
     assert.equal(manifest.name, name, name);
     assert.equal(manifest.repository?.directory, `usalyt/${dir}`, name);
+    assert.equal(manifest.repository?.url, "git+https://github.com/Usalyt/ui.git", name);
+    assert.equal(manifest.homepage, "https://github.com/Usalyt/ui", name);
+    assert.equal(manifest.bugs?.url, "https://github.com/Usalyt/ui/issues", name);
   }
 });
 
@@ -58,15 +61,15 @@ test("registry source metadata and expectation use usalyt", () => {
   const expectation = read("packages/registry/tests/registry-data.test.ts");
   assert.match(builder, /directory: "usalyt\/packages\/registry"/);
   assert.match(expectation, /directory: "usalyt\/packages\/registry"/);
+  assert.match(builder, /git\+https:\/\/github\.com\/Usalyt\/ui\.git/);
+  assert.match(expectation, /git\+https:\/\/github\.com\/Usalyt\/ui\.git/);
   assert.doesNotMatch(builder, /ui-library\/packages\/registry/);
   assert.doesNotMatch(expectation, /ui-library\/packages\/registry/);
 });
 
 test("active workspace docs and source-location strings use usalyt", () => {
   const activeFiles = [
-    "AGENTS.md",
     "README.md",
-    "PRODUCT.md",
     "packages/README.md",
     "apps/README.md",
     "packages/tests/README.md",
@@ -81,24 +84,31 @@ test("active workspace docs and source-location strings use usalyt", () => {
     "packages/eslint-config/NOTICE",
     "packages/eslint-config/README.md",
     "packages/tsconfig/README.md",
-    "openspec/changes/add-usalyt-npm-distribution/proposal.md",
-    "openspec/changes/add-usalyt-npm-distribution/design.md",
-    "openspec/changes/add-usalyt-npm-distribution/specs/npm-distribution/spec.md",
   ];
   for (const file of activeFiles) {
     assert.doesNotMatch(read(file), /ui-library/, file);
   }
 });
 
-test("root execution docs use Usalyt identities and usalyt path", () => {
-  const rootAgents = readRepo("AGENTS.md");
+test("workspace execution docs use Usalyt identities", () => {
+  const workspaceReadme = read("README.md");
+  assert.doesNotMatch(workspaceReadme, /ui-library/);
+  assert.doesNotMatch(workspaceReadme, /tu-ui|@tu-ui/);
+  assert.match(workspaceReadme, /Usalyt/);
   const rootReadme = readRepo("README.md");
-  for (const content of [rootAgents, rootReadme]) {
-    assert.doesNotMatch(content, /ui-library/);
-    assert.doesNotMatch(content, /tu-ui|@tu-ui/);
-  }
-  assert.match(rootAgents, /usalyt\//);
   assert.match(rootReadme, /Usalyt/);
+  assert.match(rootReadme, /usalyt\//);
+  assert.doesNotMatch(rootReadme, /UX Check|save\/ux-check|ui-library/);
+});
+
+test("public tree excludes AI-process documents", () => {
+  for (const file of [
+    "AGENTS.md", "openspec", ".agent", ".agents",
+    "usalyt/AGENTS.md", "usalyt/openspec", "usalyt/PRODUCT.md", "usalyt/DESIGN.md",
+  ]) {
+    assert.equal(fs.existsSync(path.join(repoRoot, file)), false, file);
+  }
+  assert.match(readRepo(".gitignore"), /^odd\/$/m);
 });
 
 test("pack and verify usage headers point at usalyt", () => {

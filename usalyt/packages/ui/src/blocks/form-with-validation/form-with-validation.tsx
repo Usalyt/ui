@@ -109,7 +109,7 @@ export function FormWithValidation({
                 <FormItem>
                   <FormLabel>Work Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="nielsen@uxcheck.io" {...field} />
+                    <Input placeholder="nielsen@example.com" {...field} />
                   </FormControl>
                   <FormDescription>
                     Reports will be dispatched to this email address.

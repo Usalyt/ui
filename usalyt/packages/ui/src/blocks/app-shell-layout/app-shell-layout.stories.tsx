@@ -17,7 +17,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    brandName: "UX Check Platform",
+    brandName: "Usalyt Check",
     navItems: [
       {
         title: "Overview",
@@ -48,7 +48,7 @@ export const Default: Story = {
     ],
     user: {
       name: "Alex Doe",
-      email: "alex@uxcheck.io",
+      email: "alex@example.com",
     },
     children: (
       <div className="space-y-4">

@@ -15,7 +15,7 @@
 // RED state before task 15: none of the `--color-sidebar*` tokens existed in
 // globals.css (the sidebar surface rendered transparent over the page canvas),
 // the story had no `layout: "fullscreen"` (SidebarInset collapsed to a sliver)
-// and the collapsed rail wrapped "UX Check" and clipped menu labels to single
+// and the collapsed rail wrapped the brand label and clipped menu labels to single
 // letters.
 
 import { readFileSync } from "node:fs";
@@ -172,9 +172,10 @@ describe("Sidebar default story (task 15)", () => {
     expect(sidebarStories).toContain('layout: "fullscreen"');
   });
 
-  it("uses real lucide icons and keeps honest UX Check demo content", () => {
+  it("uses real lucide icons and keeps Usalyt demo content", () => {
     expect(sidebarStories).toContain('from "lucide-react"');
-    expect(sidebarStories).toContain("UX Check");
+    expect(sidebarStories).toContain("Usalyt");
+    expect(sidebarStories).not.toContain("UX Check");
     expect(sidebarStories).toContain("Evaluations");
     expect(sidebarStories).toContain("v1.0.0");
   });

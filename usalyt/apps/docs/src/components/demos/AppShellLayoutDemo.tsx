@@ -13,7 +13,7 @@ export function AppShellLayoutDemo() {
     <div className="w-full">
       <div className="relative h-[600px] overflow-hidden rounded-lg border border-border [transform:translateZ(0)]">
         <AppShellLayout
-          brandName="UX Check Platform"
+          brandName="Usalyt Check"
           navItems={[
             { title: "Overview", href: "#", icon: <LayoutDashboard className="h-4 w-4" />, isActive: true },
             { title: "Evaluations", href: "#", icon: <ClipboardList className="h-4 w-4" /> },
@@ -26,7 +26,7 @@ export function AppShellLayoutDemo() {
             { label: "Projects", href: "#" },
             { label: "Checkout Flow Audit" },
           ]}
-          user={{ name: "Alex Doe", email: "alex@uxcheck.io" }}
+          user={{ name: "Alex Doe", email: "alex@example.com" }}
         >
           <div className="mx-auto max-w-2xl space-y-4">
             <h2 className="text-xl font-bold text-foreground">Project Dashboard</h2>

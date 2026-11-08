@@ -18,6 +18,13 @@ const sampleHeuristics: HeuristicScoreItem[] = [
 ];
 
 describe("EvaluationSummaryReport Block", () => {
+  it("uses Usalyt Check for the default evaluation name and footer", () => {
+    render(<EvaluationSummaryReport />);
+
+    expect(screen.getByText("Usalyt Check Project")).toBeInTheDocument();
+    expect(screen.getByText("Generated with Usalyt Check")).toBeInTheDocument();
+  });
+
   it("renders report title, metrics and heuristic progress items", () => {
     render(
       <EvaluationSummaryReport

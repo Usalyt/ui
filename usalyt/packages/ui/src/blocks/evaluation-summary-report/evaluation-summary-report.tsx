@@ -43,7 +43,7 @@ export interface EvaluationSummaryReportProps
 
 export function EvaluationSummaryReport({
   title = "Heuristic Evaluation Executive Report",
-  projectName = "UX Check Project",
+  projectName = "Usalyt Check Project",
   overallScore = 82,
   criticalCount = 3,
   mediumCount = 7,
@@ -201,7 +201,7 @@ export function EvaluationSummaryReport({
 
       <CardFooter className="flex flex-wrap items-center justify-between gap-2 border-t border-border/40 py-3 text-xs text-muted-foreground">
         <span>Total Findings Audited: {totalFindings}</span>
-        <span>Generated with UX Check</span>
+        <span>Generated with Usalyt Check</span>
       </CardFooter>
     </Card>
   );

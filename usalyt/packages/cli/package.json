@@ -23,12 +23,12 @@
   "license": "GPL-3.0-only",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/save/ux-check.git",
+    "url": "git+https://github.com/Usalyt/ui.git",
     "directory": "usalyt/packages/cli"
   },
-  "homepage": "https://github.com/save/ux-check",
+  "homepage": "https://github.com/Usalyt/ui",
   "bugs": {
-    "url": "https://github.com/save/ux-check/issues"
+    "url": "https://github.com/Usalyt/ui/issues"
   },
   "engines": {
     "node": ">=20"

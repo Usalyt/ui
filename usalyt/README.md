@@ -102,11 +102,11 @@ pnpm pack:public        # pack and inspect the six public tarballs
 pnpm check              # type-check, package suites, registry check, artifact gate
 ```
 
-Installed-artifact evidence is written under `odd/artifacts/usalyt-npm-release/` at the repository root. OpenSpec governs changes under `openspec/`; validate with `openspec validate <change-name> --strict`.
+Installed-artifact evidence is written under ignored `odd/artifacts/usalyt-npm-release/` at the repository root. This generated test output is not part of public Git history.
 
 ## Release and publishing
 
-The release workflow is `.github/workflows/usalyt-release.yml`. It is manual (`workflow_dispatch`) and bound to a protected environment named `npm-release` with required reviewers. It never publishes on push. CI uses `pnpm install --frozen-lockfile`, build, type-check, package tests, registry check, and tarball inspection.
+The release workflow is `.github/workflows/usalyt-release.yml`. It is manual (`workflow_dispatch`), targets an environment named `npm-release`, and never publishes on push. Before any release, the repository owner must configure that environment with required reviewers and verify npm permissions and credentials. CI uses `pnpm install --frozen-lockfile`, build, type-check, package tests, registry check, and tarball inspection.
 
 ### Minimum npm permissions and prerequisites
 
@@ -125,9 +125,9 @@ The release workflow is `.github/workflows/usalyt-release.yml`. It is manual (`w
 
 ### Source availability and licensing
 
-The `usalyt` workspace and five of the six public packages are licensed `GPL-3.0-only`. `@usalyt/tsconfig` is the package-scoped exception and is licensed `MIT`, retaining its original declaration by explicit owner decision. Each tarball includes its full license text, `NOTICE`, `THIRD_PARTY_NOTICES.md`, its changelog, and its TypeScript/JavaScript source or configuration inputs needed to rebuild it. The repository URL used in package metadata is `https://github.com/save/ux-check` (the URL already referenced by the docs); this checkout has no configured Git remote, so it could not be independently verified. If that repository is not publicly accessible, the source included in the tarballs remains available to recipients.
+The `usalyt` workspace and five of the six public packages are licensed `GPL-3.0-only`. `@usalyt/tsconfig` is the package-scoped exception and is licensed `MIT`, retaining its original declaration by explicit owner decision. Each tarball includes its full license text, `NOTICE`, `THIRD_PARTY_NOTICES.md`, its changelog, and its TypeScript/JavaScript source or configuration inputs needed to rebuild it. The repository URL used in package metadata is `https://github.com/Usalyt/ui`, with package sources under `usalyt/packages/`. Each tarball also contains its corresponding source for recipients.
 
-The wider repository root README still declares the UX Check project proprietary. That statement is outside this workspace's scope and must be reconciled by the repository owner before publication.
+This repository contains only Usalyt source and history.
 
 ## License
 
