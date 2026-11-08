@@ -1,0 +1,32 @@
+# Usalyt licensing notice
+
+Copyright (C) 2026 Pablo Pincay Alvarez, Ricardo Villamar and Usalyt contributors.
+
+The `ui-library` workspace and five of its public packages are distributed under the GNU General Public License, version 3 only (`GPL-3.0-only`). `@usalyt/tsconfig` is the package-scoped exception and is licensed under the MIT License. The complete license text for each package is in its own `LICENSE` file. There is no warranty, to the extent permitted by law.
+
+## Package license map
+
+| Package | License |
+| --- | --- |
+| `@usalyt/ui` | `GPL-3.0-only` |
+| `@usalyt/registry` | `GPL-3.0-only` |
+| `@usalyt/cli` | `GPL-3.0-only` |
+| `@usalyt/mcp-server` | `GPL-3.0-only` |
+| `@usalyt/eslint-config` | `GPL-3.0-only` |
+| `@usalyt/tsconfig` | `MIT` |
+
+## Source availability
+
+Each public package tarball includes its source entry points and build inputs so recipients can rebuild the corresponding object code. The project repository referenced by the package metadata is `https://github.com/save/ux-check` (`ui-library` directory). This checkout has no configured Git remote, so that URL could not be independently verified here. If the repository is not publicly accessible, the source included in the tarballs remains available to recipients.
+
+## Scope
+
+This notice covers the `ui-library` workspace and its npm release workflow. It does not relicense the wider UX Check repository outside `ui-library`. The root repository README still declares the wider project proprietary; that inconsistency must be resolved by the repository owner before publication.
+
+## Provenance
+
+- Components and distribution patterns are derived from the shadcn/ui approach (MIT). The MIT notice for shadcn/ui is preserved in `THIRD_PARTY_NOTICES.md`.
+- Base UI, React, Tailwind CSS, and the other direct dependencies keep their own licenses as listed in `THIRD_PARTY_NOTICES.md`.
+- `packages/tsconfig` retains its original `MIT` declaration by explicit owner decision. The preserved baseline manifest declared `MIT`; no upstream copyright notice or provenance record was found in the checked-in files. This notice does not identify an upstream author, claim new ownership, or assert permissions beyond the MIT text in that package's `LICENSE`.
+- The Inter font is distributed under the SIL Open Font License 1.1 and is attributed in `THIRD_PARTY_NOTICES.md`. Berkeley Mono is a commercial typeface and is not bundled; the stylesheet only references a locally installed copy and documents the substitution.
+- This notice records the available evidence. It is not a legal certification.
