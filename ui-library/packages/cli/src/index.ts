@@ -1,20 +1,20 @@
 #!/usr/bin/env node
 import { defineCommand, runMain } from "citty";
-import { initCommand } from "./commands/init";
 import { addCommand } from "./commands/add";
+import { initCommand } from "./commands/init";
 import { listCommand } from "./commands/list";
 
 const main = defineCommand({
   meta: {
-    name: "tu-ui",
-    version: "0.1.0",
-    description: "CLI for distribution of tu-ui primitive components"
+    name: "usalyt",
+    version: "0.0.1",
+    description: "Usalyt component distribution CLI",
   },
   subCommands: {
     init: initCommand,
     add: addCommand,
-    list: listCommand
-  }
+    list: listCommand,
+  },
 });
 
 runMain(main);

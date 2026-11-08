@@ -1,52 +1,54 @@
 import { defineCommand } from "citty";
-import * as p from "@clack/prompts";
-import fs from "fs-extra";
-import path from "path";
 import pc from "picocolors";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { printError } from "../lib/output";
+import { loadRegistry, type Registry } from "../lib/registry";
 
 export const listCommand = defineCommand({
   meta: {
     name: "list",
-    description: "List all available components in the tu-ui registry",
+    description: "List the items in the packaged Usalyt registry",
   },
-  async run() {
-    p.intro(pc.bgCyan(pc.black(" tu-ui list ")));
-
-    let registryPath = path.resolve(__dirname, "../../registry/registry.json");
-    if (!(await fs.pathExists(registryPath))) {
-      registryPath = path.resolve(
-        process.cwd(),
-        "packages/registry/registry.json",
-      );
-    }
-
-    if (!(await fs.pathExists(registryPath))) {
-      p.outro(
-        pc.yellow(
-          "Registry not found locally. Run `pnpm build:registry` first.",
-        ),
-      );
+  args: {
+    json: {
+      type: "boolean",
+      description: "Print machine-readable JSON",
+    },
+  },
+  run({ args }) {
+    let registry: Registry;
+    try {
+      ({ registry } = loadRegistry());
+    } catch (error) {
+      printError((error as Error).message);
       return;
     }
 
-    const registry = await fs.readJson(registryPath);
-    const items = registry.items || [];
+    if (args.json) {
+      const payload = {
+        name: registry.name,
+        version: registry.version,
+        count: registry.items.length,
+        items: registry.items.map((item) => ({
+          name: item.name,
+          type: item.type,
+          title: item.title,
+          description: item.description,
+          license: item.license,
+          dependencies: item.dependencies,
+          registryDependencies: item.registryDependencies,
+        })),
+      };
+      process.stdout.write(`${JSON.stringify(payload, null, 2)}\n`);
+      return;
+    }
 
-    p.note(
-      items
-        .map((i: any) => `${pc.bold(pc.cyan(i.name))} — ${i.description}`)
-        .join("\n"),
-      `Available Components (${items.length})`,
+    console.log(
+      `${registry.name} registry ${registry.version}: ${registry.items.length} items`
     );
-
-    p.outro(
-      pc.green(
-        "Use `npx tu-ui add <component>` to add any component to your codebase.",
-      ),
-    );
+    for (const item of registry.items) {
+      console.log(`  ${pc.bold(item.name)} (${item.type}) - ${item.description}`);
+    }
+    console.log("");
+    console.log("Add components with: usalyt add <component>");
   },
 });

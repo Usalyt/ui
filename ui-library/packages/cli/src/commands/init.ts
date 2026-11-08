@@ -1,74 +1,103 @@
+import { existsSync, lstatSync, writeFileSync } from "node:fs";
+import { createInterface } from "node:readline/promises";
 import { defineCommand } from "citty";
-import * as p from "@clack/prompts";
-import fs from "fs-extra";
-import path from "path";
-import pc from "picocolors";
+import {
+  CONFIG_FILE,
+  configPathFor,
+  defaultConfig,
+  serializeConfig,
+  type UsalytConfig,
+} from "../lib/config";
+import { printError } from "../lib/output";
+
+function aliasFromPath(value: string, stripExtension = false): string {
+  const normalized = value.trim().replace(/\\/g, "/").replace(/^\.?\//, "");
+  const withoutExtension = stripExtension
+    ? normalized.replace(/\.(tsx?|jsx?)$/, "")
+    : normalized;
+  return `@/${withoutExtension}`;
+}
+
+async function promptForConfig(defaults: UsalytConfig): Promise<UsalytConfig> {
+  const rl = createInterface({ input: process.stdin, output: process.stdout });
+  try {
+    const defaultComponents = defaults.aliases.components.replace(/^@\//, "");
+    const defaultUtils = `${defaults.aliases.utils.replace(/^@\//, "")}.ts`;
+
+    const componentsAnswer = await rl.question(
+      `Components directory (relative to the project root) [${defaultComponents}]: `
+    );
+    const utilsAnswer = await rl.question(
+      `Utils file (relative to the project root) [${defaultUtils}]: `
+    );
+
+    const componentsPath = componentsAnswer.trim() || defaultComponents;
+    const utilsPath = utilsAnswer.trim() || defaultUtils;
+
+    return {
+      ...defaults,
+      aliases: {
+        components: aliasFromPath(componentsPath),
+        utils: aliasFromPath(utilsPath, true),
+      },
+    };
+  } finally {
+    rl.close();
+  }
+}
 
 export const initCommand = defineCommand({
   meta: {
     name: "init",
-    description: "Initialize tu-ui in your project and create tu-ui.json configuration"
+    description: "Create usalyt.json with the component and utility aliases",
   },
   args: {
     yes: {
       type: "boolean",
-      description: "Skip interactive prompts and use default configuration",
-      alias: "y"
-    }
+      description: "Use the default aliases without prompting",
+      alias: "y",
+    },
+    overwrite: {
+      type: "boolean",
+      description: "Replace an existing usalyt.json",
+      alias: "o",
+    },
   },
   async run({ args }) {
-    p.intro(pc.bgCyan(pc.black(" tu-ui init ")));
+    const root = process.cwd();
+    const configPath = configPathFor(root);
 
-    const cwd = process.cwd();
-    const configPath = path.join(cwd, "tu-ui.json");
-
-    let componentPath = "src/components/ui";
-    let utilsPath = "src/lib/utils.ts";
-
-    if (!args.yes) {
-      const answers = await p.group(
-        {
-          componentPath: () =>
-            p.text({
-              message: "Where should UI components be installed?",
-              placeholder: "src/components/ui",
-              defaultValue: "src/components/ui"
-            }),
-          utilsPath: () =>
-            p.text({
-              message: "Where is your cn() utility located?",
-              placeholder: "src/lib/utils.ts",
-              defaultValue: "src/lib/utils.ts"
-            })
-        },
-        {
-          onCancel: () => {
-            p.cancel("Operation cancelled.");
-            process.exit(0);
-          }
-        }
+    if (existsSync(configPath) && !args.overwrite) {
+      printError(
+        `${CONFIG_FILE} already exists at ${configPath}. Pass --overwrite to replace it.`
       );
-      componentPath = String(answers.componentPath);
-      utilsPath = String(answers.utilsPath);
+      return;
     }
 
-    const config = {
-      $schema: "https://tu-ui.dev/schema/config.json",
-      style: "default",
-      rsc: true,
-      tsx: true,
-      tailwind: {
-        config: "",
-        css: "src/styles/globals.css",
-        baseColor: "neutral"
-      },
-      aliases: {
-        components: `@/${componentPath}`,
-        utils: `@/${utilsPath.replace(/\.ts$/, "")}`
+    try {
+      if (lstatSync(configPath).isSymbolicLink()) {
+        printError(
+          `${CONFIG_FILE} at ${configPath} is a symbolic link. Remove the link and run init again.`
+        );
+        return;
       }
-    };
+    } catch {
+      // The configuration file does not exist yet.
+    }
 
-    await fs.writeJson(configPath, config, { spaces: 2 });
-    p.outro(pc.green(`✔ Created tu-ui.json configuration at ${configPath}`));
-  }
+    const defaults = defaultConfig();
+    const interactive =
+      !args.yes && Boolean(process.stdin.isTTY) && Boolean(process.stdout.isTTY);
+    const config = interactive ? await promptForConfig(defaults) : defaults;
+
+    try {
+      writeFileSync(configPath, serializeConfig(config), "utf8");
+    } catch (error) {
+      printError(`could not write ${configPath}: ${(error as Error).message}`);
+      return;
+    }
+    console.log(`Created ${CONFIG_FILE} at ${configPath}`);
+    console.log(`  components: ${config.aliases.components}`);
+    console.log(`  utils: ${config.aliases.utils}`);
+  },
 });
