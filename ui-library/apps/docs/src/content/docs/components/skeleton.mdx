@@ -1,0 +1,61 @@
+---
+title: Skeleton
+description: Skeleton primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { SkeletonDemo } from "../../../components/demos/SkeletonDemo";
+
+Skeleton primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add skeleton
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add skeleton
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add skeleton
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Skeleton">
+  <SkeletonDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/skeleton.tsx
+import { Skeleton } from "tu-ui";
+
+export function SkeletonExample() {
+  return (
+    <div className="w-96 space-y-2">
+      <Skeleton className="h-4 w-full" />
+      <Skeleton className="h-4 w-3/5" />
+    </div>
+  );
+}
+```
+
+Skeleton has no intrinsic size. Always give it explicit dimensions (`h-*`/`w-*`) or a parent with a definite width; percentage widths resolve against the caller's container.
+
+## Props
+
+<PropsTable props={[
+  { name: "className", type: "string", defaultValue: "undefined", description: "Tailwind dimensions (e.g. 'h-12 w-12 rounded-full'). Skeleton has no intrinsic size, so visible output requires a width and height." },
+]} />

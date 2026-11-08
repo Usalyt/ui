@@ -1,0 +1,26 @@
+{
+  "name": "ui-library-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.2.0",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "test": "pnpm --filter tu-ui test:unit",
+    "test:unit": "pnpm --filter tu-ui test:unit",
+    "test:watch": "pnpm --filter tu-ui test:watch",
+    "test:coverage": "pnpm --filter tu-ui test:coverage",
+    "test:e2e": "pnpm --filter @tu-ui/tests test:e2e",
+    "test:integration": "pnpm --filter @tu-ui/tests test",
+    "build:registry": "pnpm --filter @tu-ui/registry build"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.1.10",
+    "jsdom": "^29.1.1",
+    "turbo": "^2.10.7",
+    "typescript": "^6.0.0",
+    "vitest": "^4.1.10"
+  }
+}

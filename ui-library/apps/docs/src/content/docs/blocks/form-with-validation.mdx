@@ -1,0 +1,65 @@
+---
+title: Form With Validation
+description: Profile settings Block with schema validation, async pending state, and alert feedback.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { FormWithValidationDemo } from "../../../components/demos/FormWithValidationDemo";
+
+Profile settings Block composed from Card, Form, Input, and Button. Submission results may be asynchronous: the footer action exposes a pending state and rejected promises render a `role="alert"` message.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add form-with-validation
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add form-with-validation
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add form-with-validation
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Form With Validation">
+  <FormWithValidationDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/form-with-validation/form-with-validation.tsx
+import { FormWithValidation, type ProfileFormValues } from "tu-ui";
+
+export function ProfileSettings() {
+  return (
+    <FormWithValidation
+      defaultValues={{ fullName: "", email: "", organization: "" }}
+      submitLabel="Update Profile"
+      onSubmit={async (values: ProfileFormValues) => {
+        await saveProfile(values);
+      }}
+    />
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "defaultValues", type: "Partial<ProfileFormValues>", defaultValue: "empty fields", description: "Initial profile values." },
+  { name: "onSubmit", type: "(values: ProfileFormValues) => void | Promise<void>", defaultValue: "—", description: "Receives validated values. A rejected promise is announced through role=alert." },
+  { name: "submitLabel", type: "string", defaultValue: "'Save Profile'", description: "Footer action label." },
+  { name: "className", type: "string", defaultValue: "—", description: "Additional classes merged onto the card." },
+]} />

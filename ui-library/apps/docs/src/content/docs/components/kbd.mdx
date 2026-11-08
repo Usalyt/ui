@@ -1,0 +1,59 @@
+---
+title: Kbd
+description: Keyboard-key chip for documenting shortcuts inside copy and UI text.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { KbdDemo } from "../../../components/demos/KbdDemo";
+
+Keyboard-key chip rendered as a semantic `<kbd>` element for documenting shortcuts inline.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add kbd
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add kbd
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add kbd
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Kbd">
+  <KbdDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/kbd.tsx
+import { Kbd } from "tu-ui";
+
+export function ShortcutHint() {
+  return (
+    <p className="text-sm text-muted-foreground">
+      Open search with <Kbd size="md">⌘K</Kbd>
+    </p>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "variant", type: "'default' | 'outline' | 'secondary' | 'ghost'", defaultValue: "'default'", description: "Surface treatment; default sits on the card color, ghost drops both surface and border." },
+  { name: "size", type: "'sm' | 'md' | 'lg'", defaultValue: "'md'", description: "Height, padding, and font size of the chip (sm 20px, md 24px, lg 28px tall)." },
+]} />

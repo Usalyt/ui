@@ -1,0 +1,54 @@
+---
+title: Textarea
+description: Textarea primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { TextareaDemo } from "../../../components/demos/TextareaDemo";
+
+Textarea primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add textarea
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add textarea
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add textarea
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Textarea">
+  <TextareaDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/textarea.tsx
+import { Textarea } from "tu-ui";
+
+export function TextareaExample() {
+  return <Textarea />;
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "placeholder", type: "string", defaultValue: "undefined", description: "Placeholder text inside textarea." },
+]} />

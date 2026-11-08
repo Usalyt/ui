@@ -1,0 +1,61 @@
+---
+title: Avatar
+description: Avatar primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { AvatarDemo } from "../../../components/demos/AvatarDemo";
+
+Avatar primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add avatar
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add avatar
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add avatar
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Avatar">
+  <AvatarDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/avatar.tsx
+import { Avatar, AvatarImage, AvatarFallback } from "tu-ui";
+
+export function AvatarExample() {
+  return (
+    <Avatar>
+      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+      <AvatarFallback>CN</AvatarFallback>
+    </Avatar>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "src", type: "string", defaultValue: "undefined", description: "Image source URL for AvatarImage." },
+  { name: "alt", type: "string", defaultValue: "undefined", description: "Alt text description for avatar image." },
+  { name: "fallbackDelay", type: "number", defaultValue: "600", description: "Delay in ms before rendering AvatarFallback." },
+]} />

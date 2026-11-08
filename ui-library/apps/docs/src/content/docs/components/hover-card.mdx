@@ -1,0 +1,55 @@
+---
+title: Hover Card
+description: Hover Card primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { HoverCardDemo } from "../../../components/demos/HoverCardDemo";
+
+Hover Card primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add hover-card
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add hover-card
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add hover-card
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Hover Card">
+  <HoverCardDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/hover-card.tsx
+import { HoverCard } from "tu-ui";
+
+export function HoverCardExample() {
+  return <HoverCard />;
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "openDelay", type: "number", defaultValue: "700", description: "Hover delay in ms before card opens." },
+  { name: "closeDelay", type: "number", defaultValue: "300", description: "Hover delay in ms before card closes." },
+]} />

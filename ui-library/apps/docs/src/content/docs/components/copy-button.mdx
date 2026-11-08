@@ -1,0 +1,58 @@
+---
+title: Copy Button
+description: Button primitive that copies a value to the clipboard and confirms with a check icon.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { CopyButtonDemo } from "../../../components/demos/CopyButtonDemo";
+
+Button primitive that copies a value to the clipboard, flips its icon to a check, and resets itself after a timeout.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add copy-button
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add copy-button
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add copy-button
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="CopyButton">
+  <CopyButtonDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/copy-button.tsx
+import { CopyButton } from "tu-ui";
+
+export function CommandCopy() {
+  return <CopyButton value="pnpm dlx tu-ui add copy-button" />;
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "value", type: "string", defaultValue: "—", description: "Text written to the clipboard when the button is clicked." },
+  { name: "timeout", type: "number", defaultValue: "2000", description: "Milliseconds the check icon stays visible before the icon resets." },
+  { name: "onCopy", type: "() => void", defaultValue: "undefined", description: "Callback fired after a successful copy." },
+  { name: "variant", type: "Button variant", defaultValue: "'ghost'", description: "Inherited from Button; defaults to ghost so it pairs with any surface." },
+  { name: "size", type: "Button size", defaultValue: "'icon'", description: "Inherited from Button; defaults to icon (32px square via the built-in h-8 w-8 class)." },
+]} />

@@ -1,0 +1,65 @@
+---
+title: Resizable
+description: Draggable panel layout built on react-resizable-panels with keyboard-accessible handles.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { ResizableDemo } from "../../../components/demos/ResizableDemo";
+
+Draggable panel layout built on `react-resizable-panels`. Compose `ResizablePanelGroup`, `ResizablePanel`, and `ResizableHandle`; handles are focusable and keyboard-accessible.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add resizable
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add resizable
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add resizable
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Resizable">
+  <ResizableDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/resizable.tsx
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "tu-ui";
+
+export function WorkspacePanes() {
+  return (
+    <ResizablePanelGroup direction="horizontal">
+      <ResizablePanel defaultSize={25} minSize={20}>Navigation</ResizablePanel>
+      <ResizableHandle withHandle />
+      <ResizablePanel defaultSize={75}>Preview</ResizablePanel>
+    </ResizablePanelGroup>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "direction", type: "'horizontal' | 'vertical'", defaultValue: "—", description: "ResizablePanelGroup layout direction; vertical stacks panels in a column." },
+  { name: "defaultSize", type: "number", defaultValue: "undefined", description: "ResizablePanel initial size in percent of the group." },
+  { name: "minSize", type: "number", defaultValue: "undefined", description: "ResizablePanel minimum size in percent." },
+  { name: "maxSize", type: "number", defaultValue: "undefined", description: "ResizablePanel maximum size in percent." },
+  { name: "collapsible", type: "boolean", defaultValue: "false", description: "ResizablePanel allows collapsing to zero via the handle when true." },
+  { name: "withHandle", type: "boolean", defaultValue: "false", description: "ResizableHandle renders a visible grip for drag affordance." },
+]} />

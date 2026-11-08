@@ -1,0 +1,55 @@
+---
+title: Dropdown Menu
+description: Dropdown Menu primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { DropdownMenuDemo } from "../../../components/demos/DropdownMenuDemo";
+
+Dropdown Menu primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add dropdown-menu
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add dropdown-menu
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add dropdown-menu
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Dropdown Menu">
+  <DropdownMenuDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/dropdown-menu.tsx
+import { DropdownMenu } from "tu-ui";
+
+export function DropdownMenuExample() {
+  return <DropdownMenu />;
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "open", type: "boolean", defaultValue: "undefined", description: "Controlled open state." },
+  { name: "onOpenChange", type: "(open: boolean) => void", defaultValue: "undefined", description: "Callback called when dropdown menu opens or closes." },
+]} />

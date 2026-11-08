@@ -1,0 +1,74 @@
+---
+title: Collaboration Chat Panel
+description: Project chat card with online presence, typing indicator, and finding attachments. Outgoing messages use a restrained secondary surface, the message feed is a `role="log"` live region, and typing state is announced through `role="status"`.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { CollaborationChatPanelDemo } from "../../../components/demos/CollaborationChatPanelDemo";
+
+Project chat card with online presence, typing indicator, and finding attachments. Outgoing messages use a restrained secondary surface, the message feed is a `role="log"` live region, and typing state is announced through `role="status"`.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add collaboration-chat-panel
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add collaboration-chat-panel
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add collaboration-chat-panel
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Collaboration Chat Panel">
+  <CollaborationChatPanelDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/collaboration-chat-panel/collaboration-chat-panel.tsx
+import { CollaborationChatPanel } from "tu-ui";
+
+export function ProjectChat() {
+  return (
+    <CollaborationChatPanel
+      projectName="Checkout Heuristic Audit #4"
+      onlineCount={3}
+      messages={[
+        {
+          id: "msg-1",
+          senderName: "Marcos Lead",
+          content: "Please review the checkout button contrast.",
+          timestamp: "11:20 AM",
+          attachedFindingId: "H1-03",
+        },
+      ]}
+      onSendMessage={(content) => console.log(content)}
+    />
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "projectName", type: "string", defaultValue: "'Checkout Flow Audit'", description: "Project name rendered in the card header." },
+  { name: "onlineCount", type: "number", defaultValue: "3", description: "Online presence count next to the pulse dot." },
+  { name: "messages", type: "ChatMessage[]", defaultValue: "[]", description: "Conversation entries ({ id, senderName, content, timestamp, isCurrentUser?, attachedFindingId? })." },
+  { name: "typingUsers", type: "string[]", defaultValue: "[]", description: "Names shown in the typing indicator row." },
+  { name: "onSendMessage", type: "(content: string) => void", defaultValue: "—", description: "Called with the trimmed text when the composer is submitted; the send action is disabled while the trimmed message is empty." },
+  { name: "onFindingClick", type: "(findingId: string) => void", defaultValue: "—", description: "Called when an attached finding chip is clicked." },
+]} />

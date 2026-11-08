@@ -1,0 +1,58 @@
+---
+title: Sheet
+description: Sheet primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { SheetDemo } from "../../../components/demos/SheetDemo";
+
+Sheet primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add sheet
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add sheet
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add sheet
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Sheet">
+  <SheetDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/sheet.tsx
+import { Sheet } from "tu-ui";
+
+export function SheetExample() {
+  return <Sheet />;
+}
+```
+
+## Layout behavior
+
+`SheetFooter` applies the compact 8px sibling gap at every breakpoint while keeping its section spacing. Left and right panels remain full height and scroll their content; top and bottom panels are capped to the viewport height minus a 2rem inset and scroll internally. The mobile Sidebar composition, side placement and caller class overrides remain unchanged.
+
+## Props
+
+<PropsTable props={[
+  { name: "side", type: "'top' | 'bottom' | 'left' | 'right'", defaultValue: "'right'", description: "Screen edge where sheet slides in from." },
+]} />

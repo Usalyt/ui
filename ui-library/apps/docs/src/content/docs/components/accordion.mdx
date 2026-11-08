@@ -1,0 +1,66 @@
+---
+title: Accordion
+description: Accordion primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { AccordionDemo } from "../../../components/demos/AccordionDemo";
+
+Accordion primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add accordion
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add accordion
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add accordion
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Accordion">
+  <AccordionDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/accordion.tsx
+import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionContent } from "tu-ui";
+
+export function AccordionExample() {
+  return (
+    <Accordion type="single" collapsible>
+      <AccordionItem value="item-1">
+        <AccordionHeader>
+          <AccordionTrigger>Is it accessible?</AccordionTrigger>
+        </AccordionHeader>
+        <AccordionContent>Yes. It adheres to WAI-ARIA standards.</AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "type", type: "'single' | 'multiple'", defaultValue: "'single'", description: "Determines whether one or multiple items can be opened at the same time." },
+  { name: "value", type: "string | string[]", defaultValue: "undefined", description: "Controlled value of expanded item(s)." },
+  { name: "onValueChange", type: "(value: any) => void", defaultValue: "undefined", description: "Event handler called when expanded state changes." },
+  { name: "collapsible", type: "boolean", defaultValue: "false", description: "When type is 'single', allows closing an item by clicking it again." },
+]} />

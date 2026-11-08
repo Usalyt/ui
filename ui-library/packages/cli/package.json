@@ -1,0 +1,23 @@
+{
+  "name": "@tu-ui/cli",
+  "version": "0.1.0",
+  "description": "CLI for distribution of tu-ui primitive components",
+  "bin": {
+    "tu-ui": "./dist/index.mjs"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "tsdown"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.7.0",
+    "citty": "^0.2.2",
+    "fs-extra": "^11.4.0",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "tsdown": "^0.22.14",
+    "typescript": "^6.0.0"
+  }
+}

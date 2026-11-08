@@ -1,0 +1,75 @@
+---
+title: Evaluation Summary Report
+description: Executive report card with overall score, severity counters, and per-heuristic progress.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { EvaluationSummaryReportDemo } from "../../../components/demos/EvaluationSummaryReportDemo";
+
+Executive report card with overall score, severity counters, and per-heuristic progress.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add evaluation-summary-report
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add evaluation-summary-report
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add evaluation-summary-report
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Evaluation Summary Report">
+  <EvaluationSummaryReportDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/blocks/evaluation-summary-report.tsx
+import { EvaluationSummaryReport } from "tu-ui";
+
+export function AuditSummary() {
+  return (
+    <EvaluationSummaryReport
+      title="Checkout Flow Usability Audit"
+      projectName="E-Commerce Web Portal"
+      overallScore={78}
+      criticalCount={4}
+      mediumCount={6}
+      goodCount={12}
+      heuristics={[
+        { id: "H1", name: "Visibility of system status", score: 75, findingCount: 3 },
+      ]}
+      onExportPdf={() => console.log("export")}
+    />
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "title", type: "string", defaultValue: "'Heuristic Evaluation Executive Report'", description: "Report title." },
+  { name: "projectName", type: "string", defaultValue: "'UX Check Project'", description: "Subtitle rendered under the title." },
+  { name: "overallScore", type: "number", defaultValue: "82", description: "Overall usability score out of 100, shown with a progress bar." },
+  { name: "criticalCount", type: "number", defaultValue: "3", description: "Critical findings count." },
+  { name: "mediumCount", type: "number", defaultValue: "7", description: "Medium findings count." },
+  { name: "goodCount", type: "number", defaultValue: "14", description: "Positive findings count." },
+  { name: "heuristics", type: "HeuristicScoreItem[]", defaultValue: "[]", description: "Per-heuristic score rows ({ id, name, score, findingCount })." },
+  { name: "onExportPdf", type: "() => void", defaultValue: "—", description: "Renders the Export PDF header button and handles clicks." },
+  { name: "onShareReport", type: "() => void", defaultValue: "—", description: "Renders the Share header button and handles clicks." },
+]} />

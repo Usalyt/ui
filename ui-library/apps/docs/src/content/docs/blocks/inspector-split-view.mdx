@@ -1,0 +1,86 @@
+---
+title: Inspector Split View
+description: Resizable split view pairing a DOM hierarchy tree with the inspected element details. Selection re-resolves against the current nodes so renamed or replaced node objects never leave stale details behind.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { InspectorSplitViewDemo } from "../../../components/demos/InspectorSplitViewDemo";
+
+Resizable split view pairing a DOM hierarchy tree with the inspected element details. Selection re-resolves against the current nodes so renamed or replaced node objects never leave stale details behind.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add inspector-split-view
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add inspector-split-view
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add inspector-split-view
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Inspector Split View">
+  <InspectorSplitViewDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/inspector-split-view/inspector-split-view.tsx
+import { InspectorSplitView, type DOMNodeItem } from "tu-ui";
+
+const nodes: DOMNodeItem[] = [
+  {
+    id: "dom-body",
+    tag: "body",
+    selector: "body.theme-dark",
+    classes: "theme-dark antialiased",
+    children: [
+      {
+        id: "dom-btn-checkout",
+        tag: "button",
+        selector: "button#checkout-btn.btn-primary",
+        classes: "btn-primary w-full py-3",
+        role: "button",
+      },
+    ],
+  },
+];
+
+export function ElementInspector() {
+  return (
+    <InspectorSplitView
+      nodes={nodes}
+      defaultSelectedNodeId="dom-btn-checkout"
+      onAuditElement={(node) => console.log("audit", node.selector)}
+    />
+  );
+}
+```
+
+## Long details
+
+The details pane scrolls vertically inside the fixed-height split view, while the DOM tree keeps its own independent scroll. Long selectors and class lists remain reachable without expanding the page or changing the selected node, tree interaction or detail callbacks.
+
+## Props
+
+<PropsTable props={[
+  { name: "nodes", type: "DOMNodeItem[]", defaultValue: "[]", description: "DOM hierarchy to render as a tree ({ id, tag, selector, classes?, role?, children? })." },
+  { name: "selectedNodeId", type: "string", defaultValue: "—", description: "Controlled selection; the details panel follows this id and re-resolves it against the current nodes." },
+  { name: "defaultSelectedNodeId", type: "string", defaultValue: "—", description: "Initial selection for uncontrolled usage; falls back to the first node." },
+  { name: "onSelectNode", type: "(node: DOMNodeItem) => void", defaultValue: "—", description: "Called when a tree node is selected." },
+  { name: "onAuditElement", type: "(node: DOMNodeItem) => void", defaultValue: "—", description: "Renders the Audit Element button for the current selection." },
+]} />

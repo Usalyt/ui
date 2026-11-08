@@ -1,0 +1,67 @@
+---
+title: Carousel
+description: Embla-based scroll carousel with keyboard navigation and edge-aware arrow controls.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { CarouselDemo } from "../../../components/demos/CarouselDemo";
+
+Embla-based scroll carousel. Compose [`Carousel`](#props) with `CarouselContent`, `CarouselItem`, `CarouselPrevious`, and `CarouselNext`; handle keyboard movement out of the box and pass the Embla API through `setApi` for custom controls.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add carousel
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add carousel
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add carousel
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Carousel">
+  <CarouselDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/carousel.tsx
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "tu-ui";
+
+export function HighlightsCarousel() {
+  return (
+    <Carousel opts={{ loop: true }}>
+      <CarouselContent>
+        <CarouselItem>First slide</CarouselItem>
+        <CarouselItem>Second slide</CarouselItem>
+        <CarouselItem>Third slide</CarouselItem>
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "opts", type: "EmblaOptionsType", defaultValue: "undefined", description: "Embla carousel options (e.g. { loop: true }); the scroll axis is derived from orientation." },
+  { name: "plugins", type: "EmblaPluginType[]", defaultValue: "undefined", description: "Embla plugins forwarded to the carousel instance." },
+  { name: "orientation", type: "'horizontal' | 'vertical'", defaultValue: "'horizontal'", description: "Scroll axis; sets the axis option and switches item spacing to vertical." },
+  { name: "setApi", type: "(api: CarouselApi) => void", defaultValue: "undefined", description: "Receives the Embla API so you can subscribe to select/scroll events and build custom controls." },
+]} />

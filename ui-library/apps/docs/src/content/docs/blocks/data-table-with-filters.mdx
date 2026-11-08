@@ -1,0 +1,76 @@
+---
+title: Data Table With Filters
+description: User directory Block pairing a titled header and role filter with the DataTable primitive.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { DataTableWithFiltersDemo } from "../../../components/demos/DataTableWithFiltersDemo";
+
+User directory Block pairing a titled header and role filter with the DataTable primitive.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add data-table-with-filters
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add data-table-with-filters
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add data-table-with-filters
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Data Table With Filters">
+  <DataTableWithFiltersDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/data-table-with-filters/data-table-with-filters.tsx
+import { DataTableWithFilters, type SystemUser } from "tu-ui";
+
+const users: SystemUser[] = [
+  {
+    id: "user-01",
+    name: "Alex Rivera",
+    email: "alex@uxcheck.io",
+    role: "Evaluator",
+    status: "Active",
+  },
+];
+
+export function TeamUsersTable() {
+  return (
+    <DataTableWithFilters
+      data={users}
+      title="Team directory"
+      description="Review project access and filter members by role."
+    />
+  );
+}
+```
+
+## Containment
+
+The Block relies on DataTable's local horizontal scrolling; it adds no second overflow container. Wide directory rows scroll inside the table frame while the title and role filter stay in place.
+
+## Props
+
+<PropsTable props={[
+  { name: "data", type: "SystemUser[]", defaultValue: "—", description: "Directory rows ({ id, name, email, role, status }). Required." },
+  { name: "title", type: "string", defaultValue: "'Team directory'", description: "Heading rendered above the role filter." },
+  { name: "description", type: "string", defaultValue: "role filter description", description: "Supporting copy under the heading." },
+]} />

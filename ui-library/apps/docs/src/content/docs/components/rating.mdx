@@ -1,0 +1,58 @@
+---
+title: Rating
+description: Star-rating input with hover preview, roving radio focus, arrow-key navigation, and read-only display mode.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { RatingDemo } from "../../../components/demos/RatingDemo";
+
+Star-rating input rendered as a `role="radiogroup"`. Exactly one star is in the tab order, hover previews the value, Arrow keys move selection and focus, Home/End jump to the bounds, and `readOnly` turns the control into a static display.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add rating
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add rating
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add rating
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Rating">
+  <RatingDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/rating/rating.tsx
+import { Rating } from "tu-ui";
+
+export function SatisfactionRating() {
+  return <Rating defaultValue={3} max={5} onChange={(value) => console.log(value)} />;
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "value", type: "number", defaultValue: "undefined", description: "Controlled rating; when set, internal state is bypassed and onChange must update the prop." },
+  { name: "defaultValue", type: "number", defaultValue: "0", description: "Initial rating for uncontrolled usage; the component keeps updating internally even when onChange is provided." },
+  { name: "max", type: "number", defaultValue: "5", description: "Number of stars rendered." },
+  { name: "readOnly", type: "boolean", defaultValue: "false", description: "Disables hover, clicks, keyboard interaction, and removes all stars from the tab order." },
+  { name: "onChange", type: "(value: number) => void", defaultValue: "undefined", description: "Called with the selected star in both controlled and uncontrolled usage." },
+]} />

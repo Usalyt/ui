@@ -1,0 +1,82 @@
+---
+title: Timeline
+description: Vertical or horizontal ordered timeline with connector lines, icons, and mono timestamps.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { TimelineDemo } from "../../../components/demos/TimelineDemo";
+
+Ordered timeline rendered as a semantic `<ol>` with `TimelineItem`, `TimelineConnector`, `TimelineHeader`, `TimelineIcon`, `TimelineContent`, `TimelineTitle`, `TimelineDescription`, and `TimelineTime`.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add timeline
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add timeline
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add timeline
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Timeline">
+  <TimelineDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/timeline.tsx
+import { Timeline, TimelineItem, TimelineConnector, TimelineHeader, TimelineIcon, TimelineContent, TimelineTitle, TimelineDescription, TimelineTime } from "tu-ui";
+import { Star, Check } from "lucide-react";
+
+export function ActivityHistory() {
+  return (
+    <Timeline>
+      <TimelineItem>
+        <TimelineConnector />
+        <TimelineHeader>
+          <TimelineIcon><Star className="h-4 w-4" /></TimelineIcon>
+          <TimelineContent>
+            <TimelineTitle>Findings logged</TimelineTitle>
+            <TimelineDescription>12 findings across five heuristics.</TimelineDescription>
+          </TimelineContent>
+          <TimelineTime>11:30</TimelineTime>
+        </TimelineHeader>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineHeader>
+          <TimelineIcon><Check className="h-4 w-4" /></TimelineIcon>
+          <TimelineContent>
+            <TimelineTitle>Report exported</TimelineTitle>
+          </TimelineContent>
+          <TimelineTime>17:45</TimelineTime>
+        </TimelineHeader>
+      </TimelineItem>
+    </Timeline>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "orientation", type: "'vertical' | 'horizontal'", defaultValue: "'vertical'", description: "Timeline direction; vertical stacks items in a column with downward connectors, horizontal rows them." },
+]} />
+
+## Horizontal orientation
+
+`orientation="horizontal"` flows items in a row. Each item becomes a column with its icon and title above the content, and connectors run horizontally from one icon center to the next. Vertical remains the default with unchanged stacking and downward connectors.

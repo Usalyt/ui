@@ -1,0 +1,86 @@
+---
+title: Sidebar
+description: Application sidebar primitive with collapse-to-icon mode, mobile sheet fallback, and a ⌘B toggle.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { SidebarDemo } from "../../../components/demos/SidebarDemo";
+
+Application sidebar primitive. `SidebarProvider` owns the open state (toggled with <span className="font-mono">⌘B</span> / Ctrl+B), `Sidebar` renders the panel (collapsing to an icon rail with `collapsible="icon"`, opening a Sheet under 768px), and `SidebarInset` fills the main region.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add sidebar
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add sidebar
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add sidebar
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Sidebar">
+  <SidebarDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/sidebar.tsx
+import {
+  SidebarProvider, Sidebar, SidebarTrigger, SidebarHeader,
+  SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu,
+  SidebarMenuItem, SidebarMenuButton, SidebarInset,
+} from "tu-ui";
+
+export function AppShell() {
+  return (
+    <SidebarProvider>
+      <Sidebar collapsible="icon">
+        <SidebarHeader>Brand</SidebarHeader>
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupLabel>Evaluation</SidebarGroupLabel>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton isActive>
+                  <span>Findings</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroup>
+        </SidebarContent>
+      </Sidebar>
+      <SidebarInset>
+        <SidebarTrigger />
+      </SidebarInset>
+    </SidebarProvider>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "defaultOpen", type: "boolean", defaultValue: "true", description: "SidebarProvider initial open state for uncontrolled usage." },
+  { name: "open", type: "boolean", defaultValue: "undefined", description: "SidebarProvider controlled open state; overrides defaultOpen." },
+  { name: "onOpenChange", type: "(open: boolean) => void", defaultValue: "undefined", description: "SidebarProvider callback fired on open changes (trigger, shortcut, programmatic)." },
+  { name: "side", type: "'left' | 'right'", defaultValue: "'left'", description: "Sidebar edge to mount the panel on; right flips borders and arrows." },
+  { name: "variant", type: "'sidebar' | 'floating' | 'inset'", defaultValue: "'sidebar'", description: "Sidebar presentation; floating adds padding, radius, border, and shadow." },
+  { name: "collapsible", type: "'offcanvas' | 'icon' | 'none'", defaultValue: "'offcanvas'", description: "Collapse behavior; icon shrinks to the icon rail (--sidebar-width-icon: 3rem), none renders a static panel." },
+  { name: "isActive", type: "boolean", defaultValue: "false", description: "SidebarMenuButton highlight used for the current route." },
+  { name: "size", type: "'default' | 'sm' | 'lg'", defaultValue: "'default'", description: "SidebarMenuButton height (default 32px, sm 28px, lg 48px); the button also accepts Button-style variant, with outline adding a hairline background ring." },
+]} />

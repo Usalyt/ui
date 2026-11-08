@@ -1,0 +1,67 @@
+---
+title: Dialog
+description: Dialog primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { DialogDemo } from "../../../components/demos/DialogDemo";
+
+Dialog primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add dialog
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add dialog
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add dialog
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Dialog">
+  <DialogDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/dialog.tsx
+import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from "tu-ui";
+
+export function DialogExample() {
+  return (
+    <Dialog>
+      <DialogTrigger>Open</DialogTrigger>
+      <DialogContent>
+        <DialogTitle>Modal Title</DialogTitle>
+        <DialogDescription>Modal content description.</DialogDescription>
+      </DialogContent>
+    </Dialog>
+  );
+}
+```
+
+## Layout behavior
+
+Centered dialogs are capped to the viewport height with a 2rem inset and scroll their content, so long forms and short or zoomed viewports keep the title, actions and close control reachable. `DialogFooter` applies a compact 8px gap at every breakpoint: actions stack in reverse DOM order on mobile and become a right-aligned row from `sm`. Caller `className` overrides still apply.
+
+## Props
+
+<PropsTable props={[
+  { name: "open", type: "boolean", defaultValue: "undefined", description: "Controlled open state of modal dialog." },
+  { name: "onOpenChange", type: "(open: boolean) => void", defaultValue: "undefined", description: "Callback called when dialog opens or closes." },
+]} />

@@ -1,0 +1,59 @@
+---
+title: Alert Dialog
+description: Alert Dialog primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { AlertDialogDemo } from "../../../components/demos/AlertDialogDemo";
+
+Alert Dialog primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add alert-dialog
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add alert-dialog
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add alert-dialog
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Alert Dialog">
+  <AlertDialogDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/alert-dialog.tsx
+import { AlertDialog } from "tu-ui";
+
+export function AlertDialogExample() {
+  return <AlertDialog />;
+}
+```
+
+## Layout behavior
+
+Centered alert dialogs are capped to the viewport height with a 2rem inset and scroll their content, keeping the title and confirmation actions reachable on short or zoomed viewports. `AlertDialogFooter` applies a compact 8px gap at every breakpoint: actions stack in reverse DOM order on mobile and become a right-aligned row from `sm`. Caller `className` overrides still apply.
+
+## Props
+
+<PropsTable props={[
+  { name: "open", type: "boolean", defaultValue: "undefined", description: "Controlled open state of the alert dialog." },
+  { name: "onOpenChange", type: "(open: boolean) => void", defaultValue: "undefined", description: "Callback called when open state changes." },
+]} />

@@ -1,0 +1,65 @@
+---
+title: Select
+description: Select primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { SelectDemo } from "../../../components/demos/SelectDemo";
+
+Select primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add select
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add select
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add select
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Select">
+  <SelectDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/select.tsx
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "tu-ui";
+
+export function SelectExample() {
+  return (
+    <Select defaultValue="apple">
+      <SelectTrigger>
+        <SelectValue placeholder="Select a fruit" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="apple">Apple</SelectItem>
+        <SelectItem value="banana">Banana</SelectItem>
+      </SelectContent>
+    </Select>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "value", type: "string", defaultValue: "undefined", description: "Controlled selected item value." },
+  { name: "onValueChange", type: "(value: string) => void", defaultValue: "undefined", description: "Callback called when selection changes." },
+]} />

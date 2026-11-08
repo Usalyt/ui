@@ -1,0 +1,11 @@
+---
+// Header.astro — Starlight Header override.
+//
+// Renders the default header unchanged (site title, search, social icons,
+// right group). The functional theme toggle is injected through the
+// ThemeSelect override instead: Starlight 0.32.6's default header renders no
+// named slots, so children passed to <Default> would be silently dropped.
+import Default from "@astrojs/starlight/components/Header.astro";
+---
+
+<Default {...Astro.props} />

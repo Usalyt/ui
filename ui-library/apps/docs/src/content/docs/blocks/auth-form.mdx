@@ -1,0 +1,66 @@
+---
+title: Auth Form
+description: Reference authentication Block with schema validation, async pending state, and alert feedback.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { AuthFormDemo } from "../../../components/demos/AuthFormDemo";
+
+Reference authentication Block composed from Card, Form, Input, and Button. `onSubmit` may return a promise: the action is disabled with `aria-busy` while pending, and a rejected promise renders a `role="alert"` message. The Block never implements authentication itself.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add auth-form
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add auth-form
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add auth-form
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Auth Form">
+  <AuthFormDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/auth-form/auth-form.tsx
+import { AuthForm } from "tu-ui";
+
+export function SignIn() {
+  return (
+    <AuthForm
+      title="Sign In"
+      description="Enter your email and password to access your account"
+      onSubmit={async (values) => {
+        await signIn(values);
+      }}
+    />
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "onSubmit", type: "(values: AuthFormValues) => void | Promise<void>", defaultValue: "—", description: "Receives validated credentials. A rejected promise is announced through role=alert and re-enables the action." },
+  { name: "title", type: "string", defaultValue: "'Sign In'", description: "Card title and default submit label." },
+  { name: "description", type: "string", defaultValue: "'Enter your email and password to access your account'", description: "Supporting copy under the title." },
+  { name: "submitLabel", type: "string", defaultValue: "title", description: "Overrides the footer action label." },
+  { name: "className", type: "string", defaultValue: "—", description: "Additional classes merged onto the card." },
+]} />

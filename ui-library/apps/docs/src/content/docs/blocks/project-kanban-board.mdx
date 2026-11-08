@@ -1,0 +1,75 @@
+---
+title: Project Kanban Board
+description: Four-column task board with heuristic tags, severity badges, assignee avatars, semantic task activation, and a keyboard-accessible move menu.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { ProjectKanbanBoardDemo } from "../../../components/demos/ProjectKanbanBoardDemo";
+
+Four-column task board with heuristic tags, severity badges, assignee avatars, semantic task activation, and a keyboard-accessible move menu.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add project-kanban-board
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add project-kanban-board
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add project-kanban-board
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Project Kanban Board">
+  <ProjectKanbanBoardDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/project-kanban-board/project-kanban-board.tsx
+import { ProjectKanbanBoard, type KanbanTask } from "tu-ui";
+
+const tasks: KanbanTask[] = [
+  {
+    id: "task-01",
+    title: "Adjust contrast ratio on secondary actions",
+    status: "TODO",
+    heuristicTag: "H1",
+    severity: "CRITICAL",
+    assigneeName: "Lucas",
+  },
+];
+
+export function RemediationBoard() {
+  return (
+    <ProjectKanbanBoard
+      tasks={tasks}
+      onTaskMove={(taskId, targetStatus) => console.log(taskId, targetStatus)}
+      onTaskClick={(task) => console.log("open", task.id)}
+      onAddTask={(status) => console.log("add to", status)}
+    />
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "tasks", type: "KanbanTask[]", defaultValue: "[]", description: "Board tasks ({ id, title, status, heuristicTag?, severity?, assigneeName?, assigneeAvatar? }). Empty columns render an explicit empty state." },
+  { name: "onTaskMove", type: "(taskId: string, targetStatus: KanbanColumnId) => void", defaultValue: "—", description: "Renders a per-task move menu; selecting a column calls this handler without requiring drag-and-drop." },
+  { name: "onTaskClick", type: "(task: KanbanTask) => void", defaultValue: "—", description: "Renders the task title as a button that activates with click, Enter, or Space." },
+  { name: "onAddTask", type: "(status: KanbanColumnId) => void", defaultValue: "—", description: "Renders the per-column add button and handles clicks." },
+]} />

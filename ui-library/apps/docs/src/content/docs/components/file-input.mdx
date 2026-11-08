@@ -1,0 +1,66 @@
+---
+title: File Input
+description: File selection primitive with a clickable dropzone, filename feedback, error and disabled states, and visible keyboard focus.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { FileInputDemo } from "../../../components/demos/FileInputDemo";
+
+File selection primitive rendered as a clickable dropzone around a native file input. The hidden input keeps native behavior while the wrapper exposes a visible focus ring when keyboard focus enters it.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add file-input
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add file-input
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add file-input
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="File Input">
+  <FileInputDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/file-input/file-input.tsx
+import { FileInput } from "tu-ui";
+
+export function EvidenceUpload() {
+  return (
+    <FileInput
+      label="Upload evaluation evidence"
+      helperText="PNG, JPG or PDF up to 10MB"
+      accept="image/*,.pdf"
+      onChange={(event) => console.log(event.target.files)}
+    />
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "label", type: "string", defaultValue: "'Click to browse files'", description: "Visible dropzone copy, replaced by selected filenames after a selection." },
+  { name: "helperText", type: "string", defaultValue: "undefined", description: "Supporting copy rendered under the dropzone label." },
+  { name: "error", type: "string", defaultValue: "undefined", description: "Destructive message; also switches the dropzone border to the error color." },
+  { name: "disabled", type: "boolean", defaultValue: "false", description: "Disables the native input and dims the dropzone." },
+  { name: "accept", type: "string", defaultValue: "undefined", description: "Accepted file MIME types or extensions." },
+  { name: "multiple", type: "boolean", defaultValue: "false", description: "Allows selecting multiple files." },
+]} />

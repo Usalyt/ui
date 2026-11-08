@@ -1,0 +1,128 @@
+---
+import { ColorSwatch } from "tu-ui";
+
+interface TokenRow {
+  figma: string;
+  variable: string;
+  hex: string;
+  purpose: string;
+}
+
+type Lang = "en" | "es";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = "en" } = Astro.props;
+
+const copy: Record<
+  Lang,
+  { region: string; figma: string; variable: string; value: string; purpose: string }
+> = {
+  en: {
+    region: "Color tokens",
+    figma: "Figma Variable",
+    variable: "Tailwind v4 `@theme` Variable",
+    value: "Value",
+    purpose: "Purpose",
+  },
+  es: {
+    region: "Tokens de color",
+    figma: "Variable de Figma",
+    variable: "Variable de Tailwind v4 `@theme`",
+    value: "Valor",
+    purpose: "Propósito",
+  },
+};
+
+const rows: Record<Lang, TokenRow[]> = {
+  en: [
+    { figma: "color/void", variable: "--color-void", hex: "#08090a", purpose: "Page canvas, full-bleed backgrounds" },
+    { figma: "color/carbon", variable: "--color-carbon", hex: "#0f1011", purpose: "Card surfaces and nav bars" },
+    { figma: "color/obsidian", variable: "--color-obsidian", hex: "#161718", purpose: "Elevated surfaces, deeper card panels" },
+    { figma: "color/graphite", variable: "--color-graphite", hex: "#23252a", purpose: "Subtle borders, dividers, ghost outlines" },
+    { figma: "color/smoke", variable: "--color-smoke", hex: "#383b3f", purpose: "Hairline borders at higher contrast" },
+    { figma: "color/ash", variable: "--color-ash", hex: "#62666d", purpose: "Muted body text, secondary metadata" },
+    { figma: "color/fog", variable: "--color-fog", hex: "#8a8f98", purpose: "Tertiary text, placeholder copy" },
+    { figma: "color/mist", variable: "--color-mist", hex: "#d0d6e0", purpose: "Secondary headings, button text" },
+    { figma: "color/bone", variable: "--color-bone", hex: "#e5e5e6", purpose: "Near-white surface fills" },
+    { figma: "color/paper", variable: "--color-paper", hex: "#ffffff", purpose: "Primary headings, max-contrast text" },
+    { figma: "color/acid-lime", variable: "--color-acid-lime", hex: "#e4f222", purpose: "Primary actions, active indicators" },
+    { figma: "color/pulse-green", variable: "--color-pulse-green", hex: "#27a644", purpose: "Supporting accent for tags and edges" },
+    { figma: "color/coral-red", variable: "--color-coral-red", hex: "#eb5757", purpose: "Highlight washes and soft emphasis" },
+    { figma: "color/signal-teal", variable: "--color-signal-teal", hex: "#02b8cc", purpose: "Informational icons and accents" },
+    { figma: "color/iris-violet", variable: "--color-iris-violet", hex: "#6366f1", purpose: "Tag and badge fills" },
+    { figma: "color/lavender", variable: "--color-lavender", hex: "#8b5cf6", purpose: "Secondary tag fills, category indicators" },
+  ],
+  es: [
+    { figma: "color/void", variable: "--color-void", hex: "#08090a", purpose: "Lienzo de página, fondos a sangre completa" },
+    { figma: "color/carbon", variable: "--color-carbon", hex: "#0f1011", purpose: "Superficies de tarjetas y barras de navegación" },
+    { figma: "color/obsidian", variable: "--color-obsidian", hex: "#161718", purpose: "Superficies elevadas, paneles más profundos" },
+    { figma: "color/graphite", variable: "--color-graphite", hex: "#23252a", purpose: "Bordes sutiles, divisores, contornos ghost" },
+    { figma: "color/smoke", variable: "--color-smoke", hex: "#383b3f", purpose: "Bordes hairline con mayor contraste" },
+    { figma: "color/ash", variable: "--color-ash", hex: "#62666d", purpose: "Texto secundario, metadatos" },
+    { figma: "color/fog", variable: "--color-fog", hex: "#8a8f98", purpose: "Texto terciario, texto de placeholder" },
+    { figma: "color/mist", variable: "--color-mist", hex: "#d0d6e0", purpose: "Encabezados secundarios, texto de botones" },
+    { figma: "color/bone", variable: "--color-bone", hex: "#e5e5e6", purpose: "Rellenos de superficie casi blancos" },
+    { figma: "color/paper", variable: "--color-paper", hex: "#ffffff", purpose: "Encabezados principales, texto de máximo contraste" },
+    { figma: "color/acid-lime", variable: "--color-acid-lime", hex: "#e4f222", purpose: "Acciones primarias, indicadores activos" },
+    { figma: "color/pulse-green", variable: "--color-pulse-green", hex: "#27a644", purpose: "Acento de soporte para etiquetas y bordes" },
+    { figma: "color/coral-red", variable: "--color-coral-red", hex: "#eb5757", purpose: "Fondos de resaltado y énfasis suave" },
+    { figma: "color/signal-teal", variable: "--color-signal-teal", hex: "#02b8cc", purpose: "Iconos informativos y acentos" },
+    { figma: "color/iris-violet", variable: "--color-iris-violet", hex: "#6366f1", purpose: "Rellenos de etiquetas y badges" },
+    { figma: "color/lavender", variable: "--color-lavender", hex: "#8b5cf6", purpose: "Rellenos secundarios de etiquetas, indicadores de categoría" },
+  ],
+};
+
+const labels = copy[lang];
+const data = rows[lang];
+---
+
+<div class="not-content my-6 w-full max-w-full min-w-0 overflow-hidden rounded-xl border border-border bg-card">
+  <div
+    class="w-full overflow-x-auto"
+    tabindex="0"
+    role="region"
+    aria-label={labels.region}
+  >
+    <table class="w-full min-w-[44rem] border-collapse text-left">
+      <thead>
+        <tr class="border-b border-border">
+          <th scope="col" class="whitespace-nowrap px-4 py-3 text-label font-medium uppercase tracking-wider text-muted-foreground">
+            {labels.figma}
+          </th>
+          <th scope="col" class="whitespace-nowrap px-4 py-3 text-label font-medium uppercase tracking-wider text-muted-foreground">
+            {labels.variable}
+          </th>
+          <th scope="col" class="whitespace-nowrap px-4 py-3 text-label font-medium uppercase tracking-wider text-muted-foreground">
+            {labels.value}
+          </th>
+          <th scope="col" class="px-4 py-3 text-label font-medium uppercase tracking-wider text-muted-foreground">
+            {labels.purpose}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          data.map((row, index) => (
+            <tr class={index === data.length - 1 ? "" : "border-b border-border"}>
+              <td class="whitespace-nowrap px-4 py-3 align-middle font-mono text-body-sm text-foreground">
+                <code>{row.figma}</code>
+              </td>
+              <td class="whitespace-nowrap px-4 py-3 align-middle font-mono text-body-sm text-signal-teal-foreground">
+                <code>{row.variable}</code>
+              </td>
+              <td class="whitespace-nowrap px-4 py-3 align-middle">
+                <ColorSwatch color={row.hex} />
+              </td>
+              <td class="px-4 py-3 align-middle text-body-sm text-muted-foreground">
+                {row.purpose}
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

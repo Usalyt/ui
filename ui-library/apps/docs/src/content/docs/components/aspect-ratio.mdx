@@ -1,0 +1,63 @@
+---
+title: Aspect Ratio
+description: Container primitive that reserves an exact width-to-height ratio in the layout.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { AspectRatioDemo } from "../../../components/demos/AspectRatioDemo";
+
+Container primitive that reserves an exact width-to-height ratio in the layout, so media does not shift content while it loads.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add aspect-ratio
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add aspect-ratio
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add aspect-ratio
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="AspectRatio">
+  <AspectRatioDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/aspect-ratio.tsx
+import { AspectRatio } from "tu-ui";
+
+export function MediaFrame() {
+  return (
+    <AspectRatio ratio={16 / 9} className="rounded-lg border border-border">
+      <img
+        src="preview.png"
+        alt="Checkout flow preview"
+        className="h-full w-full object-cover"
+      />
+    </AspectRatio>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "ratio", type: "number", defaultValue: "16 / 9", description: "Width-to-height ratio applied to the container; any finite number is accepted (e.g. 1 for squares, 4 / 3 for thumbnails)." },
+  { name: "asChild", type: "boolean", defaultValue: "false", description: "Merges ratio, style, and className onto the child element instead of rendering a wrapper div." },
+]} />

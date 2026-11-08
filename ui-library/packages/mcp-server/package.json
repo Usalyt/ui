@@ -1,0 +1,24 @@
+{
+  "name": "@tu-ui/mcp-server",
+  "version": "0.1.0",
+  "description": "Model Context Protocol (MCP) server for Antigravity, Cursor, and Claude Code AI agents",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test:unit": "vitest run"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.0"
+  },
+  "devDependencies": {
+    "@tu-ui/tsconfig": "workspace:*",
+    "@types/node": "^26.1.1",
+    "tsdown": "^0.22.14",
+    "typescript": "^6.0.0",
+    "vitest": "^4.1.10"
+  }
+}

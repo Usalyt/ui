@@ -1,0 +1,345 @@
+@import "@fontsource-variable/inter";
+@import "tailwindcss";
+@source "../src";
+
+/* Berkeley Mono — Substitution Contract (DESIGN.md "Tokens — Typography"):
+ * Berkeley Mono is a commercial typeface and is never bundled with the
+ * library. The @font-face below declares it local()-only: consumers who own a
+ * license get the real face; everyone else falls back to "JetBrains Mono"
+ * (the documented substitute — install it as an OS font or self-host it),
+ * then ui-monospace. No silent fallback beyond that. */
+@font-face {
+  font-family: "Berkeley Mono";
+  src: local("Berkeley Mono"), local("Berkeley Mono Variable");
+  font-display: swap;
+}
+
+/* Class-based dark strategy: a host page's explicit `.dark` class wins over
+ * the OS preference in both directions. Without this, `dark:` compiles to a
+ * prefers-color-scheme media query and leaks dark palettes into light themes
+ * on dark-mode machines. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Raw Linear Palette */
+  --color-void: #08090a;
+  --color-carbon: #0f1011;
+  --color-obsidian: #161718;
+  --color-graphite: #23252a;
+  --color-smoke: #383b3f;
+  --color-ash: #62666d;
+  --color-fog: #8a8f98;
+  --color-mist: #d0d6e0;
+  --color-bone: #e5e5e6;
+  --color-paper: #ffffff;
+  --color-acid-lime: #e4f222;
+  --color-pulse-green: #27a644;
+  --color-coral-red: #eb5757;
+  --color-signal-teal: #02b8cc;
+  --color-iris-violet: #6366f1;
+  --color-lavender: #8b5cf6;
+
+  /* Chromatic ink tokens — the accessible text/icon color that pairs with
+   * each hue's tinted surfaces (per craft-floor: tint secondary text from
+   * that hue or the foreground, never gray). Dark-theme inks are the hue
+   * (lightened toward paper only where the raw hue falls under the 4.5:1
+   * floor on 10% tints); light-theme overrides mix the hue toward void.
+   * Values calibrated by WCAG calculation in
+   * packages/ui/src/test/palette-contract.test.ts. */
+  --color-pulse-green-foreground: color-mix(in oklab, var(--color-pulse-green) 94%, var(--color-paper));
+  --color-coral-red-foreground: color-mix(in oklab, var(--color-coral-red) 89%, var(--color-paper));
+  --color-signal-teal-foreground: var(--color-signal-teal);
+  --color-iris-violet-foreground: color-mix(in oklab, var(--color-iris-violet) 77%, var(--color-paper));
+  --color-lavender-foreground: color-mix(in oklab, var(--color-lavender) 79%, var(--color-paper));
+
+  /* Theme-aware form field fill: white 2% on the dark substrate, black 3%
+   * on the light canvas (theme-blind bg-white/[0.02] collapses on white). */
+  --color-field: rgb(255 255 255 / 0.02);
+
+  /* Typography Families */
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Berkeley Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-inter-variable: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-berkeley-mono: "Berkeley Mono", "JetBrains Mono", ui-monospace, monospace;
+
+  /* Font Weight Caps (Linear Precision Vocabulary: 300, 400, 510, 590).
+   * The canonical aliases generate font-light / font-regular / font-w510 /
+   * font-w590; the shadcn-style caps remap legacy weight utilities onto the
+   * same 300-590 band (the system never exceeds 590). */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-w510: 510;
+  --font-weight-w590: 590;
+  --font-weight-medium: 510;
+  --font-weight-semibold: 590;
+  --font-weight-bold: 590;
+  --font-weight-extrabold: 590;
+
+  /* Type Scale — granular tokens (DESIGN.md "Type Scale Detail"). Sizes and
+   * per-size leading/tracking from the DESIGN.md contract; caption, label and
+   * micro ship default tracking (no --tracking-<name> token by design). */
+  --leading-micro: 1.5;
+  --leading-label: 1.4;
+  --leading-caption: 1.2;
+  --leading-body-sm: 1.6;
+  --leading-body-lg: 1.33;
+  --leading-subheading: 1.33;
+  --leading-heading-sm: 1.13;
+  --leading-heading: 1;
+  --leading-heading-lg: 1;
+  --leading-display: 1;
+
+  --tracking-body-sm: -0.165px;
+  --tracking-body-lg: -0.24px;
+  --tracking-subheading: -0.288px;
+  --tracking-heading-sm: -0.704px;
+  --tracking-heading: -1.056px;
+  --tracking-heading-lg: -1.408px;
+  --tracking-display: -1.584px;
+
+  /* Type Scale — composed text utilities via Tailwind v4 text sub-keys: each
+   * `text-<name>` utility carries size + line-height (+ letter-spacing where
+   * the contract defines one). Verified against Tailwind 4.3.3 utility
+   * generation. */
+  --text-micro: 10px;
+  --text-micro--line-height: var(--leading-micro);
+  --text-label: 12px;
+  --text-label--line-height: var(--leading-label);
+  --text-caption: 13px;
+  --text-caption--line-height: var(--leading-caption);
+  --text-body-sm: 15px;
+  --text-body-sm--line-height: var(--leading-body-sm);
+  --text-body-sm--letter-spacing: var(--tracking-body-sm);
+  --text-body-lg: 20px;
+  --text-body-lg--line-height: var(--leading-body-lg);
+  --text-body-lg--letter-spacing: var(--tracking-body-lg);
+  --text-subheading: 24px;
+  --text-subheading--line-height: var(--leading-subheading);
+  --text-subheading--letter-spacing: var(--tracking-subheading);
+  --text-heading-sm: 32px;
+  --text-heading-sm--line-height: var(--leading-heading-sm);
+  --text-heading-sm--letter-spacing: var(--tracking-heading-sm);
+  --text-heading: 48px;
+  --text-heading--line-height: var(--leading-heading);
+  --text-heading--letter-spacing: var(--tracking-heading);
+  --text-heading-lg: 64px;
+  --text-heading-lg--line-height: var(--leading-heading-lg);
+  --text-heading-lg--letter-spacing: var(--tracking-heading-lg);
+  --text-display: 72px;
+  --text-display--line-height: var(--leading-display);
+  --text-display--letter-spacing: var(--tracking-display);
+
+  /* Strict Canonical 5-Tier Radii Scale */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* Hairline Elevation & Shadow Stack */
+  --shadow-sm: rgba(0, 0, 0, 0.4) 0px 2px 4px 0px;
+  --shadow-md: rgba(0, 0, 0, 0.2) 0px 0px 12px 0px inset;
+  --shadow-subtle: rgb(35, 37, 42) 0px 0px 0px 1px inset;
+  --shadow-subtle-1: rgb(35, 37, 42) 0px 0px 0px 1px inset;
+  --shadow-subtle-2: rgba(0, 0, 0, 0.2) 0px 0px 0px 1px;
+  --shadow-subtle-3: rgba(0, 0, 0, 0.01) 0px 5px 2px 0px, rgba(0, 0, 0, 0.04) 0px 3px 2px 0px, rgba(0, 0, 0, 0.07) 0px 1px 1px 0px, rgba(0, 0, 0, 0.08) 0px 0px 1px 0px;
+  --shadow-subtle-4: rgba(255, 255, 255, 0.03) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.04) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.6) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 4px 0px;
+  --shadow-subtle-5: rgba(0, 0, 0, 0.1) 0px 0px 0px 2px;
+  --shadow-inset-hairline: rgb(35, 37, 42) 0px 0px 0px 1px inset;
+  --shadow-xl: rgba(8, 9, 10, 0.6) 0px 4px 32px 0px;
+
+  /* Semantic Default Color Layer (Dark-first Midnight Substrate) */
+  --color-background: var(--color-void);
+  --color-foreground: var(--color-mist);
+  --color-primary: var(--color-acid-lime);
+  --color-primary-foreground: var(--color-void);
+  --color-secondary: var(--color-obsidian);
+  --color-secondary-foreground: var(--color-mist);
+  --color-muted: var(--color-obsidian);
+  --color-muted-foreground: var(--color-fog);
+  --color-card: var(--color-carbon);
+  --color-card-foreground: var(--color-paper);
+  --color-popover: var(--color-obsidian);
+  --color-popover-foreground: var(--color-mist);
+  --color-accent: var(--color-graphite);
+  --color-accent-foreground: var(--color-paper);
+  --color-destructive: var(--color-coral-red);
+  --color-destructive-foreground: var(--color-void);
+  --color-border: var(--color-graphite);
+  --color-input: var(--color-graphite);
+  --color-ring: var(--color-mist);
+
+  /* Stepped Surfaces */
+  --color-surface-base: var(--color-void);
+  --color-surface-raised: var(--color-carbon);
+  --color-surface-overlay: var(--color-obsidian);
+  --color-surface-inset: var(--color-graphite);
+
+  /* Sidebar rail — a Carbon navigation container in the dark world
+   * (DESIGN.md surfaces: Void → Carbon → Obsidian → Slate). The light block
+   * below re-anchors the same six tokens on the light ladder so `bg-sidebar` /
+   * `text-sidebar-foreground` / `hover:bg-sidebar-accent` resolve in BOTH
+   * themes instead of rendering a transparent surface. */
+  --color-sidebar: var(--color-carbon);
+  --color-sidebar-foreground: var(--color-mist);
+  --color-sidebar-border: var(--color-graphite);
+  --color-sidebar-ring: var(--color-mist);
+  --color-sidebar-accent: var(--color-graphite);
+  --color-sidebar-accent-foreground: var(--color-paper);
+}
+
+@layer base {
+  :root,
+  .dark {
+    --color-background: var(--color-void);
+    --color-foreground: var(--color-mist);
+    --color-primary: var(--color-acid-lime);
+    --color-primary-foreground: var(--color-void);
+    --color-secondary: var(--color-obsidian);
+    --color-secondary-foreground: var(--color-mist);
+    --color-muted: var(--color-obsidian);
+    --color-muted-foreground: var(--color-fog);
+    --color-card: var(--color-carbon);
+    --color-card-foreground: var(--color-paper);
+    --color-popover: var(--color-obsidian);
+    --color-popover-foreground: var(--color-mist);
+    --color-accent: var(--color-graphite);
+    --color-accent-foreground: var(--color-paper);
+    --color-destructive: var(--color-coral-red);
+    --color-destructive-foreground: var(--color-void);
+    --color-border: var(--color-graphite);
+    --color-input: var(--color-graphite);
+    --color-ring: var(--color-mist);
+
+    --color-surface-base: var(--color-void);
+    --color-surface-raised: var(--color-carbon);
+    --color-surface-overlay: var(--color-obsidian);
+    --color-surface-inset: var(--color-graphite);
+  }
+
+  html[data-theme="light"]:not(.dark) {
+    --color-background: #ffffff;
+    --color-foreground: var(--color-void);
+    --color-primary: var(--color-void);
+    --color-primary-foreground: var(--color-paper);
+    --color-secondary: #f4f4f5;
+    --color-secondary-foreground: var(--color-void);
+    --color-muted: #f4f4f5;
+    --color-muted-foreground: var(--color-ash);
+    --color-card: #ffffff;
+    --color-card-foreground: var(--color-void);
+    --color-popover: #ffffff;
+    --color-popover-foreground: var(--color-void);
+    --color-accent: #e5e5e6;
+    --color-accent-foreground: var(--color-void);
+    --color-destructive: var(--color-coral-red);
+    --color-destructive-foreground: var(--color-void);
+    --color-border: #e4e4e7;
+    --color-input: #e4e4e7;
+    --color-ring: var(--color-void);
+
+    --color-surface-base: #ffffff;
+    --color-surface-raised: #f4f4f5;
+    --color-surface-overlay: #ffffff;
+    --color-surface-inset: #e5e5e6;
+
+    /* Light-theme chromatic inks: the hue mixed toward void so text holds
+     * >= 4.5:1 on tinted surfaces (verified by calculation, see
+     * src/test/palette-contract.test.ts). */
+    --color-pulse-green-foreground: color-mix(in oklab, var(--color-pulse-green) 57%, var(--color-void));
+    --color-coral-red-foreground: color-mix(in oklab, var(--color-coral-red) 60%, var(--color-void));
+    --color-signal-teal-foreground: color-mix(in oklab, var(--color-signal-teal) 50%, var(--color-void));
+    --color-iris-violet-foreground: color-mix(in oklab, var(--color-iris-violet) 67%, var(--color-void));
+    --color-lavender-foreground: color-mix(in oklab, var(--color-lavender) 66%, var(--color-void));
+
+    --color-field: rgb(0 0 0 / 0.03);
+
+    /* Sidebar rail on the light ladder: an off-white surface one step below
+     * the white canvas, with the same six tokens re-anchored so the rail is
+     * never transparent and its foreground holds >= 4.5:1 (verified by
+     * calculation in src/test/sidebar-contract.test.ts). */
+    --color-sidebar: #fafafa;
+    --color-sidebar-foreground: var(--color-void);
+    --color-sidebar-border: #e4e4e7;
+    --color-sidebar-ring: var(--color-void);
+    --color-sidebar-accent: #e5e5e6;
+    --color-sidebar-accent-foreground: var(--color-void);
+
+    /* Overlay elevation softens on the light canvas: the dark 60%-alpha
+     * halo reads as a black smear around popovers on white. Surfaces reach
+     * this token through `shadow-(--shadow-xl)` — Tailwind inlines the
+     * plain `shadow-xl` utility, so the override only applies where the
+     * utility keeps a runtime var() reference. */
+    --shadow-xl: rgba(8, 9, 10, 0.14) 0px 6px 24px 0px, rgba(8, 9, 10, 0.08) 0px 2px 6px 0px;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv01" 1, "ss03" 1, "zero" 1;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Optical Tracking Utilities */
+.tracking-tight-linear {
+  letter-spacing: -0.011em;
+}
+
+.tracking-display-linear {
+  letter-spacing: -0.022em;
+}
+
+/* ─── Motion Layer ─────────────────────────────────────────────────────────
+ * One authored motion vocabulary for the overlay/panel state layer:
+ * exponential ease-out, 170ms enter / 120ms exit (Linear-quiet).
+ * Entrances/exits are wired to the attributes Base UI v1.6.0 actually emits:
+ * data-open / data-closed (popup surfaces), data-starting-style /
+ * data-ending-style (transitions on toast roots and collapsing panels).
+ * ────────────────────────────────────────────────────────────────────────── */
+@theme {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-duration-enter: 170ms;
+  --transition-duration-exit: 120ms;
+
+  /* Popup surfaces (dialog, alert-dialog, popover, menus, select, tooltip,
+   * drawer): enter plays on data-open, exit plays on data-closed. */
+  --animate-overlay-in: overlay-in var(--transition-duration-enter) var(--ease-out-expo) both;
+  --animate-overlay-out: overlay-out var(--transition-duration-exit) var(--ease-out-expo) both;
+
+  /* Scrim backdrops fade without spatial movement. */
+  --animate-fade-in: fade-in var(--transition-duration-enter) var(--ease-out-expo) both;
+  --animate-fade-out: fade-out var(--transition-duration-exit) var(--ease-out-expo) both;
+
+  @keyframes overlay-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px) scale(0.97);
+    }
+  }
+
+  @keyframes overlay-out {
+    to {
+      opacity: 0;
+      transform: translateY(2px) scale(0.98);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-out {
+    to {
+      opacity: 0;
+    }
+  }
+}
+

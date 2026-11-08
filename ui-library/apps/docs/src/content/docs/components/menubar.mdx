@@ -1,0 +1,54 @@
+---
+title: Menubar
+description: Menubar primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { MenubarDemo } from "../../../components/demos/MenubarDemo";
+
+Menubar primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add menubar
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add menubar
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add menubar
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Menubar">
+  <MenubarDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/menubar.tsx
+import { Menubar } from "tu-ui";
+
+export function MenubarExample() {
+  return <Menubar />;
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "value", type: "string", defaultValue: "undefined", description: "Active open menu item value." },
+]} />

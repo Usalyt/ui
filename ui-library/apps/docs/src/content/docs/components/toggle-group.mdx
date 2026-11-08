@@ -1,0 +1,54 @@
+---
+title: Toggle Group
+description: Toggle Group primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { ToggleGroupDemo } from "../../../components/demos/ToggleGroupDemo";
+
+Toggle Group primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add toggle-group
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add toggle-group
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add toggle-group
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Toggle Group">
+  <ToggleGroupDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/toggle-group.tsx
+import { ToggleGroup } from "tu-ui";
+
+export function ToggleGroupExample() {
+  return <ToggleGroup />;
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "type", type: "'single' | 'multiple'", defaultValue: "'single'", description: "Allows single or multiple item selection." },
+]} />

@@ -1,0 +1,72 @@
+---
+title: Pagination
+description: Pagination navigation with active-page links, edge controls, and an ellipsis slot.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { PaginationDemo } from "../../../components/demos/PaginationDemo";
+
+Pagination navigation built from `Pagination`, `PaginationContent`, `PaginationItem`, `PaginationLink`, `PaginationPrevious`, `PaginationNext`, and `PaginationEllipsis`. Links handle `aria-current` and variant switching via `isActive`.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add pagination
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add pagination
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add pagination
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Pagination">
+  <PaginationDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/pagination.tsx
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext } from "tu-ui";
+
+export function ResultsPagination() {
+  return (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href="/results?page=1" />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="/results?page=1" isActive>1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="/results?page=2">2</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href="/results?page=2" />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "isActive", type: "boolean", defaultValue: "undefined", description: "Renders aria-current=\"page\" and the outline variant on a PaginationLink; Prefixes PaginationPrevious/PaginationNext too." },
+  { name: "size", type: "'sm' | 'md' | 'lg' | 'icon'", defaultValue: "'icon'", description: "Button size applied to PaginationLink; Previous/Next links ship with size md." },
+]} />

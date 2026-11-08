@@ -1,0 +1,71 @@
+---
+title: Table
+description: Table primitives with a horizontally scrollable wrapper and token-based row and cell styling.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { TableDemo } from "../../../components/demos/TableDemo";
+
+Table primitives (`Table`, `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`) with a horizontally scrollable wrapper, hover row states, and token-based borders.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add table
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add table
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add table
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Table">
+  <TableDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/table.tsx
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "tu-ui";
+
+export function InvoiceTable() {
+  return (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Invoice</TableHead>
+          <TableHead className="text-right">Amount</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>INV-001</TableCell>
+          <TableCell className="text-right">$250.00</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "children (Table)", type: "React.ReactNode", defaultValue: "—", description: "Header, body, footer, and caption sections; the root wraps them in an overflow-auto container for narrow layouts." },
+  { name: "className (TableRow)", type: "string", defaultValue: "undefined", description: "Row styling helper — rows already ship border-b and hover:bg-muted states; data-[state=selected] adds the selected surface." },
+  { name: "className (TableHead)", type: "string", defaultValue: "undefined", description: "Cell alignment helpers (e.g. text-right) compose with the built-in h-10 px-3 muted header style." },
+]} />

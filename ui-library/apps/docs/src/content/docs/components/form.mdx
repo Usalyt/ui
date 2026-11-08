@@ -1,0 +1,93 @@
+---
+title: Form
+description: React Hook Form primitives with accessible labels, descriptions, validation messages, and field focus management.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { FormDemo } from "../../../components/demos/FormDemo";
+
+Form primitives connect React Hook Form to labeled controls. `FormControl` composes its own ref with the control ref, so invalid submissions focus the offending field and `setFocus` keeps working.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add form
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add form
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add form
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Form">
+  <FormDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/form/form.tsx
+import { useForm } from "react-hook-form";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+  Input,
+  Button,
+} from "tu-ui";
+
+export function ProfileForm() {
+  const form = useForm({ defaultValues: { email: "" } });
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit((values) => console.log(values))} className="space-y-4">
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email Address</FormLabel>
+              <FormControl>
+                <Input type="email" {...field} />
+              </FormControl>
+              <FormDescription>We never share your email.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Save</Button>
+      </form>
+    </Form>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "Form", type: "UseFormReturn", defaultValue: "—", description: "React Hook Form provider; spread the useForm() return value into it." },
+  { name: "FormField", type: "ControllerProps", defaultValue: "—", description: "Binds a field name and control to a render function." },
+  { name: "FormItem", type: "HTMLDivElement props", defaultValue: "—", description: "Provides the generated id shared by label, control, description, and message." },
+  { name: "FormLabel", type: "Label props", defaultValue: "—", description: "Label linked to the control id; switches to the destructive style on error." },
+  { name: "FormControl", type: "HTMLElement props", defaultValue: "—", description: "Clones the child control with id, aria-invalid, aria-describedby, and composed refs." },
+  { name: "FormDescription", type: "HTMLParagraphElement props", defaultValue: "—", description: "Helper text linked through aria-describedby." },
+  { name: "FormMessage", type: "HTMLParagraphElement props", defaultValue: "—", description: "Renders the current validation message and links it through aria-describedby." },
+]} />

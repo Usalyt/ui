@@ -1,0 +1,24 @@
+---
+interface Props {
+  title?: string;
+  className?: string;
+}
+
+const { title, className = "" } = Astro.props;
+---
+
+<div
+  class="not-content my-6 w-full overflow-hidden rounded-xl border border-border bg-card"
+  data-component-preview
+>
+  {
+    title && (
+      <div class="border-b border-border bg-card px-4 py-2 font-mono text-label text-muted-foreground">
+        {title}
+      </div>
+    )
+  }
+  <div class={`flex min-h-[180px] w-full items-center justify-center bg-background p-8 ${className}`}>
+    <slot />
+  </div>
+</div>

@@ -1,0 +1,72 @@
+---
+title: Empty State Block
+description: Dashed empty state with icon badge, title, description, and primary/secondary actions.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { EmptyStateBlockDemo } from "../../../components/demos/EmptyStateBlockDemo";
+
+Dashed empty state with icon badge, title, description, and primary/secondary actions.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add empty-state-block
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add empty-state-block
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add empty-state-block
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Empty State Block">
+  <EmptyStateBlockDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/blocks/empty-state-block.tsx
+import { EmptyStateBlock } from "tu-ui";
+
+export function EvaluationsEmptyState() {
+  return (
+    <EmptyStateBlock
+      title="No heuristic evaluations yet"
+      description="Inspect elements on the page or launch the extension to log your first findings."
+      actionLabel="Launch Extension"
+      secondaryActionLabel="View Docs"
+      onAction={() => console.log("launch")}
+    />
+  );
+}
+```
+
+## Long actions
+
+Primary and secondary action labels are never truncated. Inside a small container the action group wraps, each button stays within the block, and the full label remains readable and clickable. The existing primary/secondary order, handlers and empty non-action state are unchanged.
+
+## Props
+
+<PropsTable props={[
+  { name: "icon", type: "React.ReactNode", defaultValue: "help icon", description: "Custom icon inside the circular badge." },
+  { name: "title", type: "string", defaultValue: "'No evaluations recorded'", description: "Heading text." },
+  { name: "description", type: "string", defaultValue: "'Get started by selecting an element on the host page or importing an existing audit.'", description: "Supporting copy under the title." },
+  { name: "actionLabel", type: "string", defaultValue: "'New Evaluation'", description: "Primary action label; renders the primary button with a plus icon." },
+  { name: "secondaryActionLabel", type: "string", defaultValue: "—", description: "Secondary outline action label." },
+  { name: "onAction", type: "() => void", defaultValue: "—", description: "Primary action handler." },
+  { name: "onSecondaryAction", type: "() => void", defaultValue: "—", description: "Secondary action handler." },
+]} />

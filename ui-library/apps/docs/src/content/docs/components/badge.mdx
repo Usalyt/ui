@@ -1,0 +1,54 @@
+---
+title: Badge
+description: Badge primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { BadgeDemo } from "../../../components/demos/BadgeDemo";
+
+Badge primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add badge
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add badge
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add badge
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Badge">
+  <BadgeDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/badge.tsx
+import { Badge } from "tu-ui";
+
+export function BadgeExample() {
+  return <Badge variant="secondary">New Feature</Badge>;
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "variant", type: "'default' | 'secondary' | 'destructive' | 'outline' | 'pulse-green' | 'coral-red' | 'signal-teal' | 'iris-violet' | 'lavender' | 'acid-lime' | 'neutral'", defaultValue: "'default'", description: "Visual style variant of the badge." },
+]} />

@@ -1,0 +1,68 @@
+---
+title: Card
+description: Card primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { CardDemo } from "../../../components/demos/CardDemo";
+
+Card primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add card
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add card
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add card
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Card">
+  <CardDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/card.tsx
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Button } from "tu-ui";
+
+export function CardExample() {
+  return (
+    <Card className="w-80">
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+        <CardDescription>Card Description</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Card Content</p>
+      </CardContent>
+      <CardFooter>
+        <Button className="w-full">Action</Button>
+      </CardFooter>
+    </Card>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "variant", type: "'default' | 'subtle'", defaultValue: "'default'", description: "Visual variant of the card (default carbon or subtle 2% opacity surface)." },
+  { name: "className", type: "string", defaultValue: "undefined", description: "Additional CSS class names for styling." },
+]} />

@@ -1,0 +1,70 @@
+---
+title: Heuristic Finding Card
+description: Finding record card with severity badge, selector copy, explicit numeric severity, and edit/delete actions.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { HeuristicFindingCardDemo } from "../../../components/demos/HeuristicFindingCardDemo";
+
+Finding record card with severity badge, selector copy, explicit numeric severity, and edit/delete actions.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add heuristic-finding-card
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add heuristic-finding-card
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add heuristic-finding-card
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Heuristic Finding Card">
+  <HeuristicFindingCardDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/blocks/heuristic-finding-card.tsx
+import { HeuristicFindingCard } from "tu-ui";
+
+export function FindingRecord() {
+  return (
+    <HeuristicFindingCard
+      finding={{
+        id: "finding-h1-01",
+        heuristicId: "H1",
+        heuristicTitle: "Visibility of System Status",
+        severity: "CRITICAL",
+        rating: 4,
+        selector: "button#complete-purchase.btn-primary",
+        description: "The button shows no loading state while the transaction is processed.",
+      }}
+      onDelete={(id) => console.log("delete", id)}
+    />
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "finding", type: "HeuristicFinding", defaultValue: "—", description: "Finding payload ({ id, heuristicId, heuristicTitle, severity, rating, selector, description, screenshotUrl?, createdAt?, evaluatorName? }). Required." },
+  { name: "onEdit", type: "(finding: HeuristicFinding) => void", defaultValue: "—", description: "Renders the edit header action and handles clicks." },
+  { name: "onDelete", type: "(id: string) => void", defaultValue: "—", description: "Renders the delete header action and handles clicks." },
+  { name: "onViewScreenshot", type: "(finding: HeuristicFinding) => void", defaultValue: "—", description: "Renders the Expand overlay over the captured screenshot." },
+]} />

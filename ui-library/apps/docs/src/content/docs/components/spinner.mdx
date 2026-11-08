@@ -1,0 +1,54 @@
+---
+title: Spinner
+description: Spinner primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { SpinnerDemo } from "../../../components/demos/SpinnerDemo";
+
+Spinner primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add spinner
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add spinner
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add spinner
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Spinner">
+  <SpinnerDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/spinner.tsx
+import { Spinner } from "tu-ui";
+
+export function SpinnerExample() {
+  return <Spinner />;
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "size", type: "'sm' | 'md' | 'lg'", defaultValue: "'md'", description: "Size of loading spinner icon." },
+]} />

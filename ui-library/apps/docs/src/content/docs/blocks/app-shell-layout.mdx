@@ -1,0 +1,70 @@
+---
+title: App Shell Layout
+description: Application shell with collapsible sidebar, header breadcrumbs, and user footer.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { AppShellLayoutDemo } from "../../../components/demos/AppShellLayoutDemo";
+
+Application shell with collapsible sidebar, header breadcrumbs, and user footer.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add app-shell-layout
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add app-shell-layout
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add app-shell-layout
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="App Shell Layout">
+  <AppShellLayoutDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/blocks/app-shell-layout.tsx
+import { AppShellLayout } from "tu-ui";
+
+export function MyAppShell() {
+  return (
+    <AppShellLayout
+      brandName="UX Check Platform"
+      navItems={[{ title: "Overview", href: "#", isActive: true }]}
+      breadcrumbs={[{ label: "Projects", href: "#" }, { label: "Checkout Flow Audit" }]}
+      user={{ name: "Alex Doe", email: "alex@uxcheck.io" }}
+    >
+      <h2 className="text-xl font-bold">Project Dashboard</h2>
+    </AppShellLayout>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "brandName", type: "string", defaultValue: "'UX Check'", description: "Brand title rendered in the sidebar header." },
+  { name: "brandLogo", type: "React.ReactNode", defaultValue: "—", description: "Optional logo node displayed next to the brand name." },
+  { name: "navItems", type: "NavItem[]", defaultValue: "[]", description: "Sidebar navigation entries ({ title, href, icon?, isActive? })." },
+  { name: "breadcrumbs", type: "Array<{ label: string; href?: string }>", defaultValue: "[{ label: 'Dashboard', href: '/' }, { label: 'Overview' }]", description: "Header breadcrumb trail; the last entry renders as the current page." },
+  { name: "user", type: "{ name: string; email: string; avatarUrl?: string }", defaultValue: "{ name: 'Alex Evaluator', email: 'alex@uxcheck.io' }", description: "Account info rendered in the sidebar footer." },
+  { name: "onSearchClick", type: "() => void", defaultValue: "—", description: "Renders the header search button and handles clicks." },
+  { name: "onNotificationsClick", type: "() => void", defaultValue: "—", description: "Renders the header notifications button and handles clicks." },
+  { name: "children", type: "React.ReactNode", defaultValue: "—", description: "Content of the main region below the header." },
+]} />

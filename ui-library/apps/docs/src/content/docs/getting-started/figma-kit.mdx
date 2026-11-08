@@ -1,0 +1,32 @@
+---
+title: Figma Kit & Token Synchronization
+description: Keep the tu-ui Figma library in sync with the Tailwind v4 @theme tokens shipped in packages/ui/styles/globals.css.
+---
+
+import ColorTokenTable from "../../../components/ColorTokenTable.astro";
+
+## Overview
+
+The **tu-ui** Figma kit maps 1:1 to the Tailwind v4 `@theme` design tokens declared in `packages/ui/styles/globals.css`. The stylesheet is the source of truth: the Figma library mirrors its values so design and implementation stay consistent.
+
+## Color Tokens (Hex Palette)
+
+The palette is defined as hex values in the `@theme` block. Each token has a matching Figma variable of the same name.
+
+<ColorTokenTable lang="en" />
+
+## Border Radii
+
+| Figma Variable | Tailwind v4 Variable | Value |
+| --- | --- | --- |
+| `radius/xs` | `--radius-xs` | `2px` |
+| `radius/sm` | `--radius-sm` | `4px` |
+| `radius/md` | `--radius-md` | `6px` |
+| `radius/lg` | `--radius-lg` | `12px` |
+| `radius/full` | `--radius-full` | `9999px` |
+
+## Keeping in Sync
+
+1. In Figma, open the **Local Variables** panel of the tu-ui kit.
+2. When a token changes, apply the same change to the matching `@theme` variable in `packages/ui/styles/globals.css` (or the other way around, keeping one side as the source).
+3. The `@tu-ui/cli` reads the `@theme` values, so components generated with `npx tu-ui add` consume the updated tokens automatically.

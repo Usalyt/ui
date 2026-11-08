@@ -1,0 +1,69 @@
+---
+title: Team Members Table
+description: Project members table with role management, remove actions, and an invite button.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { TeamMembersTableDemo } from "../../../components/demos/TeamMembersTableDemo";
+
+Project members table with role management, remove actions, and an invite button.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add team-members-table
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add team-members-table
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add team-members-table
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Team Members Table">
+  <TeamMembersTableDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/blocks/team-members-table.tsx
+import { TeamMembersTable, type TeamMember } from "tu-ui";
+
+const members: TeamMember[] = [
+  { id: "usr-01", name: "Sara Gómez", email: "sara@uxcheck.io", role: "owner", joinedAt: "12 May 2026" },
+  { id: "usr-02", name: "Carlos Rivera", email: "carlos@uxcheck.io", role: "evaluator", joinedAt: "18 May 2026" },
+];
+
+export function ProjectMembers() {
+  return (
+    <TeamMembersTable
+      members={members}
+      onRoleChange={(memberId, newRole) => console.log(memberId, newRole)}
+      onRemoveMember={(memberId) => console.log("remove", memberId)}
+      onInviteMember={() => console.log("invite")}
+    />
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "members", type: "TeamMember[]", defaultValue: "[]", description: "Member rows ({ id, name, email, role, avatarUrl?, joinedAt? })." },
+  { name: "onRoleChange", type: "(memberId: string, newRole: ProjectRole) => void", defaultValue: "—", description: "Renders a native role select for non-owner members and handles changes." },
+  { name: "onRemoveMember", type: "(memberId: string) => void", defaultValue: "—", description: "Renders the per-row remove action for non-owner members." },
+  { name: "onInviteMember", type: "() => void", defaultValue: "—", description: "Renders the Invite Member header button and handles clicks." },
+]} />

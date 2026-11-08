@@ -1,0 +1,56 @@
+---
+title: Number Field
+description: Number Field primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { NumberFieldDemo } from "../../../components/demos/NumberFieldDemo";
+
+Number Field primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add number-field
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add number-field
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add number-field
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Number Field">
+  <NumberFieldDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/number-field.tsx
+import { NumberField } from "tu-ui";
+
+export function NumberFieldExample() {
+  return <NumberField />;
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "value", type: "number", defaultValue: "undefined", description: "Controlled numeric value." },
+  { name: "min", type: "number", defaultValue: "undefined", description: "Minimum allowed value." },
+  { name: "max", type: "number", defaultValue: "undefined", description: "Maximum allowed value." },
+]} />

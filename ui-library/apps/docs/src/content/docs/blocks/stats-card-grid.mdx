@@ -1,0 +1,66 @@
+---
+title: Stats Card Grid
+description: Responsive metric grid with trend badges, supporting copy, and an explicit empty state.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { StatsCardGridDemo } from "../../../components/demos/StatsCardGridDemo";
+
+Responsive metric grid with titled cards, mono values, trend badges, and supporting copy. When no stats are supplied the Block renders an explicit empty state instead of an empty grid.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add stats-card-grid
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add stats-card-grid
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add stats-card-grid
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Stats Card Grid">
+  <StatsCardGridDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/stats-card-grid/stats-card-grid.tsx
+import { StatsCardGrid, type StatItem } from "tu-ui";
+
+const stats: StatItem[] = [
+  {
+    id: "stat-01",
+    title: "Findings logged",
+    value: 24,
+    change: "+12%",
+    trend: "up",
+  },
+];
+
+export function DashboardStats() {
+  return <StatsCardGrid stats={stats} columns={4} />;
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "stats", type: "StatItem[]", defaultValue: "[]", description: "Metric entries ({ id, title, value, change?, trend?, description?, icon? }). An empty array renders the empty state." },
+  { name: "columns", type: "2 | 3 | 4", defaultValue: "3", description: "Responsive column count for the grid." },
+  { name: "className", type: "string", defaultValue: "—", description: "Additional classes merged onto the grid or empty state." },
+]} />

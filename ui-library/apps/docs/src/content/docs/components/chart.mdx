@@ -1,0 +1,55 @@
+---
+title: Chart
+description: Chart primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { ChartDemo } from "../../../components/demos/ChartDemo";
+
+Chart primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add chart
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add chart
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add chart
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Chart">
+  <ChartDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/chart.tsx
+import { Chart } from "tu-ui";
+
+export function ChartExample() {
+  return <Chart />;
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "title", type: "string", defaultValue: "undefined", description: "Chart title header." },
+  { name: "description", type: "string", defaultValue: "undefined", description: "Subheader text description." },
+]} />

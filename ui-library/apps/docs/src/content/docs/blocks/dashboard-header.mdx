@@ -1,0 +1,79 @@
+---
+title: Dashboard Header
+description: Dashboard top bar with search, configurable actions, optional notifications, and a user menu.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { DashboardHeaderDemo } from "../../../components/demos/DashboardHeaderDemo";
+
+Dashboard top bar with breadcrumb title, search, an optional actions slot, an optional notification button, and a user menu. Actions without handlers are hidden instead of rendering inert controls.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add dashboard-header
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add dashboard-header
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add dashboard-header
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Dashboard Header">
+  <DashboardHeaderDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/dashboard-header/dashboard-header.tsx
+import { DashboardHeader } from "tu-ui";
+
+export function AppHeader() {
+  return (
+    <DashboardHeader
+      title="Dashboard"
+      userName="Alex Rivera"
+      notificationCount={2}
+      onSearch={(query) => console.log(query)}
+      onNotificationsClick={() => console.log("notifications")}
+      onProfileSettings={() => console.log("profile")}
+      onTeamManagement={() => console.log("team")}
+      onLogout={() => console.log("logout")}
+      actions={<InviteButton />}
+    />
+  );
+}
+```
+
+## Desktop order
+
+The semantic order is breadcrumb, actions, then search on every breakpoint. The visual order follows that same DOM and tab sequence; desktop CSS no longer moves search ahead of the action group. Custom actions, notification and profile controls keep their existing callbacks and mobile wrapping.
+
+## Props
+
+<PropsTable props={[
+  { name: "title", type: "string", defaultValue: "'Dashboard'", description: "Breadcrumb page title." },
+  { name: "userName", type: "string", defaultValue: "'Alex Rivera'", description: "Name shown in the user menu and avatar fallback." },
+  { name: "userAvatarUrl", type: "string", defaultValue: "portrait URL", description: "Avatar image source." },
+  { name: "onSearch", type: "(query: string) => void", defaultValue: "—", description: "Receives the search field value." },
+  { name: "actions", type: "React.ReactNode", defaultValue: "—", description: "Custom action nodes rendered before the notification button." },
+  { name: "notificationCount", type: "number", defaultValue: "0", description: "Renders an unread count badge over the bell when greater than zero." },
+  { name: "onNotificationsClick", type: "() => void", defaultValue: "—", description: "Renders the notification button and handles clicks." },
+  { name: "onProfileSettings", type: "() => void", defaultValue: "—", description: "Renders the Profile Settings menu item." },
+  { name: "onTeamManagement", type: "() => void", defaultValue: "—", description: "Renders the Team Management menu item." },
+  { name: "onLogout", type: "() => void", defaultValue: "—", description: "Renders the Log out menu item." },
+]} />

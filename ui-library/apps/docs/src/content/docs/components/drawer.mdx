@@ -1,0 +1,59 @@
+---
+title: Drawer
+description: Drawer primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { DrawerDemo } from "../../../components/demos/DrawerDemo";
+
+Drawer primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add drawer
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add drawer
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add drawer
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Drawer">
+  <DrawerDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/drawer.tsx
+import { Drawer } from "tu-ui";
+
+export function DrawerExample() {
+  return <Drawer />;
+}
+```
+
+## Layout behavior
+
+`DrawerFooter` applies the compact 8px sibling gap at every breakpoint. Left and right panels remain full height and scroll their content; top and bottom panels are capped to the viewport height minus a 2rem inset and scroll internally. Side placement, state/gesture behavior and caller class overrides remain unchanged.
+
+## Props
+
+<PropsTable props={[
+  { name: "open", type: "boolean", defaultValue: "undefined", description: "Controlled open state of bottom drawer." },
+  { name: "onOpenChange", type: "(open: boolean) => void", defaultValue: "undefined", description: "Callback called when drawer state changes." },
+]} />

@@ -1,0 +1,55 @@
+---
+title: Context Menu
+description: Context Menu primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { ContextMenuDemo } from "../../../components/demos/ContextMenuDemo";
+
+Context Menu primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add context-menu
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add context-menu
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add context-menu
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Context Menu">
+  <ContextMenuDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/context-menu.tsx
+import { ContextMenu } from "tu-ui";
+
+export function ContextMenuExample() {
+  return <ContextMenu />;
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "modal", type: "boolean", defaultValue: "true", description: "Whether menu prevents interaction outside." },
+  { name: "onOpenChange", type: "(open: boolean) => void", defaultValue: "undefined", description: "Callback called when menu open state changes." },
+]} />

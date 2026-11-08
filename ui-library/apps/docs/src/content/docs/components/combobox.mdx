@@ -1,0 +1,57 @@
+---
+title: Combobox
+description: Combobox primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { ComboboxDemo } from "../../../components/demos/ComboboxDemo";
+
+Combobox primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add combobox
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add combobox
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add combobox
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Combobox">
+  <ComboboxDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/combobox.tsx
+import { Combobox } from "tu-ui";
+
+export function ComboboxExample() {
+  return <Combobox />;
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "options", type: "ComboboxOption[]", defaultValue: "[]", description: "Array of selectable options ({ value, label })." },
+  { name: "value", type: "string", defaultValue: "undefined", description: "Selected option value." },
+  { name: "onChange", type: "(value: string) => void", defaultValue: "undefined", description: "Callback called when selection changes." },
+  { name: "placeholder", type: "string", defaultValue: "'Select option...'", description: "Trigger button placeholder text." },
+]} />

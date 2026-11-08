@@ -1,0 +1,58 @@
+---
+title: Navigation Menu
+description: Navigation Menu primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { NavigationMenuDemo } from "../../../components/demos/NavigationMenuDemo";
+
+Navigation Menu primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add navigation-menu
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add navigation-menu
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add navigation-menu
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Navigation Menu">
+  <NavigationMenuDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/navigation-menu.tsx
+import { NavigationMenu } from "tu-ui";
+
+export function NavigationMenuExample() {
+  return <NavigationMenu />;
+}
+```
+
+## Constrained width
+
+The popup prefers its configured width (400px by default) and caps to the available viewport width when space is limited. On a 390px viewport the panel stays inside the screen while the trigger, portal, focus and keyboard behavior remain unchanged.
+
+## Props
+
+<PropsTable props={[
+  { name: "value", type: "string", defaultValue: "undefined", description: "Controlled active navigation menu item." },
+]} />

@@ -1,0 +1,66 @@
+---
+title: ColorSwatch
+description: Muestra de color de solo lectura con el valor CSS visible y sin saltos de línea.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../../components/PropsTable';
+import { ColorSwatchDemo } from "../../../../components/demos/ColorSwatchDemo";
+
+Referencia de color de solo lectura: una muestra pintada con el color indicado y el valor del color como texto legible. Úsala en tablas de tokens, documentación de paletas y referencias del sistema de diseño; no es un selector de color, un botón de copiado ni un campo de formulario.
+
+## Instalación
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add color-swatch
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add color-swatch
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add color-swatch
+```
+  </TabItem>
+</Tabs>
+
+## Vista previa
+
+<ComponentPreview title="ColorSwatch">
+  <ColorSwatchDemo />
+</ComponentPreview>
+
+## Uso
+
+```tsx
+// components/ui/color-swatch/color-swatch.tsx
+import { ColorSwatch } from "tu-ui";
+
+export function TokenValue() {
+  return (
+    <div className="flex items-center justify-between gap-4">
+      <span className="font-mono text-xs text-muted-foreground">
+        --color-acid-lime
+      </span>
+      <ColorSwatch color="#e4f222" />
+    </div>
+  );
+}
+```
+
+`color` acepta cualquier cadena de color CSS válida, incluidos hex, `rgb()`, `hsl()`, `oklch()` y variables de tema como `var(--color-acid-lime)`. La cadena se muestra tal cual, de modo que el valor visible siempre coincide con el valor recibido.
+
+El texto del valor comunica el color a las tecnologías de asistencia; la muestra se oculta del árbol de accesibilidad para evitar un anuncio duplicado. El componente es un `span` sin rol, sin tab stop, sin apariencia interactiva y sin manejadores de eventos, por lo que se renderiza de forma estática y no necesita hidratación en el cliente.
+
+## Props
+
+<PropsTable props={[
+  { name: "color", type: "string", defaultValue: "—", description: "Cualquier cadena de color CSS válida. Se pinta en la muestra y se renderiza tal cual como valor visible. Obligatorio." },
+  { name: "size", type: "'sm' | 'md'", defaultValue: "'md'", description: "Escala de la muestra y del valor (muestra de 12px en sm y de 16px en md)." },
+]} />

@@ -1,0 +1,66 @@
+---
+title: ColorSwatch
+description: Display-only color chip with a visible, nonwrapping CSS color value.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { ColorSwatchDemo } from "../../../components/demos/ColorSwatchDemo";
+
+Display-only color reference: a chip painted with the supplied color plus the color value as readable text. Use it in token tables, palette documentation and design-system references — not as a color picker, copy control or form field.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add color-swatch
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add color-swatch
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add color-swatch
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="ColorSwatch">
+  <ColorSwatchDemo />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/color-swatch/color-swatch.tsx
+import { ColorSwatch } from "tu-ui";
+
+export function TokenValue() {
+  return (
+    <div className="flex items-center justify-between gap-4">
+      <span className="font-mono text-xs text-muted-foreground">
+        --color-acid-lime
+      </span>
+      <ColorSwatch color="#e4f222" />
+    </div>
+  );
+}
+```
+
+`color` accepts any valid CSS color string, including hex, `rgb()`, `hsl()`, `oklch()` and theme variables such as `var(--color-acid-lime)`. The string is rendered verbatim, so the visible value always reflects the value you passed.
+
+The value text supplies the color information to assistive technology; the chip itself is hidden from the accessibility tree to avoid a duplicate announcement. The component is a plain `span` with no role, tab stop, pointer affordance or event handler, so it renders statically and does not require client-side hydration.
+
+## Props
+
+<PropsTable props={[
+  { name: "color", type: "string", defaultValue: "—", description: "Any valid CSS color string. Painted on the chip and rendered verbatim as the visible value. Required." },
+  { name: "size", type: "'sm' | 'md'", defaultValue: "'md'", description: "Chip and value scale (sm 12px chip, md 16px chip)." },
+]} />

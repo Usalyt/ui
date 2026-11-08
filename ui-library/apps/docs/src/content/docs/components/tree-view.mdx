@@ -1,0 +1,72 @@
+---
+title: Tree View
+description: Collapsible tree primitive with controlled or uncontrolled expand state per item.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { TreeViewDemo } from "../../../components/demos/TreeViewDemo";
+
+Collapsible tree built from `TreeView`, `TreeItem`, `TreeItemTrigger`, and `TreeItemContent`. Items render `role="treeitem"` with `aria-expanded`, and nesting is plain composition — put a `TreeItem` inside another item's `TreeItemContent`.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add tree-view
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add tree-view
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add tree-view
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="TreeView">
+  <TreeViewDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/tree-view.tsx
+import { TreeView, TreeItem, TreeItemTrigger, TreeItemContent } from "tu-ui";
+
+export function FileTree() {
+  return (
+    <TreeView>
+      <TreeItem defaultExpanded>
+        <TreeItemTrigger>src</TreeItemTrigger>
+        <TreeItemContent>
+          <TreeItem>
+            <TreeItemTrigger>components</TreeItemTrigger>
+            <TreeItemContent>
+              <TreeItem>
+                <span>button.tsx</span>
+              </TreeItem>
+            </TreeItemContent>
+          </TreeItem>
+        </TreeItemContent>
+      </TreeItem>
+    </TreeView>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "defaultExpanded", type: "boolean", defaultValue: "false", description: "TreeItem uncontrolled initial expand state." },
+  { name: "expanded", type: "boolean", defaultValue: "undefined", description: "TreeItem controlled expand state; overrides defaultExpanded." },
+  { name: "onExpandedChange", type: "(expanded: boolean) => void", defaultValue: "undefined", description: "TreeItem callback on toggle; when omitted, the item manages its own state." },
+]} />

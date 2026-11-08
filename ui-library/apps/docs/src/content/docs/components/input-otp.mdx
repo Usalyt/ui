@@ -1,0 +1,73 @@
+---
+title: Input OTP
+description: One-time-code input built on input-otp, with grouped slots and separators.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { InputOtpDemo } from "../../../components/demos/InputOtpDemo";
+
+One-time-code input built on the `input-otp` library. `InputOTPSlot` elements read their character and caret state from position `index`, so group and decorate them freely.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add input-otp
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add input-otp
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add input-otp
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="InputOTP">
+  <InputOtpDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/input-otp.tsx
+import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from "tu-ui";
+
+export function VerificationCode() {
+  return (
+    <InputOTP maxLength={6}>
+      <InputOTPGroup>
+        <InputOTPSlot index={0} />
+        <InputOTPSlot index={1} />
+        <InputOTPSlot index={2} />
+      </InputOTPGroup>
+      <InputOTPSeparator />
+      <InputOTPGroup>
+        <InputOTPSlot index={3} />
+        <InputOTPSlot index={4} />
+        <InputOTPSlot index={5} />
+      </InputOTPGroup>
+    </InputOTP>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "maxLength", type: "number", defaultValue: "—", description: "Total number of characters the input accepts; required." },
+  { name: "value", type: "string", defaultValue: "undefined", description: "Controlled value of the input." },
+  { name: "defaultValue", type: "string", defaultValue: "undefined", description: "Initial value for uncontrolled usage." },
+  { name: "onChange", type: "(value: string) => void", defaultValue: "undefined", description: "Called with the full string value whenever it changes." },
+  { name: "disabled", type: "boolean", defaultValue: "false", description: "Disables typing and dims the container." },
+  { name: "containerClassName", type: "string", defaultValue: "undefined", description: "Additional classes for the wrapper that holds the slots." },
+]} />

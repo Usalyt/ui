@@ -1,0 +1,65 @@
+---
+title: Sonner
+description: Toaster primitive wrapping sonner with token-mapped toasts, plus the imperative toast API.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { SonnerDemo } from "../../../components/demos/SonnerDemo";
+
+Toaster primitive wrapping [`sonner`](https://sonner.emilkowal.dev/) with token-mapped toast styling. Render `<Toaster />` once near the root, then call the re-exported `toast()` from anywhere.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add sonner
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add sonner
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add sonner
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Sonner">
+  <SonnerDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/sonner.tsx
+import { Toaster, toast } from "tu-ui";
+
+export function SaveNotice() {
+  return (
+    <>
+      <Toaster position="bottom-right" />
+      <button onClick={() => toast("Report exported", { description: "Saved to your downloads folder." })}>
+        Export report
+      </button>
+    </>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "position", type: "ToastPosition", defaultValue: "'bottom-right'", description: "Corner of the viewport where toasts stack." },
+  { name: "expand", type: "boolean", defaultValue: "false", description: "Hover expands the full toast stack instead of showing three." },
+  { name: "visibleToasts", type: "number", defaultValue: "3", description: "Maximum toasts visible at once; older ones queue." },
+  { name: "duration", type: "number", defaultValue: "4000", description: "Milliseconds before a toast dismisses itself." },
+  { name: "closeButton", type: "boolean", defaultValue: "false", description: "Adds a close button to each toast." },
+]} />

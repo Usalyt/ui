@@ -1,0 +1,10 @@
+---
+// ThemeSelect.astro — Starlight component override.
+//
+// Replaces Starlight's <select> theme picker with the tu-ui Sun/Moon toggle.
+// Starlight renders <ThemeSelect /> twice: in the header right group and in the
+// mobile menu footer, so both places get the functional control.
+import { ThemeToggle } from "../ThemeToggle";
+---
+
+<ThemeToggle client:load />

@@ -1,0 +1,905 @@
+@import "tu-ui/styles/globals.css";
+
+/* ============================================================================
+   tu-ui docs — Starlight theme layer
+
+   Every value below is sourced from the shipped tu-ui design tokens
+   (`packages/ui/styles/globals.css`): palette, semantic surfaces, ink tokens,
+   type scale, radii, shadows and motion. No palette hex is duplicated here.
+
+   Theme gating mirrors globals.css: dark is the default (`:root`, `.dark`,
+   `html[data-theme="dark"]`), light is `html[data-theme="light"]:not(.dark)`.
+   Starlight's `--sl-color-*` system is mapped onto the semantic tokens so the
+   stock chrome (header, sidebar, TOC, search, pagination, footer) tracks both
+   themes without pinned-dark islands.
+
+   Selector notes: Starlight's content styles carry a `:not(:where(.not-content *))`
+   guard, so content overrides replicate that suffix to keep equal specificity
+   while winning on order (this file is bundled after Starlight's styles).
+   ========================================================================= */
+
+/* ---------------------------------------------------------------------------
+   1. Token map — dark (default substrate)
+   -------------------------------------------------------------------------- */
+:root,
+html[data-theme="dark"],
+html.dark {
+  color-scheme: dark;
+
+  /* Local derived surfaces: geometric tints of shipped palette tokens, kept as
+     raw `color-mix()` so they track theme + palette without a second source. */
+  --docs-inline-code-bg: color-mix(in oklab, var(--color-graphite) 70%, transparent);
+  --docs-hover-tint: color-mix(in oklab, var(--color-graphite) 55%, transparent);
+  --docs-backdrop: color-mix(in oklab, var(--color-void) 66%, transparent);
+
+  /* Starlight color system → semantic tokens (dark world) */
+  --sl-color-white: var(--color-foreground); /* Starlight "white" = headings/strong text */
+  --sl-color-gray-1: var(--color-foreground);
+  --sl-color-gray-2: var(--color-muted-foreground);
+  --sl-color-gray-3: var(--color-ash);
+  --sl-color-gray-4: var(--color-smoke);
+  --sl-color-gray-5: var(--color-border);
+  --sl-color-gray-6: var(--color-obsidian);
+  --sl-color-gray-7: var(--color-card);
+  --sl-color-black: var(--color-background);
+  --sl-color-accent-low: var(--color-accent);
+  --sl-color-accent: var(--color-muted-foreground);
+  --sl-color-accent-high: var(--color-foreground);
+  --sl-color-text: var(--color-foreground);
+  --sl-color-text-accent: var(--color-foreground); /* links are foreground, never accent */
+  --sl-color-text-invert: var(--color-background);
+  --sl-color-bg: var(--color-background);
+  --sl-color-bg-nav: var(--color-background);
+  --sl-color-bg-sidebar: var(--color-sidebar);
+  --sl-color-bg-inline-code: var(--docs-inline-code-bg);
+  --sl-color-bg-accent: var(--color-foreground);
+  --sl-color-hairline-light: var(--color-border);
+  --sl-color-hairline: var(--color-border);
+  --sl-color-hairline-shade: var(--color-border);
+  --sl-color-backdrop-overlay: var(--docs-backdrop);
+
+  /* Alert vocabulary (asides, badges): note=iris-violet, tip=pulse-green,
+     caution=signal-teal, danger=coral-red, success=pulse-green */
+  --sl-color-blue-high: var(--color-iris-violet-foreground);
+  --sl-color-blue: var(--color-iris-violet);
+  --sl-color-blue-low: color-mix(in oklab, var(--color-iris-violet) 10%, transparent);
+  --sl-color-purple-high: var(--color-pulse-green-foreground);
+  --sl-color-purple: var(--color-pulse-green);
+  --sl-color-purple-low: color-mix(in oklab, var(--color-pulse-green) 10%, transparent);
+  --sl-color-orange-high: var(--color-signal-teal-foreground);
+  --sl-color-orange: var(--color-signal-teal);
+  --sl-color-orange-low: color-mix(in oklab, var(--color-signal-teal) 10%, transparent);
+  --sl-color-red-high: var(--color-coral-red-foreground);
+  --sl-color-red: var(--color-coral-red);
+  --sl-color-red-low: color-mix(in oklab, var(--color-coral-red) 10%, transparent);
+  --sl-color-green-high: var(--color-pulse-green-foreground);
+  --sl-color-green: var(--color-pulse-green);
+  --sl-color-green-low: color-mix(in oklab, var(--color-pulse-green) 10%, transparent);
+
+  /* Typography — shipped scale (weights never exceed 590) */
+  --sl-font-system: var(--font-sans);
+  --sl-font-system-mono: var(--font-mono);
+  --sl-line-height: var(--leading-body-sm);
+  --sl-line-height-headings: var(--leading-subheading);
+  --sl-text-body: var(--text-body-sm);
+  --sl-text-code: 0.875rem;
+  --sl-text-code-sm: 0.875em;
+  --sl-text-2xs: var(--text-micro);
+  --sl-text-xs: var(--text-caption);
+  --sl-text-sm: var(--text-body-sm);
+  --sl-text-base: 1rem;
+  --sl-text-lg: var(--text-body-lg);
+  --sl-text-h1: var(--text-heading-sm);
+  --sl-text-h2: var(--text-subheading);
+  --sl-text-h3: var(--text-body-lg);
+  --sl-text-h4: var(--text-body-sm);
+  --sl-text-h5: var(--text-caption);
+  --sl-text-h6: var(--text-label);
+
+  /* Elevation — hairlines first, the shipped overlay shadow for dialogs only */
+  --sl-shadow-sm: var(--shadow-sm);
+  --sl-shadow-md: var(--shadow-xl);
+  --sl-shadow-lg: var(--shadow-xl);
+
+  /* Sidebar rail */
+  --sl-sidebar-width: 17rem;
+}
+
+/* ---------------------------------------------------------------------------
+   2. Token map — light (only the values that differ)
+   -------------------------------------------------------------------------- */
+html[data-theme="light"]:not(.dark) {
+  color-scheme: light;
+  --docs-inline-code-bg: color-mix(in oklab, var(--color-graphite) 5%, transparent);
+  --docs-hover-tint: color-mix(in oklab, var(--color-graphite) 6%, transparent);
+  --docs-backdrop: color-mix(in oklab, var(--color-ash) 30%, transparent);
+
+  --sl-color-white: var(--color-foreground);
+  --sl-color-gray-1: var(--color-foreground);
+  --sl-color-gray-2: var(--color-muted-foreground);
+  --sl-color-gray-3: var(--color-fog);
+  --sl-color-gray-4: var(--color-mist);
+  --sl-color-gray-5: var(--color-border);
+  --sl-color-gray-6: var(--color-secondary);
+  --sl-color-gray-7: var(--color-background);
+  --sl-color-black: var(--color-background);
+  --sl-color-accent-low: var(--color-accent);
+  --sl-color-accent: var(--color-muted-foreground);
+  --sl-color-accent-high: var(--color-foreground);
+  --sl-color-text: var(--color-foreground);
+  --sl-color-text-accent: var(--color-foreground);
+  --sl-color-text-invert: var(--color-background);
+  --sl-color-bg: var(--color-background);
+  --sl-color-bg-nav: var(--color-background);
+  --sl-color-bg-sidebar: var(--color-sidebar);
+  --sl-color-bg-inline-code: var(--docs-inline-code-bg);
+  --sl-color-bg-accent: var(--color-foreground);
+  --sl-color-hairline-light: var(--color-border);
+  --sl-color-hairline: var(--color-border);
+  --sl-color-hairline-shade: var(--color-border);
+  --sl-color-backdrop-overlay: var(--docs-backdrop);
+}
+
+/* ---------------------------------------------------------------------------
+   3. Base chrome
+   -------------------------------------------------------------------------- */
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-accent-foreground);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-muted-foreground);
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+/* ---------------------------------------------------------------------------
+   4. Header + theme toggle
+   -------------------------------------------------------------------------- */
+header.header {
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: none;
+}
+
+.site-title {
+  color: var(--color-foreground); /* brand renders in foreground, never the accent */
+  font-size: var(--text-body-lg);
+  font-weight: 510;
+  letter-spacing: var(--tracking-body-lg);
+}
+
+/* Functional Sun/Moon theme control (src/components/ThemeToggle.tsx) */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background-color: transparent;
+  color: var(--color-muted-foreground);
+  cursor: pointer;
+}
+.theme-toggle-btn:hover {
+  background-color: var(--color-accent);
+  color: var(--color-accent-foreground);
+}
+.theme-toggle-btn:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+site-search button[data-open-modal] {
+  border-color: var(--color-border);
+  background-color: var(--color-card);
+  color: var(--color-muted-foreground);
+}
+site-search button[data-open-modal]:hover {
+  border-color: var(--color-muted-foreground);
+  color: var(--color-foreground);
+}
+site-search button > kbd {
+  background-color: var(--color-accent);
+  color: var(--color-accent-foreground);
+}
+
+starlight-menu-button button {
+  border: 1px solid var(--color-border);
+  background-color: var(--color-card);
+  color: var(--color-foreground);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------------------------------------------------------------------------
+   5. Sidebar rail + mobile drawer
+   -------------------------------------------------------------------------- */
+.sidebar-pane {
+  background-color: var(--color-sidebar);
+  border-inline-end: 1px solid var(--color-sidebar-border);
+}
+.sidebar-content {
+  color: var(--color-sidebar-foreground);
+}
+.sidebar-content a:not([aria-current="page"]) {
+  color: var(--color-sidebar-foreground);
+  border-radius: var(--radius-md);
+  font-size: var(--text-caption);
+}
+.sidebar-content a:not([aria-current="page"]):hover,
+.sidebar-content a:not([aria-current="page"]):focus {
+  color: var(--color-sidebar-accent-foreground);
+  background-color: var(--color-sidebar-accent);
+}
+/* Active item: neutral surface tint + foreground text (no accent fill) */
+.sidebar-content a[aria-current="page"],
+.sidebar-content a[aria-current="page"]:hover,
+.sidebar-content a[aria-current="page"]:focus {
+  color: var(--color-sidebar-accent-foreground);
+  background-color: var(--color-sidebar-accent);
+  font-weight: 510;
+  border-radius: var(--radius-md);
+}
+/* Group labels (Primitive Components, UI Blocks, …): label scale, fog */
+.sidebar-content summary .group-label,
+.sidebar-content summary .group-label .large {
+  font-size: var(--text-label);
+  font-weight: 510;
+  line-height: var(--leading-label);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
+.sidebar-content summary:hover .group-label {
+  color: var(--color-foreground);
+}
+/* Nested rail */
+.sidebar-content ul ul li {
+  border-inline-start-color: var(--color-sidebar-border);
+}
+
+.mobile-preferences {
+  border-top-color: var(--color-border);
+}
+
+/* ---------------------------------------------------------------------------
+   6. Table of contents (desktop + mobile)
+   -------------------------------------------------------------------------- */
+#starlight__on-this-page,
+#starlight__on-this-page--mobile {
+  font-size: var(--text-label);
+  font-weight: 510;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
+.right-sidebar-panel h2 {
+  font-size: var(--text-label);
+  font-weight: 510;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+  margin-bottom: 0.5rem;
+}
+.right-sidebar-panel :where(a) {
+  font-size: var(--text-caption);
+  line-height: var(--leading-caption);
+  color: var(--color-muted-foreground);
+}
+.right-sidebar-panel :where(a):hover {
+  color: var(--color-foreground);
+}
+/* Active section: foreground text + the single small accent rail marker */
+.right-sidebar-panel nav ul a {
+  position: relative;
+}
+.right-sidebar-panel nav ul a[aria-current="true"] {
+  color: var(--color-foreground);
+}
+.right-sidebar-panel nav ul a[aria-current="true"]::before {
+  content: "";
+  position: absolute;
+  inset-block: 0.25rem;
+  inset-inline-start: -0.75rem;
+  width: 2px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary);
+}
+
+mobile-starlight-toc nav {
+  border-top-color: var(--color-border);
+  background-color: var(--color-background);
+}
+mobile-starlight-toc .toggle {
+  border-color: var(--color-border);
+  background-color: var(--color-card);
+  color: var(--color-foreground);
+  font-size: var(--text-caption);
+}
+mobile-starlight-toc details[open] .toggle,
+mobile-starlight-toc details .toggle:hover {
+  border-color: var(--color-muted-foreground);
+  color: var(--color-foreground);
+}
+mobile-starlight-toc .dropdown {
+  border-color: var(--color-border);
+  background-color: var(--color-popover);
+  box-shadow: var(--shadow-xl);
+}
+
+/* ---------------------------------------------------------------------------
+   7. Markdown content — typography, links, inline code, tables
+   -------------------------------------------------------------------------- */
+.sl-markdown-content {
+  font-size: 1rem;
+  line-height: var(--leading-body-sm);
+}
+
+.sl-markdown-content :is(h1, h2, h3, h4, h5, h6):not(:where(.not-content *)) {
+  font-weight: 510;
+  color: var(--color-foreground);
+}
+.sl-markdown-content h1:not(:where(.not-content *)) {
+  font-size: var(--text-heading-sm);
+  line-height: var(--leading-heading-sm);
+  letter-spacing: var(--tracking-heading-sm);
+}
+.sl-markdown-content h2:not(:where(.not-content *)) {
+  font-size: var(--text-subheading);
+  line-height: var(--leading-subheading);
+  letter-spacing: var(--tracking-subheading);
+}
+.sl-markdown-content h3:not(:where(.not-content *)) {
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-body-lg);
+  letter-spacing: var(--tracking-body-lg);
+}
+.sl-markdown-content h4:not(:where(.not-content *)) {
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body-sm);
+  letter-spacing: var(--tracking-body-sm);
+}
+.sl-markdown-content h5:not(:where(.not-content *)) {
+  font-size: var(--text-caption);
+  line-height: var(--leading-caption);
+}
+.sl-markdown-content h6:not(:where(.not-content *)) {
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
+
+/* Page title (Starlight's own <h1>) */
+h1#_top {
+  font-size: var(--text-heading-sm);
+  line-height: var(--leading-heading-sm);
+  letter-spacing: var(--tracking-heading-sm);
+  font-weight: 510;
+  color: var(--color-foreground);
+}
+
+/* Prose measure: keep long-form lines in the 65–75ch band; code/tables stay full width */
+.sl-markdown-content p:not(:where(.not-content *)),
+.sl-markdown-content li:not(:where(.not-content *)) {
+  max-width: 36rem;
+}
+.sl-markdown-content :is(table, pre, .expressive-code):not(:where(.not-content *)),
+.sl-markdown-content :where(.not-content) {
+  max-width: none;
+}
+
+/* Links: foreground + hairline underline → foreground underline on hover */
+.sl-markdown-content a:not(:where(.not-content *)) {
+  color: var(--color-foreground);
+  text-decoration: underline;
+  text-decoration-color: var(--color-border);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.sl-markdown-content a:hover:not(:where(.not-content *)) {
+  color: var(--color-foreground);
+  text-decoration-color: var(--color-foreground);
+}
+
+/* Inline code: mono 0.875em on a slate tint with a hairline and a small radius */
+.sl-markdown-content code:not(:where(.not-content *)) {
+  background-color: var(--docs-inline-code-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xs);
+  padding: 0.125rem 0.375rem;
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  color: var(--color-foreground);
+}
+.sl-markdown-content :is(h1, h2, h3, h4, h5, h6) code:not(:where(.not-content *)) {
+  font-size: inherit;
+}
+
+.sl-markdown-content blockquote:not(:where(.not-content *)) {
+  border-inline-start: 1px solid var(--color-border);
+  color: var(--color-muted-foreground);
+}
+
+.sl-markdown-content hr:not(:where(.not-content *)) {
+  border-color: var(--color-border);
+}
+
+/* Tables: hairline rows, label-scale fog headers, tabular numerals.
+   Prose headers stay sentence case: multi-word column names read as content,
+   not micro-caps (short single-word labels keep caps: PropsTable, pagination). */
+.sl-markdown-content table:not(:where(.not-content *)) {
+  font-variant-numeric: tabular-nums;
+}
+.sl-markdown-content :is(th, td):not(:where(.not-content *)) {
+  border-bottom: 1px solid var(--color-border);
+}
+.sl-markdown-content th:not(:where(.not-content *)) {
+  color: var(--color-muted-foreground);
+  font-size: var(--text-label);
+  font-weight: 510;
+}
+.sl-markdown-content td:not(:where(.not-content *)) {
+  color: var(--color-foreground);
+}
+
+/* ---------------------------------------------------------------------------
+   8. Asides — library alert vocabulary (hairline, tinted, hue ink text)
+   -------------------------------------------------------------------------- */
+.starlight-aside {
+  border: 1px solid var(--sl-color-asides-border);
+  border-inline-start-width: 1px;
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  color: var(--color-foreground);
+}
+.starlight-aside__title {
+  font-size: var(--text-body-sm);
+  font-weight: 510;
+  line-height: var(--leading-body-sm);
+}
+.starlight-aside__content {
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body-sm);
+}
+
+/* ---------------------------------------------------------------------------
+   9. Starlight tabs (install commands): primary rail on the active tab
+   -------------------------------------------------------------------------- */
+starlight-tabs [role="tablist"] {
+  border-bottom: 1px solid var(--color-border);
+}
+starlight-tabs .tab {
+  margin-bottom: -1px;
+}
+/* `.tab [role="tab"]` matches Starlight's `.tab > [role="tab"]` on specificity */
+starlight-tabs .tab [role="tab"] {
+  color: var(--color-muted-foreground);
+  border-bottom: 2px solid transparent;
+  font-size: var(--text-caption);
+  font-weight: 400;
+  padding-inline: 1rem;
+}
+starlight-tabs .tab [role="tab"]:hover {
+  color: var(--color-foreground);
+}
+starlight-tabs .tab [role="tab"][aria-selected="true"] {
+  color: var(--color-foreground);
+  border-bottom-color: var(--color-primary);
+  font-weight: 510;
+}
+starlight-tabs > [role="tabpanel"] {
+  margin-top: 1rem;
+}
+
+/* ---------------------------------------------------------------------------
+   10. Code blocks (Expressive Code)
+   -------------------------------------------------------------------------- */
+.expressive-code {
+  margin-block: 1.5rem;
+}
+.expressive-code figcaption {
+  font-size: var(--text-caption);
+  letter-spacing: normal;
+}
+
+/* ---------------------------------------------------------------------------
+   11. Search dialog (Pagefind) — popover surfaces, ring focus, no accent fill
+   -------------------------------------------------------------------------- */
+site-search dialog {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-popover);
+  box-shadow: var(--shadow-xl);
+  color: var(--color-popover-foreground);
+}
+#starlight__search {
+  --pagefind-ui-primary: var(--color-foreground);
+  --pagefind-ui-text: var(--color-foreground);
+  --pagefind-ui-background: var(--color-popover);
+  --pagefind-ui-border: var(--color-border);
+  --pagefind-ui-tag: var(--color-accent);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: var(--radius-md);
+  --pagefind-ui-font: var(--font-sans);
+  --pagefind-ui-scale: 0.8;
+}
+#starlight__search .pagefind-ui__search-input {
+  color: var(--color-foreground);
+  background-color: var(--color-popover);
+}
+#starlight__search .pagefind-ui__search-input:focus {
+  --pagefind-ui-border: var(--color-ring);
+  outline: 2px solid var(--color-ring);
+  outline-offset: 1px;
+}
+#starlight__search input:focus {
+  --pagefind-ui-border: var(--color-ring);
+}
+#starlight__search .pagefind-ui__search-clear:focus {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+#starlight__search .pagefind-ui__search-clear::before {
+  background-color: var(--color-muted-foreground);
+}
+#starlight__search .pagefind-ui__result-title:not(:where(.pagefind-ui__result-nested *)),
+#starlight__search .pagefind-ui__result-nested {
+  background-color: var(--color-popover);
+}
+#starlight__search .pagefind-ui__result-title:not(:where(.pagefind-ui__result-nested *)):hover,
+#starlight__search .pagefind-ui__result-nested:hover {
+  outline-color: var(--color-border);
+}
+#starlight__search .pagefind-ui__result-title:not(:where(.pagefind-ui__result-nested *)):focus-within,
+#starlight__search .pagefind-ui__result-nested:focus-within {
+  background-color: var(--color-accent);
+  outline-color: var(--color-ring);
+}
+#starlight__search mark {
+  background-color: var(--color-accent);
+  color: var(--color-accent-foreground);
+}
+site-search button[data-close-modal] {
+  color: var(--color-muted-foreground);
+}
+
+/* ---------------------------------------------------------------------------
+   12. Pagination + footer
+
+   Prev/next reads as an editorial row, not as two boxed cards: one hairline
+   opens the block, micro-cap side labels, 15/510 destination links whose
+   underline is revealed on hover (`text-decoration-color` stays transparent at
+   rest so nothing shifts). Footer meta rows keep the same hairline + caption
+   fog vocabulary.
+   -------------------------------------------------------------------------- */
+.pagination-links {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+/* Pages outside the sidebar (home, 404) render no prev/next: collapse the
+   block so its hairline does not dangle under the content. */
+.pagination-links:empty,
+.pagination-links:not(:has(*)) {
+  display: none;
+}
+.pagination-links a {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: transparent;
+  color: var(--color-muted-foreground);
+}
+.pagination-links a:hover,
+.pagination-links a:focus-visible {
+  color: var(--color-foreground);
+  background-color: transparent;
+}
+/* Side labels ("Previous" / "Next") are the only children of the link span;
+   label scale (12px/510) — the 10px micro step is below the legibility floor
+   for functional text. */
+.pagination-links a > span {
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+  font-weight: 510;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+/* Destination label sits inside that span, so every inherited type property is
+   reset explicitly (a later rule on the same element wins by source order). */
+.pagination-links .link-title {
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body-sm);
+  letter-spacing: var(--tracking-body-sm);
+  font-weight: 510;
+  text-transform: none;
+  color: var(--color-foreground);
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.pagination-links a:hover .link-title,
+.pagination-links a:focus-visible .link-title {
+  text-decoration-color: var(--color-muted-foreground);
+}
+
+/* Meta row (edit link / last updated) and the credits row render only when
+   configured; an empty `.meta` collapses instead of leaving a stray hairline. */
+footer .meta {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  font-size: var(--text-caption);
+  line-height: var(--leading-caption);
+  color: var(--color-muted-foreground);
+}
+footer .meta:empty,
+footer .meta:not(:has(*)) {
+  display: none;
+}
+footer .kudos {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  font-size: var(--text-caption);
+  line-height: var(--leading-caption);
+  color: var(--color-muted-foreground);
+}
+footer .kudos:hover {
+  color: var(--color-foreground);
+}
+
+/* ---------------------------------------------------------------------------
+   13. Weight cap — the system never exceeds 590 (300/400/510/590)
+   -------------------------------------------------------------------------- */
+.sidebar-content .large,
+#starlight__search .pagefind-ui__result-title,
+#starlight__search .pagefind-ui__result-link,
+#starlight__search mark,
+.sl-markdown-content :is(dt, summary, th):not(:where(.not-content *)),
+.starlight-aside__title,
+.right-sidebar-panel h2 {
+  font-weight: 510;
+}
+.sl-markdown-content :is(b, strong):not(:where(.not-content *)) {
+  font-weight: 590;
+}
+
+/* ---------------------------------------------------------------------------
+   14. Home — hero + editorial feature rows
+   (src/content/docs/index.mdx, the only page with a hero)
+
+   The hero runs the shipped display scale (64/510/tight) on the foreground,
+   one filled primary action (the single chromatic element on the page) and one
+   hairline ghost, both left-aligned at every breakpoint. Features replace the
+   stock card grid with hairline-separated rows.
+   -------------------------------------------------------------------------- */
+.hero {
+  padding-block: 96px;
+  gap: 2rem;
+  text-align: start;
+}
+/* No hero image ships today: the copy takes the full measure instead of the
+   stock 7fr/4fr showcase grid (which would cap the headline near 690px). */
+@media (min-width: 50rem) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.hero .stack,
+.hero .copy {
+  align-items: flex-start;
+  text-align: start;
+}
+.hero .copy {
+  gap: 1.5rem;
+}
+/* `h1#_top` (the page-title rule in §7) carries an id, so the hero headline
+   must match it to win. */
+.hero h1#_top {
+  font-size: var(--text-heading-lg);
+  line-height: var(--leading-heading-lg);
+  letter-spacing: var(--tracking-heading-lg);
+  font-weight: 510;
+  color: var(--color-foreground);
+  text-wrap: balance;
+}
+.hero .tagline {
+  max-width: 58ch;
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-body-lg);
+  letter-spacing: var(--tracking-body-lg);
+  color: var(--color-muted-foreground);
+}
+
+/* CTA row — primary (--color-primary: lime dark / void light) + ghost */
+.hero .actions {
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-start;
+}
+.hero .sl-link-button {
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
+  font-size: var(--text-body-sm);
+  line-height: 1.2;
+  letter-spacing: var(--tracking-body-sm);
+  font-weight: 510;
+}
+.hero .sl-link-button svg {
+  color: currentColor;
+}
+.hero .sl-link-button.primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  box-shadow: var(--shadow-subtle-3);
+}
+.hero .sl-link-button.primary:hover {
+  background-color: color-mix(in oklab, var(--color-primary) 88%, var(--color-background));
+  border-color: color-mix(in oklab, var(--color-primary) 88%, var(--color-background));
+  color: var(--color-primary-foreground);
+}
+.hero .sl-link-button.secondary {
+  background-color: transparent;
+  border-color: var(--color-border);
+  color: var(--color-foreground);
+}
+.hero .sl-link-button.secondary:hover {
+  background-color: var(--docs-hover-tint);
+  border-color: var(--color-muted-foreground);
+  color: var(--color-foreground);
+}
+
+/* Home section heading — one scale step below the hero headline */
+html[data-has-hero] .sl-markdown-content h2:not(:where(.not-content *)) {
+  font-size: var(--text-heading-sm);
+  line-height: var(--leading-heading-sm);
+  letter-spacing: var(--tracking-heading-sm);
+  font-weight: 510;
+}
+
+/* Feature rows: 1px hairline between rows, 28px block rhythm, no card chrome.
+   Physical padding shorthand (not `padding-block`): identical computed values,
+   and the static detector can measure the hairline inset. */
+.docs-features {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+.docs-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 28px 0;
+}
+.docs-feature + .docs-feature {
+  border-top: 1px solid var(--color-border);
+}
+.docs-feature__chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  font-size: 1rem;
+  border-radius: var(--radius-md);
+  background-color: var(--color-accent);
+  color: var(--color-muted-foreground);
+}
+.docs-feature__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.docs-feature .docs-feature__title {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+  font-weight: 510;
+  letter-spacing: normal;
+  color: var(--color-foreground);
+}
+.docs-feature .docs-feature__desc {
+  max-width: 36rem;
+  margin: 0;
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body-sm);
+  letter-spacing: var(--tracking-body-sm);
+  color: var(--color-muted-foreground);
+}
+
+/* Mobile: the headline steps down one display size, everything stays inside
+   the 390px column (chip 32 + gap 16 + copy). */
+@media (max-width: 640px) {
+  .hero {
+    padding-block: 64px;
+  }
+  .hero h1#_top {
+    font-size: var(--text-heading);
+    line-height: var(--leading-heading);
+    letter-spacing: var(--tracking-heading);
+  }
+  .docs-feature {
+    padding: 24px 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   15. 404 — centered recovery page (src/content/docs/404.mdx, splash, no hero)
+   -------------------------------------------------------------------------- */
+html:has(.docs-404) h1#_top {
+  margin-top: 3rem;
+  text-align: center;
+}
+/* One message, not two bands: drop the shell's title/content divider. */
+html:has(.docs-404) .content-panel + .content-panel {
+  border-top: 0;
+}
+.docs-404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding-block: 0 96px;
+  text-align: center;
+}
+.docs-404 .docs-404__lede {
+  margin: 0;
+  color: var(--color-muted-foreground);
+}
+/* Ghost action, matching the home secondary CTA (LinkButton sets extra
+   markdown margins that would push it off-center). */
+.docs-404 .sl-link-button {
+  margin: 0;
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
+  font-size: var(--text-body-sm);
+  line-height: 1.2;
+  letter-spacing: var(--tracking-body-sm);
+  font-weight: 510;
+}
+.docs-404 .sl-link-button.secondary {
+  margin: 0;
+  background-color: transparent;
+  border-color: var(--color-border);
+  color: var(--color-foreground);
+}
+.docs-404 .sl-link-button.secondary:hover {
+  background-color: var(--docs-hover-tint);
+  border-color: var(--color-muted-foreground);
+  color: var(--color-foreground);
+}

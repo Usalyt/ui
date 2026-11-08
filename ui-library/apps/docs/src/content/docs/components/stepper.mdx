@@ -1,0 +1,74 @@
+---
+title: Stepper
+description: Step progress primitive with completed, active, error, and disabled indicator states.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { StepperDemo } from "../../../components/demos/StepperDemo";
+
+Step progress primitive. `Stepper` lays out `Step`s with `StepSeparator`s; each `StepIndicator` expresses `active`, `completed`, `inactive`, `error`, or `disabled` state, and `aria-current="step"` marks the active one.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add stepper
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add stepper
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add stepper
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Stepper">
+  <StepperDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/stepper.tsx
+import { Stepper, Step, StepIndicator, StepTitle, StepDescription, StepSeparator } from "tu-ui";
+
+export function SetupFlow() {
+  return (
+    <Stepper>
+      <Step status="completed">
+        <StepIndicator status="completed" />
+        <div>
+          <StepTitle>Scope</StepTitle>
+          <StepDescription>Pick the flows to evaluate</StepDescription>
+        </div>
+      </Step>
+      <StepSeparator />
+      <Step status="active">
+        <StepIndicator status="active" stepNumber={2} />
+        <div>
+          <StepTitle>Evaluate</StepTitle>
+          <StepDescription>Log findings per heuristic</StepDescription>
+        </div>
+      </Step>
+    </Stepper>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "orientation", type: "'horizontal' | 'vertical'", defaultValue: "'horizontal'", description: "Stepper layout direction for the row of steps." },
+  { name: "status", type: "'active' | 'completed' | 'inactive' | 'error' | 'disabled'", defaultValue: "'inactive'", description: "Shared by Step (drives aria-current and dimming) and StepIndicator (drives circle colors); completed shows a check, error shows an alert icon." },
+  { name: "stepNumber", type: "number", defaultValue: "undefined", description: "Number rendered inside StepIndicator when no children are provided." },
+]} />

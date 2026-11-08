@@ -1,0 +1,58 @@
+---
+title: Toast
+description: Toast primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { ToastDemo } from "../../../components/demos/ToastDemo";
+
+Toast primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add toast
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add toast
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add toast
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Toast">
+  <ToastDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/toast.tsx
+import { Toast } from "tu-ui";
+
+export function ToastExample() {
+  return <Toast />;
+}
+```
+
+## Stacking
+
+Toasts beyond `ToastProvider`'s `limit` (default `3`) stay mounted and inert so they can be promoted when a visible toast closes. Limited entries are removed from the viewport's layout flow, so the stack keeps its bottom-right anchor and only the visible toasts occupy space. Configure visibility and duration with the provider's existing `limit` and `timeout` props.
+
+## Props
+
+<PropsTable props={[
+  { name: "open", type: "boolean", defaultValue: "undefined", description: "Controlled toast open state." },
+]} />

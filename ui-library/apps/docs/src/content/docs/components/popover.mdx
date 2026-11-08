@@ -1,0 +1,78 @@
+---
+title: Popover
+description: Popover primitive component built with Base UI and Tailwind v4.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import ComponentPreview from '../../../components/ComponentPreview.astro';
+import { PropsTable } from '../../../components/PropsTable';
+import { PopoverDemo } from "../../../components/demos/PopoverDemo";
+
+Popover primitive component built with Base UI and Tailwind v4.
+
+## Installation
+
+<Tabs syncKey="package-manager">
+  <TabItem label="pnpm">
+```bash
+pnpm dlx tu-ui add popover
+```
+  </TabItem>
+  <TabItem label="npx">
+```bash
+npx tu-ui add popover
+```
+  </TabItem>
+  <TabItem label="bunx">
+```bash
+bunx tu-ui add popover
+```
+  </TabItem>
+</Tabs>
+
+## Preview
+
+<ComponentPreview title="Popover">
+  <PopoverDemo client:load />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+// components/ui/popover/popover.tsx
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  Button,
+  Input,
+  Label,
+} from "tu-ui";
+
+export function PopoverExample() {
+  return (
+    <Popover>
+      <PopoverTrigger
+        render={<Button variant="outline">Open Popover</Button>}
+      />
+      <PopoverContent className="w-80 p-4 space-y-3">
+        <h4 className="text-sm font-medium">Dimensions</h4>
+        <div className="grid grid-cols-3 items-center gap-2 text-xs">
+          <Label htmlFor="popover-width">Width</Label>
+          <Input
+            id="popover-width"
+            defaultValue="100%"
+            className="col-span-2 h-8 text-xs"
+          />
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+}
+```
+
+## Props
+
+<PropsTable props={[
+  { name: "open", type: "boolean", defaultValue: "undefined", description: "Controlled open state of popover overlay." },
+]} />
