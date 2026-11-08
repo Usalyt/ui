@@ -1,9 +1,10 @@
 {
-  "extends": "@tu-ui/tsconfig/base.json",
+  "extends": "@usalyt/tsconfig/base.json",
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "ignoreDeprecations": "6.0"
+    "ignoreDeprecations": "6.0",
+    "types": ["node"]
   },
   "include": ["src/**/*"]
 }
