@@ -1,0 +1,90 @@
+name: Usalyt package CI
+
+on:
+  push:
+    paths:
+      - "ui-library/**"
+      - ".github/workflows/usalyt-*.yml"
+  pull_request:
+    paths:
+      - "ui-library/**"
+      - ".github/workflows/usalyt-*.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: usalyt-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: ui-library
+
+jobs:
+  verify:
+    name: Frozen-lockfile build, test, and pack
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.2.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: ui-library/pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Type-check
+        run: pnpm type-check
+
+      - name: UI unit tests
+        run: pnpm test:unit
+
+      - name: Workspace integration smoke tests
+        run: pnpm test:integration
+
+      - name: Registry tests
+        run: pnpm test:registry
+
+      - name: CLI tests
+        run: pnpm test:cli
+
+      - name: MCP tests
+        run: pnpm test:mcp
+
+      - name: Config tests
+        run: pnpm test:configs
+
+      - name: Registry reproducibility check
+        run: pnpm build:registry && pnpm --filter @usalyt/registry check
+
+      - name: UI artifact contract
+        run: pnpm --filter @usalyt/ui verify:artifacts:strict
+
+      - name: Pack and inspect public tarballs
+        run: pnpm pack:public
+
+      - name: Upload packed artifacts and inspection report
+        uses: actions/upload-artifact@v4
+        with:
+          name: usalyt-npm-packs-0.0.1
+          path: |
+            odd/artifacts/usalyt-npm-release/packs/
+            odd/artifacts/usalyt-npm-release/pack-report.json
+          if-no-files-found: error
+          retention-days: 14

@@ -1,5 +1,5 @@
 {
-  "name": "fixture-vite",
+  "name": "@usalyt/fixture-vite",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

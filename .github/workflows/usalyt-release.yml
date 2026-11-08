@@ -1,0 +1,102 @@
+name: Usalyt npm release
+
+# Manual, human-approved release. This workflow never runs on push.
+# The `npm-release` environment must be protected with required reviewers.
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type PUBLISH to authorize publication (ignored when dry_run is true)'
+        required: true
+        type: string
+      dry_run:
+        description: 'Pack and verify without publishing'
+        required: true
+        type: boolean
+        default: true
+      provenance:
+        description: 'Request pnpm --provenance (verify npm trusted-publisher/OIDC compatibility first)'
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: usalyt-release
+  cancel-in-progress: false
+
+defaults:
+  run:
+    working-directory: ui-library
+
+jobs:
+  release:
+    name: Verify and publish the fixed 0.0.1 group
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    environment: npm-release
+    if: ${{ inputs.dry_run || inputs.confirm == 'PUBLISH' }}
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.2.0
+
+      - name: Set up Node.js and npm authentication
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          cache: pnpm
+          cache-dependency-path: ui-library/pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Type-check
+        run: pnpm type-check
+
+      - name: Package tests
+        run: |
+          pnpm test:registry
+          pnpm test:cli
+          pnpm test:mcp
+          pnpm test:configs
+
+      - name: Registry reproducibility check
+        run: pnpm build:registry && pnpm --filter @usalyt/registry check
+
+      - name: UI artifact contract
+        run: pnpm --filter @usalyt/ui verify:artifacts:strict
+
+      - name: Pack and inspect public tarballs
+        run: pnpm pack:public
+
+      - name: Install packed artifacts in isolated consumers
+        run: pnpm test:installed
+
+      - name: Preview publication plan
+        run: node scripts/release/publish-public-packages.mjs --dry-run
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish missing packages
+        if: ${{ !inputs.dry_run }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          PROVENANCE: ${{ inputs.provenance }}
+        run: |
+          if [ "$PROVENANCE" = "true" ]; then
+            node scripts/release/publish-public-packages.mjs --provenance
+          else
+            node scripts/release/publish-public-packages.mjs
+          fi

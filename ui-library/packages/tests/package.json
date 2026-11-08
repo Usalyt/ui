@@ -1,6 +1,6 @@
 {
-  "name": "@tu-ui/tests",
-  "version": "0.1.0",
+  "name": "@usalyt/tests",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "test": "vitest run",
@@ -9,7 +9,7 @@
     "docs-a11y": "node scripts/docs-a11y.mjs"
   },
   "dependencies": {
-    "tu-ui": "workspace:*"
+    "@usalyt/ui": "workspace:*"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.1",

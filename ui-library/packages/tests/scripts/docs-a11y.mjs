@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * docs-a11y.mjs — automated accessibility audit for the built tu-ui docs site.
+ * docs-a11y.mjs — automated accessibility audit for the built Usalyt docs site.
  *
  * Serves `apps/docs/dist` on an ephemeral local port and runs axe-core
  * (tags: wcag2a, wcag2aa, wcag21aa) against a representative route set in both
@@ -8,9 +8,9 @@
  * critical violation remains.
  *
  * Usage (from the repo root):
- *   pnpm --filter @tu-ui/tests docs-a11y
- *   DOCS_A11Y_SKIP_BUILD=1 pnpm --filter @tu-ui/tests docs-a11y   # reuse apps/docs/dist
- *   DOCS_A11Y_LOG=/tmp/docs-a11y.log pnpm --filter @tu-ui/tests docs-a11y
+ *   pnpm --filter @usalyt/tests docs-a11y
+ *   DOCS_A11Y_SKIP_BUILD=1 pnpm --filter @usalyt/tests docs-a11y   # reuse apps/docs/dist
+ *   DOCS_A11Y_LOG=/tmp/docs-a11y.log pnpm --filter @usalyt/tests docs-a11y
  */
 
 import { spawnSync } from "node:child_process";
@@ -123,14 +123,14 @@ function buildDocs() {
     console.log("docs-a11y: DOCS_A11Y_SKIP_BUILD=1 — reusing existing apps/docs/dist\n");
     return;
   }
-  console.log("docs-a11y: building @tu-ui/docs…");
-  const result = spawnSync("pnpm", ["--filter", "@tu-ui/docs", "build"], {
+  console.log("docs-a11y: building @usalyt/docs…");
+  const result = spawnSync("pnpm", ["--filter", "@usalyt/docs", "build"], {
     cwd: REPO_ROOT,
     stdio: "inherit",
     shell: process.platform === "win32",
   });
   if (result.status !== 0) {
-    throw new Error(`@tu-ui/docs build failed with exit code ${result.status}`);
+    throw new Error(`@usalyt/docs build failed with exit code ${result.status}`);
   }
   console.log("docs-a11y: build finished\n");
 }
@@ -166,7 +166,7 @@ function renderTextReport(entries, skippedBuild) {
   const pad = (value, width) => String(value).padEnd(width);
   const right = (value, width) => String(value).padStart(width);
 
-  lines.push("docs-a11y — axe-core audit of the built tu-ui docs site");
+  lines.push("docs-a11y — axe-core audit of the built Usalyt docs site");
   lines.push(`axe tags: ${AXE_TAGS.join(", ")} | failing on: serious, critical`);
   lines.push(`routes: ${entries.length} audits (${THEMES.length} themes x desktop+mobile)`);
   lines.push("");

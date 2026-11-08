@@ -24,7 +24,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "pnpm --filter @tu-ui/storybook dev",
+    command: "pnpm --filter @usalyt/storybook dev",
     url: "http://localhost:6006",
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

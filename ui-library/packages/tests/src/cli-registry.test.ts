@@ -25,7 +25,7 @@ function runCli(cwd: string, args: string[]) {
 function createConsumer(name: string) {
   const dir = fs.mkdtempSync(path.join(scratchRoot, `${name}-`));
   fs.writeFileSync(
-    path.join(dir, "tu-ui.json"),
+    path.join(dir, "usalyt.json"),
     JSON.stringify(
       {
         aliases: {
@@ -47,6 +47,10 @@ beforeAll(() => {
 describe("Registry distribution data", () => {
   it("includes primitives, blocks and the shared utils item", () => {
     const registry = JSON.parse(fs.readFileSync(registryPath, "utf8"));
+    expect(registry.name).toBe("usalyt");
+    expect(registry.version).toBe("0.0.1");
+    expect(registry.license).toBe("GPL-3.0-only");
+
     const items = new Map<string, any>(
       registry.items.map((item: any) => [item.name, item])
     );
@@ -60,7 +64,7 @@ describe("Registry distribution data", () => {
     expect(authForm).toBeDefined();
     expect(authForm.type).toBe("registry:block");
     expect(authForm.registryDependencies).toEqual(
-      expect.arrayContaining(["utils", "button", "card", "form", "input"])
+      expect.arrayContaining(["button", "card", "form", "input"])
     );
     expect(authForm.dependencies).toEqual(
       expect.arrayContaining(["react-hook-form", "zod", "@hookform/resolvers"])
@@ -68,7 +72,7 @@ describe("Registry distribution data", () => {
 
     const form = items.get("form");
     expect(form.registryDependencies).toEqual(
-      expect.arrayContaining(["utils", "label"])
+      expect.arrayContaining(["label"])
     );
 
     const rating = items.get("rating");
@@ -78,7 +82,7 @@ describe("Registry distribution data", () => {
   });
 });
 
-describe("tu-ui add in an isolated consumer", () => {
+describe("usalyt add in an isolated consumer", () => {
   it("installs a block with its primitive and utils dependencies", () => {
     const consumer = createConsumer("block");
     const result = runCli(consumer, ["add", "auth-form"]);

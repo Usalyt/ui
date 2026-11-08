@@ -1,5 +1,5 @@
 {
-  "name": "fixture-astro",
+  "name": "@usalyt/fixture-astro",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
