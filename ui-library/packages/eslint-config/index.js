@@ -1,9 +1,18 @@
-import tseslint from "@typescript-eslint/eslint-plugin";
-import tsparser from "@typescript-eslint/parser";
-import reactHooks from "eslint-plugin-react-hooks";
-import jsxA11y from "eslint-plugin-jsx-a11y";
+"use strict";
 
-export default [
+const tseslint = require("@typescript-eslint/eslint-plugin");
+const tsparser = require("@typescript-eslint/parser");
+const reactHooks = require("eslint-plugin-react-hooks");
+const jsxA11y = require("eslint-plugin-jsx-a11y");
+
+/**
+ * Shared flat ESLint configuration for TypeScript and React source files.
+ *
+ * This file is the CommonJS entry so `require("@usalyt/eslint-config")` keeps
+ * working in packages that do not declare `"type": "module"`. The ESM entry
+ * lives in `index.mjs`; both entries expose the same flat config array.
+ */
+module.exports = [
   {
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
