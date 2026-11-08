@@ -15,17 +15,17 @@ Profile settings Block composed from Card, Form, Input, and Button. Submission r
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add form-with-validation
+pnpm dlx @usalyt/cli add form-with-validation
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add form-with-validation
+npx @usalyt/cli add form-with-validation
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add form-with-validation
+bunx @usalyt/cli add form-with-validation
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add form-with-validation
 
 ```tsx
 // components/ui/form-with-validation/form-with-validation.tsx
-import { FormWithValidation, type ProfileFormValues } from "tu-ui";
+import { FormWithValidation, type ProfileFormValues } from "@usalyt/ui";
 
 export function ProfileSettings() {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "tu-ui";
+import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@usalyt/ui";
 
 export function TableDemo() {
   return (

@@ -1,6 +1,6 @@
 {
-  "name": "@tu-ui/storybook",
-  "version": "0.1.0",
+  "name": "@usalyt/storybook",
+  "version": "0.0.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,14 +8,14 @@
     "build": "storybook build"
   },
   "dependencies": {
-    "@tu-ui/tsconfig": "workspace:*",
     "clsx": "^2.1.1",
     "lucide-react": "^1.25.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.0.2",
     "tailwindcss": "^4.0.7",
-    "tu-ui": "workspace:*"
+    "@usalyt/tsconfig": "workspace:*",
+    "@usalyt/ui": "workspace:*"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^10.6.6",

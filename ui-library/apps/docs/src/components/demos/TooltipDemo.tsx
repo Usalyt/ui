@@ -1,5 +1,5 @@
 import React from "react";
-import { Tooltip, TooltipTrigger, TooltipContent, Button } from "tu-ui";
+import { Tooltip, TooltipTrigger, TooltipContent, Button } from "@usalyt/ui";
 
 export function TooltipDemo() {
   const [mounted, setMounted] = React.useState(false);

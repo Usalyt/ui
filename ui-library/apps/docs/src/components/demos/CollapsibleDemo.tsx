@@ -2,7 +2,7 @@
 
 import React from "react";
 import { ChevronDown } from "lucide-react";
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "tu-ui";
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@usalyt/ui";
 
 export function CollapsibleDemo() {
   const [isOpen, setIsOpen] = React.useState(false);

@@ -15,17 +15,17 @@ Ordered timeline rendered as a semantic `<ol>` with `TimelineItem`, `TimelineCon
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add timeline
+pnpm dlx @usalyt/cli add timeline
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add timeline
+npx @usalyt/cli add timeline
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add timeline
+bunx @usalyt/cli add timeline
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add timeline
 
 ```tsx
 // components/ui/timeline.tsx
-import { Timeline, TimelineItem, TimelineConnector, TimelineHeader, TimelineIcon, TimelineContent, TimelineTitle, TimelineDescription, TimelineTime } from "tu-ui";
+import { Timeline, TimelineItem, TimelineConnector, TimelineHeader, TimelineIcon, TimelineContent, TimelineTitle, TimelineDescription, TimelineTime } from "@usalyt/ui";
 import { Star, Check } from "lucide-react";
 
 export function ActivityHistory() {

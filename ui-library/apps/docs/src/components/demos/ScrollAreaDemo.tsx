@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollArea, ScrollBar } from "tu-ui";
+import { ScrollArea, ScrollBar } from "@usalyt/ui";
 
 export function ScrollAreaDemo() {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import { Checkbox, Label } from "tu-ui";
+import { Checkbox, Label } from "@usalyt/ui";
 
 export function CheckboxDemo() {
   return (

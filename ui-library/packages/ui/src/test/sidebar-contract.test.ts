@@ -1,7 +1,7 @@
 // Sidebar surface + collapsed-rail contract tests — TDD layer for OpenSpec
 // change refactor-sdd-tdd-full-coverage, task 15 (Redesign Workstream).
 //
-// These tests read the actual source (globals.css tokens + sidebar source)
+// These tests read the actual source (theme.css tokens + sidebar source)
 // and pin the task-15 sidebar contract:
 //   - the six `--color-sidebar*` tokens exist in @theme and are overridden in
 //     the light theme block, so `bg-sidebar` / `text-sidebar-foreground` /
@@ -25,8 +25,8 @@ import { describe, expect, it } from "vitest";
 import { contrastRatio, hexToRgb, type RGB } from "./contrast";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const globalsCss = readFileSync(
-  path.resolve(here, "../../styles/globals.css"),
+const themeCss = readFileSync(
+  path.resolve(here, "../../styles/theme.css"),
   "utf8",
 );
 
@@ -40,7 +40,7 @@ const sidebarSource = readComponent("sidebar/sidebar.tsx");
 const sidebarStories = readComponent("sidebar/sidebar.stories.tsx");
 
 // ---------------------------------------------------------------------------
-// Minimal globals.css token parser (same contract as palette/type contracts).
+// Minimal theme.css token parser (same contract as palette/type contracts).
 // ---------------------------------------------------------------------------
 
 type VarMap = Record<string, string>; // token name (without --) -> raw value
@@ -65,8 +65,8 @@ function collectVars(css: string): VarMap {
   return vars;
 }
 
-const darkVars = collectVars(globalsCss);
-const lightVars = collectVars(lightBlockSource(globalsCss));
+const darkVars = collectVars(themeCss);
+const lightVars = collectVars(lightBlockSource(themeCss));
 
 /** Resolve a token through up to two `var(--x)` indirections. */
 function resolveVar(scoped: VarMap, name: string): string | undefined {
@@ -82,7 +82,7 @@ function resolveVar(scoped: VarMap, name: string): string | undefined {
 function resolveColor(name: string, theme: "light" | "dark"): RGB {
   const scoped = theme === "light" ? lightVars : darkVars;
   const value = resolveVar(scoped, name);
-  if (!value) throw new Error(`Token --${name} not found in globals.css`);
+  if (!value) throw new Error(`Token --${name} not found in theme.css`);
   const hex = value.match(/^#([0-9a-fA-F]{3,8})$/);
   if (!hex) throw new Error(`--${name} must resolve to a hex color, got "${value}"`);
   return hexToRgb(value);
@@ -102,7 +102,7 @@ describe("Sidebar surface tokens (task 15)", () => {
     for (const token of SIDEBAR_TOKENS) {
       expect(
         darkVars[token],
-        `--${token} must be declared in packages/ui/styles/globals.css @theme so bg-sidebar / text-sidebar-foreground resolve`,
+        `--${token} must be declared in packages/ui/styles/theme.css @theme so bg-sidebar / text-sidebar-foreground resolve`,
       ).toBeTruthy();
     }
   });

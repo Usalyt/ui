@@ -15,17 +15,17 @@ Badge primitive component built with Base UI and Tailwind v4.
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add badge
+pnpm dlx @usalyt/cli add badge
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add badge
+npx @usalyt/cli add badge
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add badge
+bunx @usalyt/cli add badge
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add badge
 
 ```tsx
 // components/ui/badge.tsx
-import { Badge } from "tu-ui";
+import { Badge } from "@usalyt/ui";
 
 export function BadgeExample() {
   return <Badge variant="secondary">New Feature</Badge>;

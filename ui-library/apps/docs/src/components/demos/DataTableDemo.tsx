@@ -1,5 +1,5 @@
 import React from "react";
-import { DataTable } from "tu-ui";
+import { DataTable } from "@usalyt/ui";
 
 const columns = [
   { accessorKey: "id", header: "ID" },

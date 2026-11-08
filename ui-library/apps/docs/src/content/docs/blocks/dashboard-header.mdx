@@ -15,17 +15,17 @@ Dashboard top bar with breadcrumb title, search, an optional actions slot, an op
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add dashboard-header
+pnpm dlx @usalyt/cli add dashboard-header
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add dashboard-header
+npx @usalyt/cli add dashboard-header
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add dashboard-header
+bunx @usalyt/cli add dashboard-header
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add dashboard-header
 
 ```tsx
 // components/ui/dashboard-header/dashboard-header.tsx
-import { DashboardHeader } from "tu-ui";
+import { DashboardHeader } from "@usalyt/ui";
 
 export function AppHeader() {
   return (

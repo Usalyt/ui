@@ -1,5 +1,5 @@
 import React from "react";
-import { InspectorSplitView, type DOMNodeItem } from "tu-ui";
+import { InspectorSplitView, type DOMNodeItem } from "@usalyt/ui";
 
 const sampleNodes: DOMNodeItem[] = [
   {

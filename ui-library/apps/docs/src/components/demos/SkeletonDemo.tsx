@@ -1,5 +1,5 @@
 import React from "react";
-import { Skeleton } from "tu-ui";
+import { Skeleton } from "@usalyt/ui";
 
 export function SkeletonDemo() {
   return (

@@ -10,7 +10,7 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   Button,
-} from "tu-ui";
+} from "@usalyt/ui";
 
 export function AlertDialogDemo() {
   return (

@@ -1,7 +1,7 @@
 // Type contract tests — TDD layer for OpenSpec change
 // refactor-sdd-tdd-full-coverage, task 12 (Batch 3).
 //
-// These tests read the actual source (globals.css + package.json) and pin the
+// These tests read the actual source (theme.css + package.json) and pin the
 // DESIGN.md "Tokens — Typography" contract:
 //   - every type-scale token declared with its size / line-height /
 //     letter-spacing values,
@@ -24,6 +24,10 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
+const themeCss = readFileSync(
+  path.resolve(here, "../../styles/theme.css"),
+  "utf8",
+);
 const globalsCss = readFileSync(
   path.resolve(here, "../../styles/globals.css"),
   "utf8",
@@ -34,7 +38,7 @@ const packageJson = readFileSync(
 );
 
 // ---------------------------------------------------------------------------
-// Minimal globals.css token parser (same contract as palette-contract).
+// Minimal theme.css token parser (same contract as palette-contract).
 // ---------------------------------------------------------------------------
 
 type VarMap = Record<string, string>; // token name (without --) -> raw value
@@ -53,13 +57,13 @@ function collectVars(css: string): VarMap {
 function resolveValue(vars: VarMap, name: string): string {
   const raw = vars[name];
   if (raw === undefined) {
-    throw new Error(`Token --${name} not found in globals.css`);
+    throw new Error(`Token --${name} not found in theme.css`);
   }
   const ref = raw.match(/^var\(--([a-z0-9-]+)\)$/);
   return ref ? vars[ref[1]] ?? "" : raw;
 }
 
-const vars = collectVars(globalsCss);
+const vars = collectVars(themeCss);
 
 // ---------------------------------------------------------------------------
 // (a) Type scale — every DESIGN.md token declared with exact metrics.
@@ -88,7 +92,7 @@ describe("Type scale tokens (task 12)", () => {
     for (const [name, spec] of Object.entries(TYPE_SCALE)) {
       expect(
         vars[`text-${name}`],
-        `--text-${name} must be declared in packages/ui/styles/globals.css @theme`,
+        `--text-${name} must be declared in packages/ui/styles/theme.css @theme`,
       ).toBe(spec.size);
     }
   });
@@ -146,7 +150,7 @@ describe("Font weight aliases (task 12)", () => {
 // A bare `"Inter Variable"` name with no @font-face source silently falls
 // back to system-ui (the critique's Priority Issue 5). The contract is: the
 // @fontsource-variable/inter CSS is imported in globals.css AND shipped as a
-// runtime dependency, so any consumer importing tu-ui/styles.css resolves the
+// runtime dependency, so any consumer importing @usalyt/ui/styles.css resolves the
 // actual variable font.
 // ---------------------------------------------------------------------------
 
@@ -162,7 +166,7 @@ describe("Inter Variable loading (task 12)", () => {
     const pkg = JSON.parse(packageJson) as { dependencies?: Record<string, string> };
     expect(
       pkg.dependencies?.["@fontsource-variable/inter"],
-      "@fontsource-variable/inter must be a dependency of tu-ui (not dev-only) so the import resolves in consumer apps",
+      "@fontsource-variable/inter must be a dependency of @usalyt/ui (not dev-only) so the import resolves in consumer apps",
     ).toBeTruthy();
   });
 
@@ -182,7 +186,7 @@ describe("Inter Variable loading (task 12)", () => {
 
 function berkeleyMonoFontFace(css: string): string {
   const at = css.indexOf('@font-face');
-  expect(at, 'globals.css must declare an @font-face for Berkeley Mono').toBeGreaterThanOrEqual(0);
+  expect(at, 'theme.css must declare an @font-face for Berkeley Mono').toBeGreaterThanOrEqual(0);
   const start = css.indexOf("{", at);
   const end = css.indexOf("}", start);
   return css.slice(start + 1, end);
@@ -190,7 +194,7 @@ function berkeleyMonoFontFace(css: string): string {
 
 describe("Berkeley Mono substitution contract (task 12)", () => {
   it("declares Berkeley Mono with local() as the first source and never bundles a file", () => {
-    const face = berkeleyMonoFontFace(globalsCss);
+    const face = berkeleyMonoFontFace(themeCss);
     expect(face).toContain('font-family: "Berkeley Mono"');
     const localAt = face.indexOf('local("Berkeley Mono")');
     expect(
@@ -221,12 +225,12 @@ describe("Berkeley Mono substitution contract (task 12)", () => {
   });
 
   it("documents the substitution contract in a CSS comment", () => {
-    const comments = globalsCss.match(/\/\*[\s\S]*?\*\//g) ?? [];
+    const comments = themeCss.match(/\/\*[\s\S]*?\*\//g) ?? [];
     expect(
       comments.some((c) =>
         /Berkeley Mono/.test(c) && /JetBrains Mono/.test(c) && /never bundled|not bundled/.test(c),
       ),
-      "globals.css must carry a comment documenting the Berkeley Mono → JetBrains Mono → ui-monospace substitution contract",
+      "theme.css must carry a comment documenting the Berkeley Mono → JetBrains Mono → ui-monospace substitution contract",
     ).toBe(true);
   });
 });

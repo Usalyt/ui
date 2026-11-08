@@ -15,17 +15,17 @@ Application sidebar primitive. `SidebarProvider` owns the open state (toggled wi
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add sidebar
+pnpm dlx @usalyt/cli add sidebar
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add sidebar
+npx @usalyt/cli add sidebar
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add sidebar
+bunx @usalyt/cli add sidebar
 ```
   </TabItem>
 </Tabs>
@@ -44,7 +44,7 @@ import {
   SidebarProvider, Sidebar, SidebarTrigger, SidebarHeader,
   SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu,
   SidebarMenuItem, SidebarMenuButton, SidebarInset,
-} from "tu-ui";
+} from "@usalyt/ui";
 
 export function AppShell() {
   return (

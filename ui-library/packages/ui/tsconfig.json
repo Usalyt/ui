@@ -1,5 +1,5 @@
 {
-  "extends": "@tu-ui/tsconfig/react.json",
+  "extends": "@usalyt/tsconfig/react.json",
   "compilerOptions": {
     "types": ["vitest/globals", "@testing-library/jest-dom", "node"],
     "paths": {

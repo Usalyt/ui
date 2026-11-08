@@ -15,17 +15,17 @@ File selection primitive rendered as a clickable dropzone around a native file i
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add file-input
+pnpm dlx @usalyt/cli add file-input
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add file-input
+npx @usalyt/cli add file-input
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add file-input
+bunx @usalyt/cli add file-input
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add file-input
 
 ```tsx
 // components/ui/file-input/file-input.tsx
-import { FileInput } from "tu-ui";
+import { FileInput } from "@usalyt/ui";
 
 export function EvidenceUpload() {
   return (

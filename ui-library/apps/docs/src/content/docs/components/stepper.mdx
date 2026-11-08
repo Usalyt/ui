@@ -15,17 +15,17 @@ Step progress primitive. `Stepper` lays out `Step`s with `StepSeparator`s; each 
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add stepper
+pnpm dlx @usalyt/cli add stepper
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add stepper
+npx @usalyt/cli add stepper
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add stepper
+bunx @usalyt/cli add stepper
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add stepper
 
 ```tsx
 // components/ui/stepper.tsx
-import { Stepper, Step, StepIndicator, StepTitle, StepDescription, StepSeparator } from "tu-ui";
+import { Stepper, Step, StepIndicator, StepTitle, StepDescription, StepSeparator } from "@usalyt/ui";
 
 export function SetupFlow() {
   return (

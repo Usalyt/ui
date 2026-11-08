@@ -1,5 +1,5 @@
 import React from "react";
-import { AppShellLayout } from "tu-ui";
+import { AppShellLayout } from "@usalyt/ui";
 import { Calendar, ClipboardList, LayoutDashboard, Settings, Users } from "lucide-react";
 
 const recentEvaluations = [

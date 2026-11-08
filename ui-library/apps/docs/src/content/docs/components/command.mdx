@@ -15,17 +15,17 @@ Command primitive component built with Base UI and Tailwind v4.
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add command
+pnpm dlx @usalyt/cli add command
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add command
+npx @usalyt/cli add command
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add command
+bunx @usalyt/cli add command
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add command
 
 ```tsx
 // components/ui/command.tsx
-import { Command } from "tu-ui";
+import { Command } from "@usalyt/ui";
 
 export function CommandExample() {
   return <Command />;

@@ -1,13 +1,13 @@
 ---
 title: Kit de Figma y Sincronización de Tokens
-description: Mantén la biblioteca de Figma de tu-ui sincronizada con los tokens @theme de Tailwind v4 incluidos en packages/ui/styles/globals.css.
+description: Mantén la biblioteca de Figma de Usalyt sincronizada con los tokens @theme de Tailwind v4 incluidos en packages/ui/styles/globals.css.
 ---
 
 import ColorTokenTable from "../../../../components/ColorTokenTable.astro";
 
 ## Visión General
 
-El kit de diseño de **tu-ui** en Figma se mapea 1:1 con los tokens de diseño `@theme` de Tailwind v4 declarados en `packages/ui/styles/globals.css`. La hoja de estilos es la fuente de verdad: la biblioteca de Figma refleja sus valores para que el diseño y la implementación se mantengan consistentes.
+El kit de diseño de **Usalyt** en Figma se mapea 1:1 con los tokens de diseño `@theme` de Tailwind v4 declarados en `packages/ui/styles/globals.css`. La hoja de estilos es la fuente de verdad: la biblioteca de Figma refleja sus valores para que el diseño y la implementación se mantengan consistentes.
 
 ## Tokens de Color (Paleta Hex)
 
@@ -27,6 +27,6 @@ La paleta se define como valores hexadecimales en el bloque `@theme`. Cada token
 
 ## Mantener la Sincronía
 
-1. En Figma, abre el panel de **Local Variables** del kit de tu-ui.
+1. En Figma, abre el panel de **Local Variables** del kit de Usalyt.
 2. Cuando cambie un token, aplica el mismo cambio a la variable `@theme` correspondiente en `packages/ui/styles/globals.css` (o al revés, manteniendo un lado como fuente).
-3. El `@tu-ui/cli` lee los valores de `@theme`, de modo que los componentes generados con `npx tu-ui add` consumen automáticamente los tokens actualizados.
+3. El `@usalyt/cli` lee los valores de `@theme`, de modo que los componentes generados con `npx @usalyt/cli add` consumen automáticamente los tokens actualizados.

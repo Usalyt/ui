@@ -1,7 +1,7 @@
 /**
- * Expressive Code themes for the tu-ui docs site.
+ * Expressive Code themes for the Usalyt docs site.
  *
- * Both themes map every syntax role to a shipped tu-ui token reference
+ * Both themes map every syntax role to a shipped Usalyt token reference
  * (`var(--color-*)`) instead of stock editor palette values, so code blocks
  * track the design system in dark and light mode automatically:
  *
@@ -18,7 +18,7 @@
  * Expressive Code with `minSyntaxHighlightingColorContrast: 0`: the automatic
  * contrast fixer works on parseable colors and would rewrite these references.
  * Contrast for every role is verified by the `docs-a11y` audit instead
- * (`pnpm --filter @tu-ui/tests docs-a11y`), which asserts >= 4.5:1 in both themes.
+ * (`pnpm --filter @usalyt/tests docs-a11y`), which asserts >= 4.5:1 in both themes.
  *
  * The themes intentionally declare no `colors` map: Expressive Code validates
  * every workbench color as hex (or as a hex reference), so UI chrome
@@ -127,15 +127,15 @@ const tokenColors = [
 ];
 
 /** Dark variant — Starlight activates it through `<html data-theme="dark">`. */
-export const tuUiDarkTheme = {
-  name: "tu-ui-dark",
+export const usalytDarkTheme = {
+  name: "usalyt-dark",
   type: "dark",
   tokenColors,
 };
 
 /** Light variant — Starlight activates it through `<html data-theme="light">`. */
-export const tuUiLightTheme = {
-  name: "tu-ui-light",
+export const usalytLightTheme = {
+  name: "usalyt-light",
   type: "light",
   tokenColors,
 };

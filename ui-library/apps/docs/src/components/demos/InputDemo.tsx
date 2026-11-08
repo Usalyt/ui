@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Label } from "tu-ui";
+import { Input, Label } from "@usalyt/ui";
 
 export function InputDemo() {
   return (

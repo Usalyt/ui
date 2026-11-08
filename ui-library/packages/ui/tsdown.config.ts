@@ -1,47 +1,31 @@
+import { existsSync, readdirSync } from "node:fs";
+import path from "node:path";
 import { defineConfig } from "tsdown";
+
+/**
+ * Every directory under `src/<group>` with an `index.ts` is a public entry.
+ * Keeping this derived from the tree prevents a component from shipping in the
+ * root barrel while silently missing its own subpath artifact.
+ */
+function entryDirectories(group: string): string[] {
+  const groupRoot = path.resolve("src", group);
+  if (!existsSync(groupRoot)) return [];
+
+  return readdirSync(groupRoot, { withFileTypes: true })
+    .filter(
+      (entry) =>
+        entry.isDirectory() &&
+        existsSync(path.join(groupRoot, entry.name, "index.ts")),
+    )
+    .map((entry) => `src/${group}/${entry.name}/index.ts`)
+    .sort();
+}
 
 export default defineConfig({
   entry: [
     "src/index.ts",
-    "src/components/button/index.ts",
-    "src/components/input/index.ts",
-    "src/components/textarea/index.ts",
-    "src/components/label/index.ts",
-    "src/components/badge/index.ts",
-    "src/components/checkbox/index.ts",
-    "src/components/switch/index.ts",
-    "src/components/radio-group/index.ts",
-    "src/components/slider/index.ts",
-    "src/components/number-field/index.ts",
-    "src/components/dialog/index.ts",
-    "src/components/alert-dialog/index.ts",
-    "src/components/popover/index.ts",
-    "src/components/tooltip/index.ts",
-    "src/components/drawer/index.ts",
-    "src/components/tabs/index.ts",
-    "src/components/accordion/index.ts",
-    "src/components/dropdown-menu/index.ts",
-    "src/components/avatar/index.ts",
-    "src/components/card/index.ts",
-    "src/components/separator/index.ts",
-    "src/components/progress/index.ts",
-    "src/components/toast/index.ts",
-    "src/components/form/index.ts",
-    "src/components/alert/index.ts",
-    "src/components/file-input/index.ts",
-    "src/components/combobox/index.ts",
-    "src/components/command/index.ts",
-    "src/components/sheet/index.ts",
-    "src/components/breadcrumb/index.ts",
-    "src/components/data-table/index.ts",
-    "src/components/calendar/index.ts",
-    "src/components/date-picker/index.ts",
-    "src/components/skeleton/index.ts",
-    "src/components/spinner/index.ts",
-    "src/components/chart/index.ts",
-    "src/blocks/auth-form/index.ts",
-    "src/blocks/dashboard-header/index.ts",
-    "src/blocks/data-table-with-filters/index.ts"
+    ...entryDirectories("components"),
+    ...entryDirectories("blocks"),
   ],
   format: ["esm", "cjs"],
   dts: true,

@@ -15,17 +15,17 @@ Form primitives connect React Hook Form to labeled controls. `FormControl` compo
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add form
+pnpm dlx @usalyt/cli add form
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add form
+npx @usalyt/cli add form
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add form
+bunx @usalyt/cli add form
 ```
   </TabItem>
 </Tabs>
@@ -51,7 +51,7 @@ import {
   FormMessage,
   Input,
   Button,
-} from "tu-ui";
+} from "@usalyt/ui";
 
 export function ProfileForm() {
   const form = useForm({ defaultValues: { email: "" } });

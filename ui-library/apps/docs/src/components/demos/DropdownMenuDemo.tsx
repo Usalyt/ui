@@ -6,7 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   Button,
-} from "tu-ui";
+} from "@usalyt/ui";
 
 export function DropdownMenuDemo() {
   return (

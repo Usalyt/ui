@@ -15,17 +15,17 @@ Draggable panel layout built on `react-resizable-panels`. Compose `ResizablePane
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add resizable
+pnpm dlx @usalyt/cli add resizable
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add resizable
+npx @usalyt/cli add resizable
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add resizable
+bunx @usalyt/cli add resizable
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add resizable
 
 ```tsx
 // components/ui/resizable.tsx
-import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "tu-ui";
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@usalyt/ui";
 
 export function WorkspacePanes() {
   return (

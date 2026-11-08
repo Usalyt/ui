@@ -1,5 +1,5 @@
 import React from "react";
-import { DatePicker } from "tu-ui";
+import { DatePicker } from "@usalyt/ui";
 
 export function DatePickerDemo() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());

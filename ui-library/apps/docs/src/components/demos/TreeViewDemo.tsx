@@ -1,5 +1,5 @@
 import React from "react";
-import { TreeView, TreeItem, TreeItemTrigger, TreeItemContent } from "tu-ui";
+import { TreeView, TreeItem, TreeItemTrigger, TreeItemContent } from "@usalyt/ui";
 import { Folder, File } from "lucide-react";
 
 const files = ["button.tsx", "input.tsx", "tooltip.tsx"];

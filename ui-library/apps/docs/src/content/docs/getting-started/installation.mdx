@@ -1,6 +1,6 @@
 ---
 title: Installation
-description: Installation and setup guide for the tu-ui CLI.
+description: Installation and setup guide for the Usalyt CLI.
 ---
 
 ## Install the CLI
@@ -8,23 +8,23 @@ description: Installation and setup guide for the tu-ui CLI.
 Initialize the project in your Next.js, Vite or Astro app:
 
 ```bash
-npx tu-ui init
+npx @usalyt/cli init
 ```
 
-`init` creates `tu-ui.json` with the component directory and `cn()` utility paths used by the CLI.
+`init` creates `usalyt.json` with the component directory and `cn()` utility paths used by the CLI.
 
 ## Add Components
 
 Add primitives to your `@/components/ui` folder:
 
 ```bash
-npx tu-ui add button dialog input tabs
+npx @usalyt/cli add button dialog input tabs
 ```
 
 Blocks install the same way:
 
 ```bash
-npx tu-ui add auth-form project-kanban-board
+npx @usalyt/cli add auth-form project-kanban-board
 ```
 
-`tu-ui add` installs every referenced primitive and the shared `cn()` utility automatically, rewrites relative imports for your configured paths, and reports how many items were installed or skipped. If none of the requested components exist in the registry, the command exits with a non-zero status and writes no files.
+`usalyt add` installs every referenced primitive and the shared `cn()` utility automatically, rewrites relative imports for your configured paths, and reports how many items were installed or skipped. If none of the requested components exist in the registry, the command exits with a non-zero status and writes no files.

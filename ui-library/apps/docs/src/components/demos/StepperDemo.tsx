@@ -7,7 +7,7 @@ import {
   StepDescription,
   StepSeparator,
   Button,
-} from "tu-ui";
+} from "@usalyt/ui";
 
 const steps = [
   { title: "Scope", description: "Pick the flows to evaluate" },

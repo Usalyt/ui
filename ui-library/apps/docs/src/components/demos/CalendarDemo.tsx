@@ -1,5 +1,5 @@
 import React from "react";
-import { Calendar } from "tu-ui";
+import { Calendar } from "@usalyt/ui";
 
 export function CalendarDemo() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());

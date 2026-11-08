@@ -26,7 +26,7 @@ export const Default: Story = {
     return (
       <div className="w-full max-w-sm space-y-2 p-4 border rounded-xl bg-background">
         <div className="flex items-center justify-between">
-          <h4 className="text-sm font-semibold">@tu-ui/collapsible</h4>
+          <h4 className="text-sm font-semibold">@usalyt/collapsible</h4>
           <Collapsible open={open} onOpenChange={setOpen}>
             <CollapsibleTrigger
               render={
@@ -39,15 +39,15 @@ export const Default: Story = {
           </Collapsible>
         </div>
         <div className="rounded-md border px-4 py-3 font-mono text-xs">
-          @tu-ui/core (installed)
+          @usalyt/core (installed)
         </div>
         <Collapsible open={open} onOpenChange={setOpen}>
           <CollapsibleContent className="space-y-2 pt-2">
             <div className="rounded-md border px-4 py-3 font-mono text-xs">
-              @tu-ui/primitives (installed)
+              @usalyt/primitives (installed)
             </div>
             <div className="rounded-md border px-4 py-3 font-mono text-xs">
-              @tu-ui/icons (installed)
+              @usalyt/icons (installed)
             </div>
           </CollapsibleContent>
         </Collapsible>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, AvatarImage, AvatarFallback } from "tu-ui";
+import { Avatar, AvatarImage, AvatarFallback } from "@usalyt/ui";
 
 export function AvatarDemo() {
   return (

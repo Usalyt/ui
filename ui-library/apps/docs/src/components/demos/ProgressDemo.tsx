@@ -1,5 +1,5 @@
 import React from "react";
-import { Progress } from "tu-ui";
+import { Progress } from "@usalyt/ui";
 
 export function ProgressDemo() {
   return (

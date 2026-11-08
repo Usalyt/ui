@@ -3,12 +3,12 @@ import starlight from "@astrojs/starlight";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 
-import { tuUiDarkTheme, tuUiLightTheme } from "./ec-themes.mjs";
+import { usalytDarkTheme, usalytLightTheme } from "./ec-themes.mjs";
 
 export default defineConfig({
   integrations: [
     starlight({
-      title: "tu-ui Documentation",
+      title: "Usalyt Documentation",
       description: "Accessible, unstyled-first UI primitives built with Base UI and Tailwind v4",
       customCss: ["./src/styles/starlight-custom.css"],
       // The custom 404 lives in `src/content/docs/404.mdx` (Starlight 0.32
@@ -33,7 +33,7 @@ export default defineConfig({
         // (see ec-themes.mjs). The built-in contrast fixer only understands
         // parseable colors, so it stays off; contrast is enforced by the
         // `docs-a11y` axe audit instead.
-        themes: [tuUiDarkTheme, tuUiLightTheme],
+        themes: [usalytDarkTheme, usalytLightTheme],
         minSyntaxHighlightingColorContrast: 0,
         useStarlightUiThemeColors: false,
         styleOverrides: {

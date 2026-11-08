@@ -1,5 +1,5 @@
 import React from "react";
-import { AspectRatio } from "tu-ui";
+import { AspectRatio } from "@usalyt/ui";
 import { Play } from "lucide-react";
 
 export function AspectRatioDemo() {

@@ -15,17 +15,17 @@ Input primitive component built with Base UI and Tailwind v4.
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add input
+pnpm dlx @usalyt/cli add input
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add input
+npx @usalyt/cli add input
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add input
+bunx @usalyt/cli add input
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add input
 
 ```tsx
 // components/ui/input.tsx
-import { Input } from "tu-ui";
+import { Input } from "@usalyt/ui";
 
 export function InputExample() {
   return <Input type="email" placeholder="Email address" />;

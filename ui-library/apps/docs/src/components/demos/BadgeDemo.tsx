@@ -1,5 +1,5 @@
 import React from "react";
-import { Badge } from "tu-ui";
+import { Badge } from "@usalyt/ui";
 
 export function BadgeDemo() {
   return (

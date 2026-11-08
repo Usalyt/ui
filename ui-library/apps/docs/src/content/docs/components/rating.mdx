@@ -15,17 +15,17 @@ Star-rating input rendered as a `role="radiogroup"`. Exactly one star is in the 
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add rating
+pnpm dlx @usalyt/cli add rating
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add rating
+npx @usalyt/cli add rating
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add rating
+bunx @usalyt/cli add rating
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add rating
 
 ```tsx
 // components/ui/rating/rating.tsx
-import { Rating } from "tu-ui";
+import { Rating } from "@usalyt/ui";
 
 export function SatisfactionRating() {
   return <Rating defaultValue={3} max={5} onChange={(value) => console.log(value)} />;

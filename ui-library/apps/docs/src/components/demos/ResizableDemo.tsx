@@ -3,7 +3,7 @@ import {
   ResizablePanelGroup,
   ResizablePanel,
   ResizableHandle,
-} from "tu-ui";
+} from "@usalyt/ui";
 
 export function ResizableDemo() {
   return (

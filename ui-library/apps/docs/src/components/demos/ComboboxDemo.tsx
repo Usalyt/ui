@@ -1,5 +1,5 @@
 import React from "react";
-import { Combobox } from "tu-ui";
+import { Combobox } from "@usalyt/ui";
 
 const frameworks = [
   { value: "next.js", label: "Next.js" },

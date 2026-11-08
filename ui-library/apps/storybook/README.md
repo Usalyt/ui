@@ -1,6 +1,6 @@
-# @tu-ui/storybook — Visual Catalog & Sandbox
+# @usalyt/storybook — Visual Catalog & Sandbox
 
-Catálogo visual interactivo y sandbox de pruebas para todos los componentes de **tu-ui**, construido con **Storybook 10** y **Vite 6**.
+Catálogo visual interactivo y sandbox de pruebas para todos los componentes de **Usalyt**, construido con **Storybook 10** y **Vite 6**.
 
 ## Tecnologías Utilizadas
 
@@ -25,10 +25,10 @@ Las historias de primitivas y Blocks viven junto a su código fuente en `package
 
 ```bash
 # Iniciar Storybook en puerto 6006
-pnpm --filter @tu-ui/storybook dev
+pnpm --filter @usalyt/storybook dev
 
 # Construir sitio estático de Storybook
-pnpm --filter @tu-ui/storybook build
+pnpm --filter @usalyt/storybook build
 ```
 
 ## Solución de problemas

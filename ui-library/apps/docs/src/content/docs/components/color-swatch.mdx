@@ -15,17 +15,17 @@ Display-only color reference: a chip painted with the supplied color plus the co
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add color-swatch
+pnpm dlx @usalyt/cli add color-swatch
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add color-swatch
+npx @usalyt/cli add color-swatch
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add color-swatch
+bunx @usalyt/cli add color-swatch
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add color-swatch
 
 ```tsx
 // components/ui/color-swatch/color-swatch.tsx
-import { ColorSwatch } from "tu-ui";
+import { ColorSwatch } from "@usalyt/ui";
 
 export function TokenValue() {
   return (

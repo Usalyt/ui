@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Label } from "tu-ui";
+import { Switch, Label } from "@usalyt/ui";
 
 export function SwitchDemo() {
   return (

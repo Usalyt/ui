@@ -9,7 +9,7 @@ import {
   TimelineTitle,
   TimelineDescription,
   TimelineTime,
-} from "tu-ui";
+} from "@usalyt/ui";
 import { Play, ClipboardList, FileDown } from "lucide-react";
 
 const entries = [

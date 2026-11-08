@@ -1,5 +1,5 @@
 import React from "react";
-import { FormWithValidation } from "tu-ui";
+import { FormWithValidation } from "@usalyt/ui";
 
 export function FormWithValidationDemo() {
   return (

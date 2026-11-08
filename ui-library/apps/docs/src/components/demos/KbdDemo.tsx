@@ -1,5 +1,5 @@
 import React from "react";
-import { Kbd } from "tu-ui";
+import { Kbd } from "@usalyt/ui";
 
 const shortcuts = [
   { keys: ["⌘", "S"], label: "Save" },

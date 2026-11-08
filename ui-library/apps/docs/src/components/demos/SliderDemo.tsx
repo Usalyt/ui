@@ -1,5 +1,5 @@
 import React from "react";
-import { Slider } from "tu-ui";
+import { Slider } from "@usalyt/ui";
 
 export function SliderDemo() {
   return (

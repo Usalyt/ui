@@ -15,17 +15,17 @@ Keyboard-key chip rendered as a semantic `<kbd>` element for documenting shortcu
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add kbd
+pnpm dlx @usalyt/cli add kbd
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add kbd
+npx @usalyt/cli add kbd
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add kbd
+bunx @usalyt/cli add kbd
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add kbd
 
 ```tsx
 // components/ui/kbd.tsx
-import { Kbd } from "tu-ui";
+import { Kbd } from "@usalyt/ui";
 
 export function ShortcutHint() {
   return (

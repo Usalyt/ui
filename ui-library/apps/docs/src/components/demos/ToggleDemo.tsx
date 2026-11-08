@@ -1,5 +1,5 @@
 import React from "react";
-import { Toggle } from "tu-ui";
+import { Toggle } from "@usalyt/ui";
 
 export function ToggleDemo() {
   return (

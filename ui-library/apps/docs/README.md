@@ -1,15 +1,15 @@
-# @tu-ui/docs — Documentation Site
+# @usalyt/docs — Documentation Site
 
-Sitio oficial de documentación interactivo para **tu-ui**, construido con **Astro 7**, **Starlight** y **React 19**.
+Sitio oficial de documentación interactivo para **Usalyt**, construido con **Astro 5.18**, **Starlight** y **React 19**.
 
 ## Tecnologías Utilizadas
 
-- **Framework:** Astro 7 (`astro`)
+- **Framework:** Astro 5.18 (`astro`)
 - **Documentación Engine:** Starlight (`@astrojs/starlight`)
 - **UI & Components:** React 19 (`@astrojs/react`)
 - **Estilos:** Tailwind CSS v4 (`@tailwindcss/vite` & `tailwindcss`)
 - **Iconos:** Lucide React (`lucide-react`)
-- **Componentes tu-ui:** Importados desde el workspace local (`tu-ui`)
+- **Componentes Usalyt:** Importados desde el workspace local (`@usalyt/ui`)
 
 ## Estructura del Proyecto
 
@@ -29,11 +29,11 @@ apps/docs/
 
 ```bash
 # Iniciar servidor de desarrollo (Astro dev)
-pnpm --filter @tu-ui/docs dev
+pnpm --filter @usalyt/docs dev
 
 # Construir para producción
-pnpm --filter @tu-ui/docs build
+pnpm --filter @usalyt/docs build
 
 # Vista previa de la build de producción
-pnpm --filter @tu-ui/docs preview
+pnpm --filter @usalyt/docs preview
 ```

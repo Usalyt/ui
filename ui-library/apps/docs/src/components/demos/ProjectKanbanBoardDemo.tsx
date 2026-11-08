@@ -1,5 +1,5 @@
 import React from "react";
-import { ProjectKanbanBoard, type KanbanColumnId, type KanbanTask } from "tu-ui";
+import { ProjectKanbanBoard, type KanbanColumnId, type KanbanTask } from "@usalyt/ui";
 
 const initialTasks: KanbanTask[] = [
   {

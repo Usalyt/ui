@@ -1,7 +1,7 @@
 // Palette contract tests — TDD layer for OpenSpec change
 // refactor-sdd-tdd-full-coverage, tasks 10-11 (Batch 2).
 //
-// These tests read the actual source (globals.css tokens + component CVA
+// These tests read the actual source (theme.css tokens + component CVA
 // class strings) and verify the DESIGN.md palette contract BY CALCULATION:
 // every chromatic text pair must clear the WCAG AA floor (>= 4.5:1 body
 // text, >= 3:1 non-text) in BOTH the light and dark themes.
@@ -37,8 +37,8 @@ import {
 } from "./contrast";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const globalsCss = readFileSync(
-  path.resolve(here, "../../styles/globals.css"),
+const themeCss = readFileSync(
+  path.resolve(here, "../../styles/theme.css"),
   "utf8",
 );
 
@@ -49,7 +49,7 @@ function readComponent(relativePath: string): string {
 }
 
 // ---------------------------------------------------------------------------
-// Minimal globals.css token parser.
+// Minimal theme.css token parser.
 // ---------------------------------------------------------------------------
 
 type VarMap = Record<string, string>; // token name (without --) -> raw value
@@ -77,15 +77,15 @@ function collectVars(css: string): VarMap {
   return vars;
 }
 
-const darkVars = collectVars(globalsCss);
-const lightVars = collectVars(lightBlockSource(globalsCss));
+const darkVars = collectVars(themeCss);
+const lightVars = collectVars(lightBlockSource(themeCss));
 
 /** Resolve a token value to a concrete sRGB triple for the given theme. */
 function resolveToken(name: string, theme: "light" | "dark"): RGB {
   const key = name.startsWith("color-") ? name : `color-${name}`;
   const scoped = theme === "light" ? lightVars : darkVars;
   const value = scoped[key] ?? darkVars[key];
-  if (!value) throw new Error(`Token --${key} not found in globals.css`);
+  if (!value) throw new Error(`Token --${key} not found in theme.css`);
 
   const hex = value.match(/^#([0-9a-fA-F]{3,8})$/);
   if (hex) return hexToRgb(value);
@@ -211,9 +211,9 @@ function contrastAgainst(
 }
 
 describe("Theme gate (task 10)", () => {
-  it("globals.css gates the dark: variant to the .dark class strategy", () => {
+  it("theme.css gates the dark: variant to the .dark class strategy", () => {
     expect(
-      globalsCss.includes("@custom-variant dark (&:where(.dark, .dark *));"),
+      themeCss.includes("@custom-variant dark (&:where(.dark, .dark *));"),
     ).toBe(true);
   });
 });
@@ -475,7 +475,7 @@ describe("Progress / Rating / CopyButton chromatic ink (task 11)", () => {
 });
 
 describe("Field fills (task 11)", () => {
-  it("globals.css declares --color-field with a light-theme override", () => {
+  it("theme.css declares --color-field with a light-theme override", () => {
     expect(
       darkVars["color-field"],
       "--color-field must exist in @theme",

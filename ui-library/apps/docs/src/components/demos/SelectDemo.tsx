@@ -1,5 +1,5 @@
 import React from "react";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "tu-ui";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@usalyt/ui";
 
 export function SelectDemo() {
   return (

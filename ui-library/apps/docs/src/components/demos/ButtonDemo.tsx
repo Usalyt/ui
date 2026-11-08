@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "tu-ui";
+import { Button } from "@usalyt/ui";
 
 export function ButtonDemo() {
   return (

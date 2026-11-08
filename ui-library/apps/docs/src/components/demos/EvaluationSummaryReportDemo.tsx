@@ -1,5 +1,5 @@
 import React from "react";
-import { EvaluationSummaryReport, type HeuristicScoreItem } from "tu-ui";
+import { EvaluationSummaryReport, type HeuristicScoreItem } from "@usalyt/ui";
 
 const heuristics: HeuristicScoreItem[] = [
   { id: "H1", name: "Visibility of system status", score: 75, findingCount: 3 },

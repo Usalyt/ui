@@ -1,5 +1,5 @@
 import React from "react";
-import { Spinner, Button } from "tu-ui";
+import { Spinner, Button } from "@usalyt/ui";
 
 export function SpinnerDemo() {
   return (

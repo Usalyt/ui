@@ -1,0 +1,19 @@
+/* @usalyt/ui compiled stylesheet entry.
+ *
+ * Compiled by @tailwindcss/cli to dist/styles.css. It imports Tailwind's
+ * theme and utilities layers only — Preflight is deliberately excluded so
+ * importing this file into a host application does not reset page styles.
+ *
+ * Fonts: Inter Variable is read from @fontsource-variable/inter and its woff2
+ * files are copied next to dist/styles.css by scripts/postbuild.mjs. Berkeley
+ * Mono is local()-only in styles/theme.css and never bundled.
+ */
+
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "./theme.css";
+@import "@fontsource-variable/inter";
+
+@source "../src";

@@ -4,7 +4,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
   InputOTPSeparator,
-} from "tu-ui";
+} from "@usalyt/ui";
 
 export function InputOtpDemo() {
   const [value, setValue] = React.useState("");

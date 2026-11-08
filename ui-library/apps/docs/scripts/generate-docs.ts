@@ -36,7 +36,7 @@ An accessible, unstyled-first ${name.toLowerCase()} primitive built for high-per
 ## Installation
 
 \`\`\`bash
-npx tu-ui add ${comp}
+npx @usalyt/cli add ${comp}
 \`\`\`
 
 ## Preview

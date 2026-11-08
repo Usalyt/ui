@@ -15,17 +15,17 @@ Project members table with role management, remove actions, and an invite button
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add team-members-table
+pnpm dlx @usalyt/cli add team-members-table
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add team-members-table
+npx @usalyt/cli add team-members-table
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add team-members-table
+bunx @usalyt/cli add team-members-table
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add team-members-table
 
 ```tsx
 // components/ui/blocks/team-members-table.tsx
-import { TeamMembersTable, type TeamMember } from "tu-ui";
+import { TeamMembersTable, type TeamMember } from "@usalyt/ui";
 
 const members: TeamMember[] = [
   { id: "usr-01", name: "Sara Gómez", email: "sara@uxcheck.io", role: "owner", joinedAt: "12 May 2026" },

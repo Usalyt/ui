@@ -1,5 +1,5 @@
 import React from "react";
-import { HoverCard, HoverCardTrigger, HoverCardContent, Avatar, AvatarImage, AvatarFallback } from "tu-ui";
+import { HoverCard, HoverCardTrigger, HoverCardContent, Avatar, AvatarImage, AvatarFallback } from "@usalyt/ui";
 
 export function HoverCardDemo() {
   const [mounted, setMounted] = React.useState(false);

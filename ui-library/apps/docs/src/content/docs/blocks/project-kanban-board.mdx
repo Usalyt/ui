@@ -15,17 +15,17 @@ Four-column task board with heuristic tags, severity badges, assignee avatars, s
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add project-kanban-board
+pnpm dlx @usalyt/cli add project-kanban-board
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add project-kanban-board
+npx @usalyt/cli add project-kanban-board
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add project-kanban-board
+bunx @usalyt/cli add project-kanban-board
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add project-kanban-board
 
 ```tsx
 // components/ui/project-kanban-board/project-kanban-board.tsx
-import { ProjectKanbanBoard, type KanbanTask } from "tu-ui";
+import { ProjectKanbanBoard, type KanbanTask } from "@usalyt/ui";
 
 const tasks: KanbanTask[] = [
   {

@@ -15,17 +15,17 @@ User directory Block pairing a titled header and role filter with the DataTable 
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add data-table-with-filters
+pnpm dlx @usalyt/cli add data-table-with-filters
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add data-table-with-filters
+npx @usalyt/cli add data-table-with-filters
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add data-table-with-filters
+bunx @usalyt/cli add data-table-with-filters
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add data-table-with-filters
 
 ```tsx
 // components/ui/data-table-with-filters/data-table-with-filters.tsx
-import { DataTableWithFilters, type SystemUser } from "tu-ui";
+import { DataTableWithFilters, type SystemUser } from "@usalyt/ui";
 
 const users: SystemUser[] = [
   {

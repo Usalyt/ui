@@ -1,5 +1,5 @@
 import React from "react";
-import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarSeparator } from "tu-ui";
+import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarSeparator } from "@usalyt/ui";
 
 export function MenubarDemo() {
   return (

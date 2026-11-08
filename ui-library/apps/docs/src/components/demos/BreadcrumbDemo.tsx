@@ -1,5 +1,5 @@
 import React from "react";
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from "tu-ui";
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from "@usalyt/ui";
 
 export function BreadcrumbDemo() {
   return (

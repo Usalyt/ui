@@ -15,17 +15,17 @@ Executive report card with overall score, severity counters, and per-heuristic p
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add evaluation-summary-report
+pnpm dlx @usalyt/cli add evaluation-summary-report
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add evaluation-summary-report
+npx @usalyt/cli add evaluation-summary-report
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add evaluation-summary-report
+bunx @usalyt/cli add evaluation-summary-report
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add evaluation-summary-report
 
 ```tsx
 // components/ui/blocks/evaluation-summary-report.tsx
-import { EvaluationSummaryReport } from "tu-ui";
+import { EvaluationSummaryReport } from "@usalyt/ui";
 
 export function AuditSummary() {
   return (

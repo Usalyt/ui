@@ -1,5 +1,5 @@
 import React from "react";
-import { DashboardHeader } from "tu-ui";
+import { DashboardHeader } from "@usalyt/ui";
 
 export function DashboardHeaderDemo() {
   return (

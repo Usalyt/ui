@@ -1,5 +1,5 @@
 import React from "react";
-import { DataTableWithFilters } from "tu-ui";
+import { DataTableWithFilters } from "@usalyt/ui";
 
 interface SystemUser {
   id: string;

@@ -1,5 +1,5 @@
 import React from "react";
-import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuSeparator } from "tu-ui";
+import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuSeparator } from "@usalyt/ui";
 
 export function ContextMenuDemo() {
   return (

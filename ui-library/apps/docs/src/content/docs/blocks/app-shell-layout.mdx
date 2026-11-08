@@ -15,17 +15,17 @@ Application shell with collapsible sidebar, header breadcrumbs, and user footer.
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add app-shell-layout
+pnpm dlx @usalyt/cli add app-shell-layout
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add app-shell-layout
+npx @usalyt/cli add app-shell-layout
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add app-shell-layout
+bunx @usalyt/cli add app-shell-layout
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add app-shell-layout
 
 ```tsx
 // components/ui/blocks/app-shell-layout.tsx
-import { AppShellLayout } from "tu-ui";
+import { AppShellLayout } from "@usalyt/ui";
 
 export function MyAppShell() {
   return (

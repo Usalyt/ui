@@ -1,5 +1,5 @@
 import React from "react";
-import { Toaster, toast, Button } from "tu-ui";
+import { Toaster, toast, Button } from "@usalyt/ui";
 
 export function SonnerDemo() {
   return (

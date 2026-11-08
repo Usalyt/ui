@@ -1,5 +1,5 @@
 import React from "react";
-import { EmptyStateBlock } from "tu-ui";
+import { EmptyStateBlock } from "@usalyt/ui";
 import { ClipboardCheck } from "lucide-react";
 
 export function EmptyStateBlockDemo() {

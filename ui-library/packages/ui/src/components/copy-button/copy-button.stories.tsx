@@ -14,8 +14,8 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: () => (
     <div className="flex items-center gap-2 rounded-md border border-border px-3 py-1.5 w-fit">
-      <code className="text-xs font-mono">pnpm add tu-ui</code>
-      <CopyButton value="pnpm add tu-ui" />
+      <code className="text-xs font-mono">pnpm add @usalyt/ui</code>
+      <CopyButton value="pnpm add @usalyt/ui" />
     </div>
   ),
 };

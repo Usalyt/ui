@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, AlertTitle, AlertDescription } from "tu-ui";
+import { Alert, AlertTitle, AlertDescription } from "@usalyt/ui";
 
 export function AlertDemo() {
   return (

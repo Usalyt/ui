@@ -1,5 +1,5 @@
 import React from "react";
-import { CollaborationChatPanel, type ChatMessage } from "tu-ui";
+import { CollaborationChatPanel, type ChatMessage } from "@usalyt/ui";
 
 const initialMessages: ChatMessage[] = [
   {

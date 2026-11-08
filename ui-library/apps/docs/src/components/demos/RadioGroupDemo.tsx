@@ -1,5 +1,5 @@
 import React from "react";
-import { RadioGroup, RadioGroupItem, Label } from "tu-ui";
+import { RadioGroup, RadioGroupItem, Label } from "@usalyt/ui";
 
 export function RadioGroupDemo() {
   return (

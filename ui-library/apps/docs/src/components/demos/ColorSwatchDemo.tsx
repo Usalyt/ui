@@ -1,5 +1,5 @@
 import React from "react";
-import { ColorSwatch } from "tu-ui";
+import { ColorSwatch } from "@usalyt/ui";
 
 const tokens = [
   { token: "--color-acid-lime", color: "#e4f222" },

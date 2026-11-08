@@ -1,5 +1,5 @@
 import React from "react";
-import { Rating } from "tu-ui";
+import { Rating } from "@usalyt/ui";
 
 export function RatingDemo() {
   const [value, setValue] = React.useState(0);

@@ -15,17 +15,17 @@ Button primitive that copies a value to the clipboard, flips its icon to a check
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add copy-button
+pnpm dlx @usalyt/cli add copy-button
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add copy-button
+npx @usalyt/cli add copy-button
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add copy-button
+bunx @usalyt/cli add copy-button
 ```
   </TabItem>
 </Tabs>
@@ -40,10 +40,10 @@ bunx tu-ui add copy-button
 
 ```tsx
 // components/ui/copy-button.tsx
-import { CopyButton } from "tu-ui";
+import { CopyButton } from "@usalyt/ui";
 
 export function CommandCopy() {
-  return <CopyButton value="pnpm dlx tu-ui add copy-button" />;
+  return <CopyButton value="pnpm dlx @usalyt/cli add copy-button" />;
 }
 ```
 

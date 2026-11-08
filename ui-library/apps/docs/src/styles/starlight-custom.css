@@ -1,9 +1,9 @@
-@import "tu-ui/styles/globals.css";
+@import "@usalyt/ui/styles/globals.css";
 
 /* ============================================================================
-   tu-ui docs — Starlight theme layer
+   Usalyt docs — Starlight theme layer
 
-   Every value below is sourced from the shipped tu-ui design tokens
+   Every value below is sourced from the shipped Usalyt design tokens
    (`packages/ui/styles/globals.css`): palette, semantic surfaces, ink tokens,
    type scale, radii, shadows and motion. No palette hex is duplicated here.
 

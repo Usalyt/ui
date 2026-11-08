@@ -1,5 +1,5 @@
 import React from "react";
-import { HeuristicFindingCard, type HeuristicFinding } from "tu-ui";
+import { HeuristicFindingCard, type HeuristicFinding } from "@usalyt/ui";
 
 const sampleFinding: HeuristicFinding = {
   id: "finding-h1-01",

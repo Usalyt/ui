@@ -7,7 +7,7 @@ import {
   CommandGroup,
   CommandEmpty,
   CommandFooter,
-} from "tu-ui";
+} from "@usalyt/ui";
 
 export function CommandDemo() {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import { Popover, PopoverTrigger, PopoverContent, Button, Input, Label } from "tu-ui";
+import { Popover, PopoverTrigger, PopoverContent, Button, Input, Label } from "@usalyt/ui";
 
 export function PopoverDemo() {
   const [mounted, setMounted] = React.useState(false);

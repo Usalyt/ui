@@ -15,17 +15,17 @@ Resizable split view pairing a DOM hierarchy tree with the inspected element det
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add inspector-split-view
+pnpm dlx @usalyt/cli add inspector-split-view
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add inspector-split-view
+npx @usalyt/cli add inspector-split-view
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add inspector-split-view
+bunx @usalyt/cli add inspector-split-view
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add inspector-split-view
 
 ```tsx
 // components/ui/inspector-split-view/inspector-split-view.tsx
-import { InspectorSplitView, type DOMNodeItem } from "tu-ui";
+import { InspectorSplitView, type DOMNodeItem } from "@usalyt/ui";
 
 const nodes: DOMNodeItem[] = [
   {

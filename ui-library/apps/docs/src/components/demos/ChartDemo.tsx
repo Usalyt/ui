@@ -1,5 +1,5 @@
 import React from "react";
-import { ChartContainer, ChartLegend } from "tu-ui";
+import { ChartContainer, ChartLegend } from "@usalyt/ui";
 
 export function ChartDemo() {
   return (

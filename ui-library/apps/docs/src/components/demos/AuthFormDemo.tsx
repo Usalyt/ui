@@ -1,5 +1,5 @@
 import React from "react";
-import { AuthForm } from "tu-ui";
+import { AuthForm } from "@usalyt/ui";
 
 export function AuthFormDemo() {
   return (

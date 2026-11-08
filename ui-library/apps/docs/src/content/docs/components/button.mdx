@@ -15,17 +15,17 @@ Button primitive component built with Base UI and Tailwind v4.
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add button
+pnpm dlx @usalyt/cli add button
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add button
+npx @usalyt/cli add button
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add button
+bunx @usalyt/cli add button
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add button
 
 ```tsx
 // components/ui/button.tsx
-import { Button } from "tu-ui";
+import { Button } from "@usalyt/ui";
 
 export function ButtonExample() {
   return <Button variant="default">Click me</Button>;

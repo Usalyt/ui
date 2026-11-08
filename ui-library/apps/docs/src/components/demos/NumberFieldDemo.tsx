@@ -1,5 +1,5 @@
 import React from "react";
-import { NumberField } from "tu-ui";
+import { NumberField } from "@usalyt/ui";
 
 export function NumberFieldDemo() {
   return (

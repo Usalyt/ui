@@ -1,5 +1,5 @@
 import React from "react";
-import { FileInput } from "tu-ui";
+import { FileInput } from "@usalyt/ui";
 
 export function FileInputDemo() {
   return (

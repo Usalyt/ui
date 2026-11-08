@@ -15,17 +15,17 @@ Responsive metric grid with titled cards, mono values, trend badges, and support
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add stats-card-grid
+pnpm dlx @usalyt/cli add stats-card-grid
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add stats-card-grid
+npx @usalyt/cli add stats-card-grid
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add stats-card-grid
+bunx @usalyt/cli add stats-card-grid
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add stats-card-grid
 
 ```tsx
 // components/ui/stats-card-grid/stats-card-grid.tsx
-import { StatsCardGrid, type StatItem } from "tu-ui";
+import { StatsCardGrid, type StatItem } from "@usalyt/ui";
 
 const stats: StatItem[] = [
   {

@@ -12,7 +12,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarInset,
-} from "tu-ui";
+} from "@usalyt/ui";
 import { BarChart3, FileText, Download, ShieldCheck, Settings } from "lucide-react";
 
 const items = [

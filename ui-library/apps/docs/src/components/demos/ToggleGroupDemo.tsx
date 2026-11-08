@@ -1,5 +1,5 @@
 import React from "react";
-import { ToggleGroup, ToggleGroupItem } from "tu-ui";
+import { ToggleGroup, ToggleGroupItem } from "@usalyt/ui";
 
 export function ToggleGroupDemo() {
   return (

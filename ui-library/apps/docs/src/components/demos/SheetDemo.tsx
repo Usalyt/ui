@@ -7,7 +7,7 @@ import {
   SheetTitle,
   SheetDescription,
   Button,
-} from "tu-ui";
+} from "@usalyt/ui";
 
 export function SheetDemo() {
   return (

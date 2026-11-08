@@ -15,17 +15,17 @@ Dashed empty state with icon badge, title, description, and primary/secondary ac
 <Tabs syncKey="package-manager">
   <TabItem label="pnpm">
 ```bash
-pnpm dlx tu-ui add empty-state-block
+pnpm dlx @usalyt/cli add empty-state-block
 ```
   </TabItem>
   <TabItem label="npx">
 ```bash
-npx tu-ui add empty-state-block
+npx @usalyt/cli add empty-state-block
 ```
   </TabItem>
   <TabItem label="bunx">
 ```bash
-bunx tu-ui add empty-state-block
+bunx @usalyt/cli add empty-state-block
 ```
   </TabItem>
 </Tabs>
@@ -40,7 +40,7 @@ bunx tu-ui add empty-state-block
 
 ```tsx
 // components/ui/blocks/empty-state-block.tsx
-import { EmptyStateBlock } from "tu-ui";
+import { EmptyStateBlock } from "@usalyt/ui";
 
 export function EvaluationsEmptyState() {
   return (

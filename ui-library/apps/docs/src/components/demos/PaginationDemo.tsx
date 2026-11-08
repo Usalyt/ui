@@ -7,7 +7,7 @@ import {
   PaginationPrevious,
   PaginationNext,
   PaginationEllipsis,
-} from "tu-ui";
+} from "@usalyt/ui";
 
 const TOTAL = 7;
 

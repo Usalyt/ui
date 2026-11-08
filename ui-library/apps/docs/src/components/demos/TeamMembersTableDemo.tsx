@@ -1,5 +1,5 @@
 import React from "react";
-import { TeamMembersTable, type TeamMember } from "tu-ui";
+import { TeamMembersTable, type TeamMember } from "@usalyt/ui";
 
 const initialMembers: TeamMember[] = [
   {

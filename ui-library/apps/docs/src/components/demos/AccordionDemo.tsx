@@ -1,5 +1,5 @@
 import React from "react";
-import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionContent } from "tu-ui";
+import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionContent } from "@usalyt/ui";
 
 export function AccordionDemo() {
   return (

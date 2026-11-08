@@ -1,5 +1,5 @@
 import React from "react";
-import { Separator } from "tu-ui";
+import { Separator } from "@usalyt/ui";
 
 export function SeparatorDemo() {
   return (

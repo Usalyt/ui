@@ -1,5 +1,5 @@
 import React from "react";
-import { Textarea } from "tu-ui";
+import { Textarea } from "@usalyt/ui";
 
 export function TextareaDemo() {
   return (

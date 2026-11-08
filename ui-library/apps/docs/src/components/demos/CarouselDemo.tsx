@@ -6,7 +6,7 @@ import {
   CarouselPrevious,
   CarouselNext,
   type CarouselApi,
-} from "tu-ui";
+} from "@usalyt/ui";
 
 const slides = [
   "One item per view by default",

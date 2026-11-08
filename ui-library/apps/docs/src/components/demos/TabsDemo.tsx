@@ -1,5 +1,5 @@
 import React from "react";
-import { Tabs, TabsList, TabsTrigger, TabsContent, Card, CardHeader, CardTitle, CardDescription, CardContent, Input, Label, Button } from "tu-ui";
+import { Tabs, TabsList, TabsTrigger, TabsContent, Card, CardHeader, CardTitle, CardDescription, CardContent, Input, Label, Button } from "@usalyt/ui";
 
 export function TabsDemo() {
   return (

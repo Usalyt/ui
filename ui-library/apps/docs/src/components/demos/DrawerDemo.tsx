@@ -1,5 +1,5 @@
 import React from "react";
-import { Drawer, DrawerTrigger, DrawerContent, DrawerTitle, DrawerDescription, DrawerClose, Button } from "tu-ui";
+import { Drawer, DrawerTrigger, DrawerContent, DrawerTitle, DrawerDescription, DrawerClose, Button } from "@usalyt/ui";
 
 export function DrawerDemo() {
   return (
