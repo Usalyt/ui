@@ -37,7 +37,7 @@
   },
   "description": "Shared TypeScript configuration presets (base, React, Next.js) for Usalyt projects.",
   "scripts": {
-    "test": "node --test test/",
+    "test": "node --test",
     "verify": "node scripts/smoke.mjs"
   }
 }
