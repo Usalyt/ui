@@ -11,7 +11,9 @@ const distEntry = path.join(cliRoot, "dist", "index.mjs");
 const registryJsonPath = path.resolve(cliRoot, "..", "registry", "registry.json");
 
 function makeConsumer(label) {
-  const scratch = fs.mkdtempSync(path.join(cliRoot, ".tmp", `test-${label}-`));
+  const scratchRoot = path.join(cliRoot, ".tmp");
+  fs.mkdirSync(scratchRoot, { recursive: true });
+  const scratch = fs.mkdtempSync(path.join(scratchRoot, `test-${label}-`));
   const consumer = path.join(scratch, "consumer");
   fs.mkdirSync(consumer, { recursive: true });
   return { scratch, consumer };
