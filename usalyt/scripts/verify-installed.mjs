@@ -90,9 +90,19 @@ function writeConsumer(name, packageJson, files) {
 }
 
 function localRegistryOverride(consumer) {
+  const pkgPath = path.join(consumer, "package.json");
+  const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
+  pkg.pnpm = {
+    ...(pkg.pnpm ?? {}),
+    overrides: {
+      ...(pkg.pnpm?.overrides ?? {}),
+      "@usalyt/registry": `file:${tarballs.registry}`,
+    },
+  };
+  fs.writeFileSync(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`);
   fs.writeFileSync(
     path.join(consumer, "pnpm-workspace.yaml"),
-    `overrides:\n  "@usalyt/registry": "file:${tarballs.registry}"\n`,
+    `packages:\n  - "."\noverrides:\n  "@usalyt/registry": "file:${tarballs.registry}"\n`,
   );
 }
 
