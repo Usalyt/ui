@@ -2,13 +2,7 @@ name: Usalyt package CI
 
 on:
   push:
-    paths:
-      - "usalyt/**"
-      - ".github/workflows/usalyt-*.yml"
   pull_request:
-    paths:
-      - "usalyt/**"
-      - ".github/workflows/usalyt-*.yml"
   workflow_dispatch:
 
 permissions:
@@ -17,10 +11,6 @@ permissions:
 concurrency:
   group: usalyt-ci-${{ github.ref }}
   cancel-in-progress: true
-
-defaults:
-  run:
-    working-directory: usalyt
 
 jobs:
   verify:
@@ -41,7 +31,7 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
-          cache-dependency-path: usalyt/pnpm-lock.yaml
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

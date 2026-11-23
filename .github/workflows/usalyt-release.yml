@@ -28,10 +28,6 @@ concurrency:
   group: usalyt-release
   cancel-in-progress: false
 
-defaults:
-  run:
-    working-directory: usalyt
-
 jobs:
   release:
     name: Verify and publish the fixed 0.0.1 group
@@ -54,7 +50,7 @@ jobs:
           node-version: 24
           registry-url: https://registry.npmjs.org
           cache: pnpm
-          cache-dependency-path: usalyt/pnpm-lock.yaml
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

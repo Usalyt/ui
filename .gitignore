@@ -8,6 +8,11 @@ build/
 storybook-static/
 coverage/
 scratch/
+.tmp/
+playwright-report/
+test-results/
+report/
+packages/registry/registry.json
 *.tsbuildinfo
 *.tgz
 *.zip
