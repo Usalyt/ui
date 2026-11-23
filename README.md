@@ -1,29 +1,20 @@
 # Usalyt
 
-Usalyt is a source-owned component platform for React: accessible Base UI primitives and composed blocks styled with Tailwind CSS v4 and distributed through npm, a component registry, a CLI, and a Model Context Protocol server.
+Accessible, open-code React UI components built with [Base UI](https://base-ui.com) and [Tailwind CSS v4](https://tailwindcss.com).
 
-## Release status
+Usalyt provides **60 accessible UI primitives** and **13 composed blocks** that you can consume as a standard npm library (`@usalyt/ui`), copy directly into your codebase with the CLI (`@usalyt/cli`), or query from AI coding tools through the Model Context Protocol server (`@usalyt/mcp-server`).
 
-The six public packages are **0.0.1 release candidates**. They are packed and verified as installed artifacts but are **not published**. npm scope ownership, name availability, account access, and credentials are external prerequisites and are not assumed or exercised by this repository.
+## Highlights
 
-| Package | Visibility | Purpose |
-| --- | --- | --- |
-| `@usalyt/ui` | public | Component library, compiled stylesheet, source distribution |
-| `@usalyt/registry` | public | Versioned component registry and JSON Schema |
-| `@usalyt/cli` | public | `usalyt` project initialization and component installation |
-| `@usalyt/mcp-server` | public | `usalyt-mcp` stdio Model Context Protocol server |
-| `@usalyt/tsconfig` | public | Shared TypeScript presets (`base`, `react`, `next`) |
-| `@usalyt/eslint-config` | public | Shared flat ESLint config (ESM and CommonJS entries) |
-| root, `apps/*`, `packages/tests`, fixtures | private | Workspace development only |
-
-## Requirements
-
-- Node.js `>=20` (the installed-artifact suite ran on Node `26.13.0`).
-- pnpm 10 for the workspace; consumers may use any Node package manager that understands npm packages.
-- React `^18.0.0 || ^19.0.0` for `@usalyt/ui`. React 18.3.1 and React 19.3.1 were both verified in installed Vite consumers.
-- Tailwind CSS v4 is optional for consumers who import the compiled stylesheet and required only when compiling the raw source stylesheet or installing registry source that uses Tailwind classes.
+- **Accessible by default** — Built on Base UI headless primitives with full keyboard navigation and WAI-ARIA semantics.
+- **Tailwind CSS v4, CSS-first** — Dark-first Midnight theme with semantic `@theme` tokens. Ship with the precompiled stylesheet (`@usalyt/ui/styles.css`, no Tailwind Preflight resets) or compile from raw source tokens.
+- **Two adoption paths** — Install `@usalyt/ui` with dual ESM/CJS builds and per-component subpath imports, or own the source directly via `@usalyt/cli`.
+- **AI-ready** — Includes `@usalyt/mcp-server` (`usalyt-mcp`) so editors and agents can discover components and retrieve source code over stdio MCP.
+- **Cross-framework** — Supports React 18 and 19 across Vite, Next.js App Router, and Astro.
 
 ## Quick start
+
+### Install the component library
 
 ```bash
 pnpm add @usalyt/ui
@@ -37,16 +28,18 @@ import "@usalyt/ui/styles.css";
 export function Example() {
   return (
     <Card>
-      <CardHeader><CardTitle>Usalyt</CardTitle></CardHeader>
-      <CardContent><Button>Continue</Button></CardContent>
+      <CardHeader>
+        <CardTitle>Usalyt</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Button>Continue</Button>
+      </CardContent>
     </Card>
   );
 }
 ```
 
-The root barrel and every component/block subpath are dual ESM/CJS entries with matching declarations and a preserved `"use client"` boundary. The compiled `styles.css` contains the Usalyt theme and component utilities without Tailwind Preflight, so importing it does not reset the host page. The raw `styles/globals.css` and `styles/theme.css` are available for consumers who want to compile their own theme. Inter is bundled under the SIL Open Font License; Berkeley Mono is not bundled and is referenced only through `local()` with documented fallbacks.
-
-## CLI
+### Copy source with the CLI
 
 ```bash
 pnpm dlx @usalyt/cli init
@@ -55,9 +48,7 @@ pnpm dlx @usalyt/cli add auth-form --yes
 pnpm dlx @usalyt/cli list --json
 ```
 
-`usalyt init` creates `usalyt.json` with component and utility aliases. `usalyt add` resolves the installed registry, installs registry dependencies recursively, rewrites relative imports, rejects destinations outside the project, preserves existing files unless `--overwrite` is passed, and prints the exact `pnpm add ...` dependency command. It executes that command only with `--install` and explicit confirmation. `usalyt list --json` returns the packaged registry for scripts and agents.
-
-## MCP server
+### Use with an MCP-compatible editor or agent
 
 ```json
 {
@@ -70,65 +61,34 @@ pnpm dlx @usalyt/cli list --json
 }
 ```
 
-The `usalyt-mcp` executable resolves the installed registry, writes protocol frames only to stdout, sends diagnostics to stderr, validates tool arguments, and returns actionable `isError` results without terminating the session.
+## Monorepo structure
 
-## Shared configs
+| Workspace | Package | Description |
+| --- | --- | --- |
+| [`packages/ui`](packages/ui/README.md) | `@usalyt/ui` | 60 React primitives, 13 UI blocks, and compiled/raw stylesheets |
+| [`packages/cli`](packages/cli/README.md) | `@usalyt/cli` | CLI to initialize projects and copy registry components into your codebase |
+| [`packages/registry`](packages/registry/README.md) | `@usalyt/registry` | Deterministic component registry and JSON Schema |
+| [`packages/mcp-server`](packages/mcp-server/README.md) | `@usalyt/mcp-server` | Stdio Model Context Protocol server (`usalyt-mcp`) |
+| [`packages/tsconfig`](packages/tsconfig/README.md) | `@usalyt/tsconfig` | Shared TypeScript presets (`base`, `react`, `next`) |
+| [`packages/eslint-config`](packages/eslint-config/README.md) | `@usalyt/eslint-config` | Shared flat ESLint config for TypeScript and React |
+| [`apps/docs`](apps/docs/README.md) | `@usalyt/docs` | Astro + Starlight documentation site |
+| [`apps/storybook`](apps/storybook/README.md) | `@usalyt/storybook` | Interactive Storybook component catalog |
 
-```json
-{
-  "extends": "@usalyt/tsconfig/react.json"
-}
-```
+## Local development
 
-```js
-// eslint.config.mjs
-import config from "@usalyt/eslint-config";
-export default config;
-```
-
-## Development
+Requires Node.js `>=20` and `pnpm@10.2.0`.
 
 ```bash
 pnpm install --frozen-lockfile
 pnpm build
-pnpm type-check
-pnpm test:unit          # UI unit suite
-pnpm test:registry      # registry schema/determinism suite
-pnpm test:cli           # packaged CLI behavior
-pnpm test:mcp           # real MCP stdio protocol
-pnpm test:configs       # external config smoke checks
-pnpm test:installed     # pack + install + Vite/Next/Astro/CLI/MCP verification
-pnpm pack:public        # pack and inspect the six public tarballs
-pnpm check              # type-check, package suites, registry check, artifact gate
+pnpm dev     # starts docs and Storybook
+pnpm check   # runs type-check, unit/integration/package tests, and artifact checks
 ```
 
-Installed-artifact evidence is written under ignored `odd/artifacts/usalyt-npm-release/` at the repository root. This generated test output is not part of public Git history.
+## Contributing
 
-## Release and publishing
-
-The release workflow is `.github/workflows/usalyt-release.yml`. It is manual (`workflow_dispatch`), targets an environment named `npm-release`, and never publishes on push. Before any release, the repository owner must configure that environment with required reviewers and verify npm permissions and credentials. CI uses `pnpm install --frozen-lockfile`, build, type-check, package tests, registry check, and tarball inspection.
-
-### Minimum npm permissions and prerequisites
-
-1. The `@usalyt` npm organization/scope must exist and be owned by the release owner. Scope creation and name availability are external actions and are not performed here.
-2. Every maintainer account with publish rights must have 2FA enabled. Prefer a dedicated granular automation token limited to the six package names and publish operations; do not grant organization-wide automation or billing permissions.
-3. Each package must be public (`publishConfig.access: "public"`). No placeholder packages, name reservations, or ownership changes are performed by this repository.
-4. Protect the `npm-release` environment with required reviewers and restrict who can run the workflow. The workflow receives `NODE_AUTH_TOKEN` only from that environment.
-5. Per-package trusted publisher/OIDC: npm's trusted-publisher flow requires an OIDC-capable publish client. pnpm 10.2.0 does not document a complete npm trusted-publisher exchange, and this repository has not verified it. The workflow requests `id-token: write` and supports `--provenance`, but the token-based protected-environment path is the verified baseline. Validate OIDC end-to-end with a pre-release version before relying on it; do not claim OIDC compatibility without that evidence.
-
-### Partial-release recovery
-
-1. Never republish or overwrite an existing version. npm rejects duplicate versions and the repository must not attempt `--force`.
-2. If only some packages published, inspect the published set, then rerun the workflow for the missing packages only. `scripts/release/publish-public-packages.mjs` checks `pnpm view <name>@<version> version` and skips packages that already exist.
-3. If a published package needs a code change, bump the fixed version group (for example to `0.0.2`), update every public changelog, and publish the new version. Do not delete or unpublish the old version as a recovery mechanism.
-4. A failed build or test run publishes nothing: the workflow runs verification before publication.
-
-### Source availability and licensing
-
-The `usalyt` workspace and five of the six public packages are licensed `GPL-3.0-only`. `@usalyt/tsconfig` is the package-scoped exception and is licensed `MIT`, retaining its original declaration by explicit owner decision. Each tarball includes its full license text, `NOTICE`, `THIRD_PARTY_NOTICES.md`, its changelog, and its TypeScript/JavaScript source or configuration inputs needed to rebuild it. The repository URL used in package metadata is `https://github.com/Usalyt/ui`, with package sources under `packages/`. Each tarball also contains its corresponding source for recipients.
-
-This repository contains only Usalyt source and history.
+Contributions are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) for workspace commands, commit conventions, and pull request requirements.
 
 ## License
 
-GPL-3.0-only for the workspace and five public packages; MIT for `@usalyt/tsconfig`. See each package `LICENSE`, `NOTICE`, and `THIRD_PARTY_NOTICES.md`. Third-party components and fonts retain their own licenses; Berkeley Mono is not bundled.
+Licensed under [GPL-3.0-only](LICENSE) (`MIT` for [`@usalyt/tsconfig`](packages/tsconfig/LICENSE)). See [NOTICE](NOTICE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for details.
