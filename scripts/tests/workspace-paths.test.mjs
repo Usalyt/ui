@@ -121,3 +121,22 @@ test("pack and verify usage headers point at repository root", () => {
   }
 });
 
+test("@usalyt/ui source does not depend on workspace apps/*", () => {
+  const uiSrcRoot = path.join(workspaceRoot, "packages/ui/src");
+  const stack = [uiSrcRoot];
+  while (stack.length > 0) {
+    const current = stack.pop();
+    for (const entry of fs.readdirSync(current, { withFileTypes: true })) {
+      const fullPath = path.join(current, entry.name);
+      if (entry.isDirectory()) {
+        stack.push(fullPath);
+        continue;
+      }
+      if (!/\.(?:ts|tsx|js|mjs|cjs)$/.test(entry.name)) continue;
+      const content = fs.readFileSync(fullPath, "utf8");
+      const relative = path.relative(workspaceRoot, fullPath);
+      assert.doesNotMatch(content, /\.\.\/apps\//, relative);
+    }
+  }
+});
+

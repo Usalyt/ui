@@ -5,6 +5,8 @@ This private package contains fast workspace-level smoke tests and the Playwrigh
 ## What lives here
 
 - `src/cli-registry.test.ts` — fast registry data and CLI smoke checks against the workspace build.
+- `src/docs-component-usability.test.tsx` — usability checks against docs component demos and Starlight configuration.
+- `src/storybook-preview.test.tsx` — wiring checks for the Storybook preview theme decorator.
 - `e2e/**` — Playwright interaction and accessibility suites for Storybook.
 - `scripts/docs-a11y.mjs` — axe audit for the built docs site.
 

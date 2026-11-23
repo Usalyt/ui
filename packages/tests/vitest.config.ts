@@ -8,7 +8,7 @@ export default defineConfig({
   root: __dirname,
   test: {
     name: "integration",
-    include: ["src/**/*.test.ts"],
+    include: ["src/**/*.test.{ts,tsx}"],
     testTimeout: 60000,
     hookTimeout: 30000
   }

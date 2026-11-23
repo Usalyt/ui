@@ -1,14 +1,22 @@
+// @vitest-environment jsdom
+import "@testing-library/jest-dom/vitest";
 import React from "react";
 import fs from "node:fs";
 import path from "node:path";
-import { render, screen } from "@testing-library/react";
+import { fileURLToPath } from "node:url";
+import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it } from "vitest";
-import { PaginationDemo } from "../../../../apps/docs/src/components/demos/PaginationDemo";
-import { StepperDemo } from "../../../../apps/docs/src/components/demos/StepperDemo";
-import { KbdDemo } from "../../../../apps/docs/src/components/demos/KbdDemo";
+import { afterEach, describe, expect, it } from "vitest";
+import { PaginationDemo } from "../../../apps/docs/src/components/demos/PaginationDemo";
+import { StepperDemo } from "../../../apps/docs/src/components/demos/StepperDemo";
+import { KbdDemo } from "../../../apps/docs/src/components/demos/KbdDemo";
 
-const docsRoot = path.resolve(process.cwd(), "../../apps/docs");
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const docsRoot = path.resolve(__dirname, "../../../apps/docs");
+
+afterEach(() => {
+  cleanup();
+});
 const popoverDocsPath = path.join(
   docsRoot,
   "src/content/docs/components/popover.mdx"

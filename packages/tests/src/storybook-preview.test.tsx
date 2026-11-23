@@ -1,3 +1,4 @@
+// @vitest-environment jsdom
 import { createRequire } from "node:module";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -26,7 +27,7 @@ function testModuleFilePath(): string {
 const requireFromStorybook = createRequire(
   resolve(
     dirname(testModuleFilePath()),
-    "../../../../apps/storybook/package.json"
+    "../../../apps/storybook/package.json"
   )
 );
 const previewApiEntry = requireFromStorybook.resolve("storybook/preview-api");
@@ -49,11 +50,11 @@ type DecoratorResult = {
 
 // @ts-expect-error Vite provides import.meta.glob during the test transform.
 const previewModules = import.meta.glob(
-  "../../../../apps/storybook/.storybook/preview.ts"
+  "../../../apps/storybook/.storybook/preview.ts"
 );
 const previewLoader = (
   previewModules as Record<string, () => Promise<unknown>>
-)["../../../../apps/storybook/.storybook/preview.ts"];
+)["../../../apps/storybook/.storybook/preview.ts"];
 
 async function loadPreview(): Promise<Preview> {
   if (!previewLoader) {
