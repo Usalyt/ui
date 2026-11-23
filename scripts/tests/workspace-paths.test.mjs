@@ -119,6 +119,11 @@ test("pack and verify usage headers point at repository root", () => {
     assert.match(content, /Run from the repository root after building:/);
     assert.doesNotMatch(content, /Run from the (?:ui-library|usalyt) workspace root/);
   }
+  const verifyInstalled = read("scripts/verify-installed.mjs");
+  assert.match(
+    verifyInstalled,
+    /function writeConsumer[\s\S]*?pnpm-workspace\.yaml/,
+  );
 });
 
 test("@usalyt/ui source does not depend on workspace apps/*", () => {

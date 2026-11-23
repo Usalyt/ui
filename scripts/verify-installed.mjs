@@ -85,6 +85,7 @@ function writeConsumer(name, packageJson, files) {
   const root = path.join(runRoot, name);
   fs.mkdirSync(root, { recursive: true });
   fs.writeFileSync(path.join(root, "package.json"), `${JSON.stringify(packageJson, null, 2)}\n`);
+  fs.writeFileSync(path.join(root, "pnpm-workspace.yaml"), `packages:\n  - "."\n`);
   writeFiles(root, files);
   return root;
 }
